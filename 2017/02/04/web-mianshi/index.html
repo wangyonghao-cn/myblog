@@ -16,7 +16,7 @@ js是否面向对象，这个问题可以先说什么是面向对象，面向对
 <meta property="og:site_name" content="王勇浩的blog">
 <meta property="og:description" content="1.怎么理解js面向对象？
 js是否面向对象，这个问题可以先说什么是面向对象，面向对象的语言都有共同的特征那就是有类的概念，每个类都有抽象、封装、继承、多态的特性，而js在ES6之前并没有类的概念，但是，他却可以利用构造函数来实现类所能做的事情，并通过原型链实现继承，那么它同样也具备了以上面向对象语言的所有特征，特别的，ES6新增加了class这一概念，就更说明了其是一种面向对象的语言，所以js是">
-<meta property="og:updated_time" content="2017-01-21T02:15:42.414Z">
+<meta property="og:updated_time" content="2017-02-16T11:35:08.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web前端面试问题记录">
 <meta name="twitter:description" content="1.怎么理解js面向对象？
@@ -187,8 +187,8 @@ js是否面向对象，这个问题可以先说什么是面向对象，面向对
 <h3 id="6-怎么理解盒子模型？"><a href="#6-怎么理解盒子模型？" class="headerlink" title="6.怎么理解盒子模型？"></a>6.怎么理解盒子模型？</h3><blockquote>
 <p>也叫框模型，是css技术使用的一种思维模型<br>每个元素都可以看作一个盒子，每个元素都包含border.margin.padding<br>content,而盒子模型分为两种，一种是w3c标准盒子模型，另一种是IE盒子<br>模型，和w3c不同的是ie盒子模型的content包含了border和padding </p>
 </blockquote>
-<h3 id="7-闭包"><a href="#7-闭包" class="headerlink" title="7.闭包"></a>7.闭包</h3><blockquote>
-<p>函数套用函数，内部函数访问外部变量，使其内的变量不会在函数执行完后被销毁<br>简单来说就是 定义在函数内部的函数<br>用途：可以读取函数的内部变量；二是可以将函数内的变量一直存在在内存中不被销毁</p>
+<h3 id="7-什么是闭包，如何使用它，为什么要使用它？"><a href="#7-什么是闭包，如何使用它，为什么要使用它？" class="headerlink" title="7.什么是闭包，如何使用它，为什么要使用它？"></a>7.什么是闭包，如何使用它，为什么要使用它？</h3><blockquote>
+<p>闭包就是能够读取其他函数内部变量的函数。由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，<br>因此可以把闭包简单理解成“定义在一个函数内部的函数”。所以，在本质上，闭包就是将函数内部和函数外部连接<br>起来的一座桥梁。闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另<br>一个就是让这些变量的值始终保持在内存中。</p>
 </blockquote>
 <h3 id="8-angular模块之间的通讯方式？"><a href="#8-angular模块之间的通讯方式？" class="headerlink" title="8.angular模块之间的通讯方式？"></a>8.angular模块之间的通讯方式？</h3><blockquote>
 <p>rootscope service 广播</p>
@@ -211,6 +211,9 @@ js是否面向对象，这个问题可以先说什么是面向对象，面向对
 </blockquote>
 <h3 id="15-jQuery中的方法链是什么？使用方法链有什么好处？"><a href="#15-jQuery中的方法链是什么？使用方法链有什么好处？" class="headerlink" title="15.jQuery中的方法链是什么？使用方法链有什么好处？"></a>15.jQuery中的方法链是什么？使用方法链有什么好处？</h3><blockquote>
 <p>就是对同一个对象的操作可以在上一步操作的后面接着写，<br>好处是让代码看起来更简洁，可读性也高</p>
+</blockquote>
+<h3 id="16-src和href的区别"><a href="#16-src和href的区别" class="headerlink" title="16.src和href的区别"></a>16.src和href的区别</h3><blockquote>
+<p>href 是指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，用于超链接。<br>src是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置；在请求src资源时会将其指向的资源下载<br>并应用到文档内，例如js脚本，img图片和frame等元素。当浏览器解析到该元素时，会暂停其他资源的下载和处理，直<br>到将该资源加载、编译、执行完毕，图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。这也是为什么将<br>js脚本放在底部而不是头部</p>
 </blockquote>
 <h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><blockquote>
 <pre><code>持续更新中...
