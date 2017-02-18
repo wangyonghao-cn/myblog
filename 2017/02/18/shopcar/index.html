@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: web前端面试 | 王勇浩的blog</title>
+  <title>同步购物车 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="王勇浩的blog">
-<meta property="og:url" content="http://yoursite.com/tags/web前端面试/index.html">
+  <meta name="description" content="一 、localStorage,sessionStorage,cookie
+购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同步购物车">
+<meta property="og:url" content="http://yoursite.com/2017/02/18/shopcar/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
+<meta property="og:description" content="一 、localStorage,sessionStorage,cookie
+购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。">
+<meta property="og:updated_time" content="2017-02-18T02:33:11.014Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王勇浩的blog">
+<meta name="twitter:title" content="同步购物车">
+<meta name="twitter:description" content="一 、localStorage,sessionStorage,cookie
+购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。">
   
     <link rel="alternative" href="/atom.xml" title="王勇浩的blog" type="application/atom+xml">
   
@@ -141,60 +148,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-shopcar" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/04/web-mianshi/" class="archive-article-date">
-  	<time datetime="2017-02-04T01:12:14.245Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/04/web-mianshi/">web前端面试问题记录</a>
+    <h1 class="article-title" itemprop="name">
+      同步购物车
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/02/18/shopcar/" class="archive-article-date">
+  	<time datetime="2017-02-18T02:03:30.314Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一-、localStorage-sessionStorage-cookie"><a href="#一-、localStorage-sessionStorage-cookie" class="headerlink" title="一 、localStorage,sessionStorage,cookie"></a>一 、localStorage,sessionStorage,cookie</h2><blockquote>
+<p>购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，<br>那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要<br>的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。 </p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>cookie ：是在客户端保存的方案，但是有许多缺点，一就是存的数据太少，浏览器最多可以保存4096个字节（4KB）,<br>而且浏览器还限制了保存cookie的数量，大多数浏览器每个站点最多存放40个cookie，就是说如果你加入购物车的数量<br>多的话，所有站点存的cookie通常有300个的限制，以前存的数据会一个个的被删除掉，最后cookie还有生命周期<br>显然我们不能够使用这种方法；</p>
+<p>sessionStorage(window中的对象): 是HTML5提供的使用JS在客户端存储的新方法，之前都是用cookie完成的，但cookie不<br>适合存储大量的数据，因为它们由每个对服务器的请求来传递，这使得 cookie速度很慢而且效率也不高。，所以提供了这种方法，<br>是一个临时的session会话，当页面关闭时，存储消失sessionStorage - 针对一个 session 的数据存储；在 HTML5 中，<br>数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能<br>。 对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。</p>
+<p>localStorage(window中的对象):和sessionStorage类似，但localStorage是永久存储，没有时间限制，而且可以手动删除数据</p>
+</blockquote>
+<h2 id="二、实现"><a href="#二、实现" class="headerlink" title="二、实现"></a>二、实现</h2><blockquote>
+<p>  从以上三种方式来看，显然最后一个是我们所需要的，于是出现了我的第一个修改前的版本：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"香蕉"</span>&gt;香蕉&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"苹果"</span>&gt;苹果&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"哈密瓜"</span>&gt;哈密瓜&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"梨"</span>&gt;梨&lt;br&gt;</div><div class="line"></div><div class="line">	&lt;script&gt;</div><div class="line">		window.onload = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line"></div><div class="line"></div><div class="line">		var oinputs = document.querySelectorAll(<span class="string">"input"</span>);</div><div class="line"></div><div class="line">		<span class="keyword">for</span>(var i=0; i&lt;oinputs.length; i++)&#123;</div><div class="line">			oinputs[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">				<span class="keyword">if</span>(this.checked)&#123;</div><div class="line"></div><div class="line">					window.localStorage.setItem(<span class="string">"buy"</span>,this.value);</div><div class="line">				&#125;<span class="keyword">else</span>  &#123;</div><div class="line">					window.localStorage.setItem(<span class="string">"unbuy"</span>,this.value);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		window.addEventListener(<span class="string">"storage"</span>, <span class="keyword">function</span>(ev)&#123;</div><div class="line">				<span class="keyword">if</span> (ev.key == <span class="string">"unbuy"</span>) &#123;</div><div class="line"></div><div class="line">					<span class="keyword">for</span>(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">						<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">						&#123;</div><div class="line">							oinputs[i].checked = <span class="literal">false</span>;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span> (ev.key == <span class="string">"buy"</span>) &#123;</div><div class="line">					<span class="keyword">for</span>(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">						<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">						&#123;</div><div class="line">							oinputs[i].checked = <span class="literal">true</span>;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line"></div><div class="line">``` </div><div class="line"><span class="comment">## 修改版</span></div><div class="line"></div><div class="line">&gt; 开启服务器从网页中打开后，试用一下，我们会发现这是有问题的，当我们重复点击同一个物品时，会发现刚开始是</div><div class="line">&gt; 同步的，后来就不同步了，经过老师的解答和查看客户端中的<span class="built_in">local</span>Storage存储情况，发现后来重复点击同一物品时</div><div class="line">&gt; 内存中的数据并没有发生改变，就是说并没有触发JS代码中的storage事件，这是因为我们开始点击后，本地存储</div><div class="line">&gt; 先录入了我们原先的数据，当我们第二次选中时或者取消时，按我原先的理解会将原来的值覆盖，从而达到改变存储</div><div class="line">&gt; 的数据的效果，而事实证明，内存中存储的是一个key对用一个value值，我们的key分别是buy和unbuy，第二次选中时</div><div class="line">&gt; ，unbuy并不会消失就是说浏览器中还是有buy和unbuy两个值，并没有触发这个事件，所以，我们使用了设置key之前</div><div class="line">&gt; 先判断的方式，如果原来有我们设置的key，就先把它删掉，重新判断，这样就会一直触发storage事件，而事实证明</div><div class="line">&gt; 是可以的</div><div class="line"></div><div class="line"></div><div class="line">``` bash</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"香蕉"</span>&gt;香蕉&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"苹果"</span>&gt;苹果&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"哈密瓜"</span>&gt;哈密瓜&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"梨"</span>&gt;梨&lt;br&gt;</div><div class="line"></div><div class="line">	&lt;script&gt;</div><div class="line">		window.onload = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line"></div><div class="line"></div><div class="line">		var oinputs = document.querySelectorAll(<span class="string">"input"</span>);</div><div class="line"></div><div class="line">		<span class="keyword">for</span>(var i=0; i&lt;oinputs.length; i++)&#123;</div><div class="line">			oinputs[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">				<span class="keyword">if</span>(this.checked)&#123;</div><div class="line">					<span class="keyword">if</span> (window.localStorage.getItem(<span class="string">"buy"</span>)) &#123;</div><div class="line">						window.localStorage.removeItem(<span class="string">"buy"</span>);</div><div class="line">					&#125;</div><div class="line">					window.localStorage.setItem(<span class="string">"buy"</span>,this.value);</div><div class="line">				&#125;<span class="keyword">else</span>  &#123;</div><div class="line">					<span class="keyword">if</span> (window.localStorage.getItem(<span class="string">"unbuy"</span>)) &#123;</div><div class="line">						window.localStorage.removeItem(<span class="string">"unbuy"</span>);</div><div class="line">					&#125;</div><div class="line">					window.localStorage.setItem(<span class="string">"unbuy"</span>,this.value);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		window.addEventListener(<span class="string">"storage"</span>, <span class="keyword">function</span>(ev)&#123;</div><div class="line">				<span class="keyword">if</span> (ev.key == <span class="string">"unbuy"</span>) &#123;</div><div class="line"></div><div class="line">					<span class="keyword">for</span>(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">						<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">						&#123;</div><div class="line">							oinputs[i].checked = <span class="literal">false</span>;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span> (ev.key == <span class="string">"buy"</span>) &#123;</div><div class="line">					<span class="keyword">for</span>(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">						<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">						&#123;</div><div class="line">							oinputs[i].checked = <span class="literal">true</span>;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="补上key的方法："><a href="#补上key的方法：" class="headerlink" title="补上key的方法："></a>补上key的方法：</h3><blockquote>
+<p>Ø  setItem():</p>
+<p>设置数据，key\value类型，类型都是字符串</p>
+<p>可以用获取属性的形式操作</p>
+<p>Ø getItem():</p>
+<p>获取数据，通过key来获取到相应的value</p>
+<p>Ø removeItem():</p>
+<p>删除数据，通过key来删除相应的value</p>
+<p>Ø clear():</p>
+<p>删除全部存储的值</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/kudog.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/kudog.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">web前端面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">storage 购物车  同步购物车</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/18/shopcar/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/02/06/react_Component/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react的受控组件和非受控组件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -217,9 +346,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
