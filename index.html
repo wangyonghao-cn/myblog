@@ -143,6 +143,194 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jq-select" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/19/jq-select/">jQuery入口函数和常用选择器</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/19/jq-select/" class="archive-article-date">
+  	<time datetime="2017-02-19T08:13:26.970Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>jQuery是javascript的一个库（框架），包含多个可重用的函数，用来辅助我们简化javascript开发… </p>
+</blockquote>
+<h2 id="一、使用"><a href="#一、使用" class="headerlink" title="一、使用"></a>一、使用</h2><blockquote>
+<p>1.引用，要想用jQuery,首先要将JQ的库引进来，我们才可以使用<br>2.和JS使用类似，都有一个入口函数，第一种是$(document).ready(function(){});另一种是$(function() {});<br>和JS使用的window.onload=function(){}的区别是windows.onload方法是在网页中所有的元素（包括元素的所有<br>关联文件）完全加载到浏览器后才执行，即Javascript此时才可以访问网页中的 任何元素。而jQuery中的<br>$（document).ready（）和$(function() {})方法注册的事件处理程序，在DOM完全就绪时就可以被调用。此时，<br>网页的所有元素对jQuery而言都 是可以访问的，但是，这并不意味着这些元素关联的文件都已经下载完毕。<br>3.JQ的书写方式和JS不同，JQ是$(“选择器”)就可以选中HTML节点；JQ与DOM原生对象之间可以相互转换，<br>在DOM对象前加$可实现转化为JQ对象，在jq后接[]或者.get(index)可转换为DOM原生对象</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/02/19/jq-select/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jQuery jQuery选择器</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-jquery" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/19/jquery/">jQuery总结</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/19/jquery/" class="archive-article-date">
+  	<time datetime="2017-02-19T08:05:53.398Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一-基本方法："><a href="#一-基本方法：" class="headerlink" title="一.基本方法："></a>一.基本方法：</h2><blockquote>
+<p>html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；<br>val()方法是设置或返回表单的值，一般有input,textarea等；<br>attr()方法设置或返回元素的属性值，会覆盖掉原有属性；<br>removeAttr()为移除被选元素的属性；<br>addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；<br>removeClass(‘类名’）传参，删除指定类名，不传参删除所有类名；<br>toggleClass(‘类名’),在有与没有之间切换；<br>
+        
+          <a class="article-more-a" href="/2017/02/19/jquery/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jQuery jQuery节点操作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-chajian" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/18/chajian/">延迟动画 下拉动画 插件</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/18/chajian/" class="archive-article-date">
+  	<time datetime="2017-02-18T08:54:09.842Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一个字：炫酷"><a href="#一个字：炫酷" class="headerlink" title="一个字：炫酷"></a>一个字：炫酷</h3><blockquote>
+<p>今天，我们来分享两个比较炫酷的动画插件animated.css 和  wow.js,第一个，可以添加刷新动画，第二个要基于第一个实现，<br>可以实现下拉动画和延迟动画的效果 </p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/02/18/chajian/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">动画 下拉动画 延迟动画 animated</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-shopcar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -442,10 +630,68 @@
 
 
   
+    <article id="post-algorithm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/04/algorithm/">各种算法实现</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/04/algorithm/" class="archive-article-date">
+  	<time datetime="2017-02-04T01:12:14.230Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="去重算法"><a href="#去重算法" class="headerlink" title="去重算法"></a>去重算法</h3><blockquote>
+<p>去除数组中的重复元素</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/02/04/algorithm/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
   
 
 
@@ -556,11 +802,23 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+                <a href="javascript:void(0)" class="js-tag color2">jQuery jQuery选择器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
               </li>
              
               <li class="article-tag-list-item">

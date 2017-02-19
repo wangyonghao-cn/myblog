@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="王勇浩的blog">
 <meta property="og:description" content="一 、localStorage,sessionStorage,cookie
 购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。">
-<meta property="og:updated_time" content="2017-02-18T02:33:11.014Z">
+<meta property="og:updated_time" content="2017-02-19T08:04:22.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="同步购物车">
 <meta name="twitter:description" content="一 、localStorage,sessionStorage,cookie
@@ -178,10 +178,68 @@
 <p>localStorage(window中的对象):和sessionStorage类似，但localStorage是永久存储，没有时间限制，而且可以手动删除数据</p>
 </blockquote>
 <h2 id="二、实现"><a href="#二、实现" class="headerlink" title="二、实现"></a>二、实现</h2><blockquote>
-<p>  从以上三种方式来看，显然最后一个是我们所需要的，于是出现了我的第一个修改前的版本：</p>
+<p>从以上三种方式来看，显然最后一个是我们所需要的，于是出现了我的第一个修改前的版本：</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"香蕉"</span>&gt;香蕉&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"苹果"</span>&gt;苹果&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"哈密瓜"</span>&gt;哈密瓜&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"梨"</span>&gt;梨&lt;br&gt;</div><div class="line"></div><div class="line">	&lt;script&gt;</div><div class="line">		window.onload = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line"></div><div class="line"></div><div class="line">		var oinputs = document.querySelectorAll(<span class="string">"input"</span>);</div><div class="line"></div><div class="line">		<span class="keyword">for</span>(var i=0; i&lt;oinputs.length; i++)&#123;</div><div class="line">			oinputs[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">				<span class="keyword">if</span>(this.checked)&#123;</div><div class="line"></div><div class="line">					window.localStorage.setItem(<span class="string">"buy"</span>,this.value);</div><div class="line">				&#125;<span class="keyword">else</span>  &#123;</div><div class="line">					window.localStorage.setItem(<span class="string">"unbuy"</span>,this.value);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		window.addEventListener(<span class="string">"storage"</span>, <span class="keyword">function</span>(ev)&#123;</div><div class="line">				<span class="keyword">if</span> (ev.key == <span class="string">"unbuy"</span>) &#123;</div><div class="line"></div><div class="line">					<span class="keyword">for</span>(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">						<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">						&#123;</div><div class="line">							oinputs[i].checked = <span class="literal">false</span>;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span> (ev.key == <span class="string">"buy"</span>) &#123;</div><div class="line">					<span class="keyword">for</span>(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">						<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">						&#123;</div><div class="line">							oinputs[i].checked = <span class="literal">true</span>;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line"></div><div class="line">``` </div><div class="line"><span class="comment">## 修改版</span></div><div class="line"></div><div class="line">&gt; 开启服务器从网页中打开后，试用一下，我们会发现这是有问题的，当我们重复点击同一个物品时，会发现刚开始是</div><div class="line">&gt; 同步的，后来就不同步了，经过老师的解答和查看客户端中的<span class="built_in">local</span>Storage存储情况，发现后来重复点击同一物品时</div><div class="line">&gt; 内存中的数据并没有发生改变，就是说并没有触发JS代码中的storage事件，这是因为我们开始点击后，本地存储</div><div class="line">&gt; 先录入了我们原先的数据，当我们第二次选中时或者取消时，按我原先的理解会将原来的值覆盖，从而达到改变存储</div><div class="line">&gt; 的数据的效果，而事实证明，内存中存储的是一个key对用一个value值，我们的key分别是buy和unbuy，第二次选中时</div><div class="line">&gt; ，unbuy并不会消失就是说浏览器中还是有buy和unbuy两个值，并没有触发这个事件，所以，我们使用了设置key之前</div><div class="line">&gt; 先判断的方式，如果原来有我们设置的key，就先把它删掉，重新判断，这样就会一直触发storage事件，而事实证明</div><div class="line">&gt; 是可以的</div><div class="line"></div><div class="line"></div><div class="line">``` bash</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"香蕉"</span>&gt;香蕉&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"苹果"</span>&gt;苹果&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"哈密瓜"</span>&gt;哈密瓜&lt;br&gt;</div><div class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"checkbox"</span> value=<span class="string">"梨"</span>&gt;梨&lt;br&gt;</div><div class="line"></div><div class="line">	&lt;script&gt;</div><div class="line">		window.onload = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line"></div><div class="line"></div><div class="line">		var oinputs = document.querySelectorAll(<span class="string">"input"</span>);</div><div class="line"></div><div class="line">		<span class="keyword">for</span>(var i=0; i&lt;oinputs.length; i++)&#123;</div><div class="line">			oinputs[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">				<span class="keyword">if</span>(this.checked)&#123;</div><div class="line">					<span class="keyword">if</span> (window.localStorage.getItem(<span class="string">"buy"</span>)) &#123;</div><div class="line">						window.localStorage.removeItem(<span class="string">"buy"</span>);</div><div class="line">					&#125;</div><div class="line">					window.localStorage.setItem(<span class="string">"buy"</span>,this.value);</div><div class="line">				&#125;<span class="keyword">else</span>  &#123;</div><div class="line">					<span class="keyword">if</span> (window.localStorage.getItem(<span class="string">"unbuy"</span>)) &#123;</div><div class="line">						window.localStorage.removeItem(<span class="string">"unbuy"</span>);</div><div class="line">					&#125;</div><div class="line">					window.localStorage.setItem(<span class="string">"unbuy"</span>,this.value);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		window.addEventListener(<span class="string">"storage"</span>, <span class="keyword">function</span>(ev)&#123;</div><div class="line">				<span class="keyword">if</span> (ev.key == <span class="string">"unbuy"</span>) &#123;</div><div class="line"></div><div class="line">					<span class="keyword">for</span>(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">						<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">						&#123;</div><div class="line">							oinputs[i].checked = <span class="literal">false</span>;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span> (ev.key == <span class="string">"buy"</span>) &#123;</div><div class="line">					<span class="keyword">for</span>(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">						<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">						&#123;</div><div class="line">							oinputs[i].checked = <span class="literal">true</span>;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<h3 id="补上key的方法："><a href="#补上key的方法：" class="headerlink" title="补上key的方法："></a>补上key的方法：</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	&lt;!DOCTYPE html&gt;</div><div class="line">	&lt;html lang=&quot;en&quot;&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">		&lt;title&gt;Document&lt;/title&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;香蕉&quot;&gt;香蕉&lt;br&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;苹果&quot;&gt;苹果&lt;br&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;哈密瓜&quot;&gt;哈密瓜&lt;br&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;梨&quot;&gt;梨&lt;br&gt;</div><div class="line"></div><div class="line">		&lt;script&gt;</div><div class="line">			window.onload = function()&#123;</div><div class="line"></div><div class="line"></div><div class="line">			var oinputs = document.querySelectorAll(&quot;input&quot;);</div><div class="line"></div><div class="line">			for(var i=0; i&lt;oinputs.length; i++)&#123;</div><div class="line">				oinputs[i].onclick = function()&#123;</div><div class="line">					if(this.checked)&#123;</div><div class="line"></div><div class="line">						window.localStorage.setItem(&quot;buy&quot;,this.value);</div><div class="line">					&#125;else  &#123;</div><div class="line">						window.localStorage.setItem(&quot;unbuy&quot;,this.value);</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			window.addEventListener(&quot;storage&quot;, function(ev)&#123;</div><div class="line">					if (ev.key == &quot;unbuy&quot;) &#123;</div><div class="line"></div><div class="line">						for(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">							if(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = false;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;else if (ev.key == &quot;buy&quot;) &#123;</div><div class="line">						for(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">							if(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = true;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">			&#125;);</div><div class="line">		&#125;</div><div class="line">		&lt;/script&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">	&lt;/html&gt;</div><div class="line"></div><div class="line">```</div></pre></td></tr></table></figure>
+<p>修改后:</p>
+<p>开启服务器从网页中打开后，试用一下，我们会发现这是有问题的，当我们重复点击同一个物品时，会发现刚开始是<br>同步的，后来就不同步了，经过老师的解答和查看客户端中的localStorage存储情况，发现后来重复点击同一物品时<br>内存中的数据并没有发生改变，就是说并没有触发JS代码中的storage事件，这是因为我们开始点击后，本地存储<br>先录入了我们原先的数据，当我们第二次选中时或者取消时，按我原先的理解会将原来的值覆盖，从而达到改变存储<br>的数据的效果，而事实证明，内存中存储的是一个key对用一个value值，我们的key分别是buy和unbuy，第二次选中时<br>，unbuy并不会消失就是说浏览器中还是有buy和unbuy两个值，并没有触发这个事件，所以，我们使用了设置key之前<br>先判断的方式，如果原来有我们设置的key，就先把它删掉，重新判断，这样就会一直触发storage事件，而事实证明<br>是可以的</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;香蕉&quot;&gt;香蕉&lt;br&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;苹果&quot;&gt;苹果&lt;br&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;哈密瓜&quot;&gt;哈密瓜&lt;br&gt;
+    &lt;input type=&quot;checkbox&quot; value=&quot;梨&quot;&gt;梨&lt;br&gt;
+
+    &lt;script&gt;
+        window.onload = function(){
+
+
+        var oinputs = document.querySelectorAll(&quot;input&quot;);
+
+        for(var i=0; i&lt;oinputs.length; i++){
+            oinputs[i].onclick = function(){
+                if(this.checked){
+                    if (window.localStorage.getItem(&quot;buy&quot;)) {
+                        window.localStorage.removeItem(&quot;buy&quot;);
+                    }
+                    window.localStorage.setItem(&quot;buy&quot;,this.value);
+                }else  {
+                    if (window.localStorage.getItem(&quot;unbuy&quot;)) {
+                        window.localStorage.removeItem(&quot;unbuy&quot;);
+                    }
+                    window.localStorage.setItem(&quot;unbuy&quot;,this.value);
+                }
+            }
+        }
+
+        window.addEventListener(&quot;storage&quot;, function(ev){
+                if (ev.key == &quot;unbuy&quot;) {
+
+                    for(var i=0; i&lt; oinputs.length;i++){
+                        if(ev.newValue == oinputs[i].value)
+                        {
+                            oinputs[i].checked = false;
+                        }
+                    }
+                }else if (ev.key == &quot;buy&quot;) {
+                    for(var i=0; i&lt; oinputs.length;i++){
+                        if(ev.newValue == oinputs[i].value)
+                        {
+                            oinputs[i].checked = true;
+                        }
+                    }
+                }
+        });
+    }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3 id="补上key的方法："><a href="#补上key的方法：" class="headerlink" title="补上key的方法："></a>补上key的方法：</h3><blockquote>
 <p>Ø  setItem():</p>
 <p>设置数据，key\value类型，类型都是字符串</p>
 <p>可以用获取属性的形式操作</p>
@@ -305,6 +363,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/02/18/chajian/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          延迟动画 下拉动画 插件
+        
+      </div>
+    </a>
   
   
     <a href="/2017/02/06/react_Component/" id="article-nav-older" class="article-nav-link-wrap">
@@ -433,11 +500,23 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+                <a href="javascript:void(0)" class="js-tag color2">jQuery jQuery选择器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
               </li>
              
               <li class="article-tag-list-item">
