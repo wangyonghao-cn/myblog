@@ -6,21 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>react的受控组件和非受控组件 | 王勇浩的blog</title>
+  <title>Archives: 2017 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="背景
-React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介">
-<meta property="og:type" content="article">
-<meta property="og:title" content="react的受控组件和非受控组件">
-<meta property="og:url" content="http://yoursite.com/2017/02/06/react_Component/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="王勇浩的blog">
+<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
-<meta property="og:description" content="背景
-React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介">
-<meta property="og:updated_time" content="2017-02-06T08:50:29.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="react的受控组件和非受控组件">
-<meta name="twitter:description" content="背景
-React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介">
+<meta name="twitter:title" content="王勇浩的blog">
   
     <link rel="alternative" href="/atom.xml" title="王勇浩的blog" type="application/atom+xml">
   
@@ -148,185 +141,64 @@ React内部分别使用了props, state来区分组件的属性和状态。props�
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-react_Component" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      react的受控组件和非受控组件
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/02/04/algorithm/" class="archive-article-date">
+  	<time datetime="2017-02-04T01:12:14.230Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-04</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/02/04/algorithm/">各种算法实现</a>
     </h1>
   
 
-        
-        <a href="/2017/02/06/react_Component/" class="archive-article-date">
-  	<time datetime="2017-02-06T08:40:17.447Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
-<p>React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,<br>属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染<br>出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,<br>全部通过props来渲染也是没问题的, 不过这种情况不常见。<br>本文所介绍的内容就是通过props和state的定义来谈谈React的受控组件和非受控组件</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="react的非受控组件"><a href="#react的非受控组件" class="headerlink" title="react的非受控组件"></a>react的非受控组件</h3><blockquote>
-<p>顾名思义, 非受控组件即组件的状态改变不受控制.接来下我们以一个简单input组件代码来描述。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from <span class="string">'react'</span>;</div><div class="line">import ReactDOM from <span class="string">'react-dom'</span>;</div><div class="line"></div><div class="line">class Demo1 extends Component &#123;</div><div class="line">    <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">        <span class="built_in">return</span> (</div><div class="line">            &lt;input /&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDOM.render(&lt;Demo1/&gt;, document.getElementById(<span class="string">'content'</span>))</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在这个最简单的输入框组件里,我们并没有干涉input中的value展示,即用户输入的内容都会展示在上面。<br>如果我们通过props给组件设置一个初始默认值,<input defaultvalue="{this.props.value}/"><br>defaultValue属性是React内部实现的一个属性,目的类似于input的placeholder属性。<br>ps: 此处如果使用value代替defaultValue,会发现输入框的值无法改变。</p>
-</blockquote>
-<h3 id="react的受控组件"><a href="#react的受控组件" class="headerlink" title="react的受控组件"></a>react的受控组件</h3><blockquote>
-<p>上面提到过,既然通过设置input的value属性, 无法改变输入框值,<br>那么我们把它和state结合在一起,再绑定onChange事件,实时更新value值就行了</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Demo1 extends Component &#123;</div><div class="line">    constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line">        this.state = &#123;</div><div class="line">            value: props.value</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    handleChange(e) &#123;</div><div class="line">        this.setState(&#123;</div><div class="line">            value: e.target.value</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">        <span class="built_in">return</span> (</div><div class="line">            &lt;input value=&#123;this.state.value&#125; onChange=&#123;e =&gt; this.handleChange(e)&#125;/&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这就是最简单的受控组件模型, 我们可以通过在onChange的回调里控制input要显示的值,<br>例如我们设置input框只能输入数字</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">this.setState(&#123;</div><div class="line">    value: e.target.value.replace(/\D/g, <span class="string">''</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">react的受控组件 react非受控组件</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/06/react_Component/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/02/18/shopcar/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          同步购物车
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/02/04/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-    <div class="duoshuo"></div>
+    </div></section>
   
 
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -349,8 +221,8 @@ React内部分别使用了props, state来区分组件的属性和状态。props�
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
