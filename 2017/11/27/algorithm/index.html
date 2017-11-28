@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 王勇浩的blog</title>
+  <title>各种算法实现 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="王勇浩的blog">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="去重算法
+去除数组中的重复元素">
+<meta property="og:type" content="article">
+<meta property="og:title" content="各种算法实现">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/algorithm/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
+<meta property="og:description" content="去重算法
+去除数组中的重复元素">
+<meta property="og:updated_time" content="2017-03-19T05:58:07.423Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王勇浩的blog">
+<meta name="twitter:title" content="各种算法实现">
+<meta name="twitter:description" content="去重算法
+去除数组中的重复元素">
   
     <link rel="alternative" href="/atom.xml" title="王勇浩的blog" type="application/atom+xml">
   
@@ -145,36 +152,82 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-algorithm" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/27/algorithm/" class="archive-article-date">
-  	<time datetime="2017-11-27T13:09:20.400Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/27/algorithm/">各种算法实现</a>
+    <h1 class="article-title" itemprop="name">
+      各种算法实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/11/27/algorithm/" class="archive-article-date">
+  	<time datetime="2017-11-27T13:09:20.400Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="去重算法"><a href="#去重算法" class="headerlink" title="去重算法"></a>去重算法</h3><blockquote>
+<p>去除数组中的重复元素</p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function delRepeat(arr)&#123;</div><div class="line">  var newArray=new Array();</div><div class="line">  var len=arr.length;</div><div class="line">  for(var i=0;i&lt;len;i++)&#123;</div><div class="line">     for(var j=i+1;j&lt;len;j++)</div><div class="line">     &#123;</div><div class="line">       if(arr[i]==arr[j])</div><div class="line">       &#123;</div><div class="line">         ++i;  </div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">    newArray.push(arr[i]);</div><div class="line">  &#125;</div><div class="line"> return newArray;</div><div class="line">&#125;</div><div class="line">var arr=new Array(&quot;red&quot;,&quot;red&quot;,&quot;1&quot;,&quot;5&quot;,&quot;2&quot;);</div><div class="line">alert(delRepeat(arr));</div></pre></td></tr></table></figure>
+<h3 id="二分算法，又称折半算法"><a href="#二分算法，又称折半算法" class="headerlink" title="二分算法，又称折半算法"></a>二分算法，又称折半算法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function binaryInsertSort(arr)&#123;</div><div class="line">        for (var i = 1; i &lt; arr.length; i++) &#123;</div><div class="line">    var key = arr[i], left = 0, right = i - 1;</div><div class="line">    while (left &lt;= right) &#123;</div><div class="line">      var middle = parseInt((left + right) / 2);</div><div class="line">      if (key &lt; arr[middle]) &#123;</div><div class="line">        right = middle - 1;</div><div class="line">      &#125; else &#123;</div><div class="line">        left = middle + 1;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    for (var j = i - 1; j &gt;= left; j--) &#123;</div><div class="line">      arr[j + 1] = arr[j];</div><div class="line">    &#125;</div><div class="line">    arr[left] = key;</div><div class="line">  &#125;</div><div class="line">return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="选择排序算法"><a href="#选择排序算法" class="headerlink" title="选择排序算法"></a>选择排序算法</h3><blockquote>
+<p>选择排序就是通过n-i次关键字间的比较，从n-i-1个记录中选出关键字最小的记录，<br>并和第i个记录进行交换。选择排序(Selection-sort)是一种简单直观的排序算法。<br>它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，<br>再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，<br>直到所有元素均排序完毕。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function selectSort(arr)&#123;</div><div class="line">        for(var i = 0; i &lt; arr.length - 1; i++)&#123;</div><div class="line">            var min = arr[i];</div><div class="line">            for(var j = i + 1; j &lt; arr.length - 1; j++)&#123;</div><div class="line">                if(min &gt; arr[j])&#123;</div><div class="line">                    var temp = min;</div><div class="line">                    min = arr[j];</div><div class="line">                    arr[j] = temp;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            arr[i] = min;</div><div class="line">        &#125;</div><div class="line">        return arr;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="冒泡排序算法"><a href="#冒泡排序算法" class="headerlink" title="冒泡排序算法"></a>冒泡排序算法</h3><blockquote>
+<p>冒泡排序是一种交换排序，它的基本思想是：两两比较相邻记录的关键字，如果反序则交换，<br>直到没有反序的记录为止。。它重复地走访过要排序的数列，一次比较两个元素，如果它们的<br>顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该<br>数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function arrSort(arr) &#123;</div><div class="line">     let temp = 0;</div><div class="line">     for (var i = 0; i &lt; arr.length - 1; i++) &#123;</div><div class="line">       for (var j = i + 1; j &lt; arr.length; j++) &#123;</div><div class="line">         if (arr[j] &lt; arr[i]) &#123;</div><div class="line">           temp = arr[j];</div><div class="line">           arr[j] = arr[i];</div><div class="line">           arr[i] = temp;</div><div class="line">         &#125; </div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">     return arr;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h3 id="快速排序算法"><a href="#快速排序算法" class="headerlink" title="快速排序算法"></a>快速排序算法</h3><blockquote>
+<p>（1）在数据集之中，选择一个元素作为”基准”（pivot）。<br>（2）所有小于”基准”的元素，都移到”基准”的左边；所有大于”基准”的元素，都移到”基准”的右边。<br>（3）对”基准”左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function quickSort(arr)&#123;</div><div class="line">        if (arr.length &lt;= 1)&#123;return arr&#125;;</div><div class="line">        var pivotIndex = Math.floor(arr.length / 2);</div><div class="line">        var pivot = arr.splice(pivotIndex,1)[0];</div><div class="line">        var left = [];</div><div class="line">        var right = [];</div><div class="line">        for (var i = 0; i &lt; arr.length; i++)&#123;</div><div class="line">            if(arr[i] &lt; pivot) &#123;</div><div class="line">                left.push(arr[i]);</div><div class="line">            &#125;else&#123;</div><div class="line">                right.push(arr[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return quickSort(left).concat([pivot],quickSort(right));</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/kudog.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/kudog.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -186,23 +239,92 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/algorithm/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/11/27/chajian/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          延迟动画 下拉动画 插件
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
-  
+
 
 
           </div>
@@ -225,8 +347,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

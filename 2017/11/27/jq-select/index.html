@@ -6,14 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 王勇浩的blog</title>
+  <title>jQuery入口函数和常用选择器 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="王勇浩的blog">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="jQuery是javascript的一个库（框架），包含多个可重用的函数，用来辅助我们简化javascript开发… 
+
+一、使用
+1.引用，要想用jQuery,首先要将JQ的库引进来，我们才可以使用2.和JS使用类似，都有一个入口函数，第一种是$(document).ready(function(){});另一种是$(function() {});和JS使用的window.onload=fun">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery入口函数和常用选择器">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/jq-select/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
+<meta property="og:description" content="jQuery是javascript的一个库（框架），包含多个可重用的函数，用来辅助我们简化javascript开发… 
+
+一、使用
+1.引用，要想用jQuery,首先要将JQ的库引进来，我们才可以使用2.和JS使用类似，都有一个入口函数，第一种是$(document).ready(function(){});另一种是$(function() {});和JS使用的window.onload=fun">
+<meta property="og:updated_time" content="2017-02-19T09:32:02.596Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王勇浩的blog">
+<meta name="twitter:title" content="jQuery入口函数和常用选择器">
+<meta name="twitter:description" content="jQuery是javascript的一个库（框架），包含多个可重用的函数，用来辅助我们简化javascript开发… 
+
+一、使用
+1.引用，要想用jQuery,首先要将JQ的库引进来，我们才可以使用2.和JS使用类似，都有一个入口函数，第一种是$(document).ready(function(){});另一种是$(function() {});和JS使用的window.onload=fun">
   
     <link rel="alternative" href="/atom.xml" title="王勇浩的blog" type="application/atom+xml">
   
@@ -145,64 +158,225 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-jq-select" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/27/algorithm/" class="archive-article-date">
-  	<time datetime="2017-11-27T13:09:20.400Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/27/algorithm/">各种算法实现</a>
+    <h1 class="article-title" itemprop="name">
+      jQuery入口函数和常用选择器
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/11/27/jq-select/" class="archive-article-date">
+  	<time datetime="2017-11-27T13:09:20.526Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>jQuery是javascript的一个库（框架），包含多个可重用的函数，用来辅助我们简化javascript开发… </p>
+</blockquote>
+<h2 id="一、使用"><a href="#一、使用" class="headerlink" title="一、使用"></a>一、使用</h2><blockquote>
+<p>1.引用，要想用jQuery,首先要将JQ的库引进来，我们才可以使用<br>2.和JS使用类似，都有一个入口函数，第一种是$(document).ready(function(){});另一种是$(function() {});<br>和JS使用的window.onload=function(){}的区别是windows.onload方法是在网页中所有的元素（包括元素的所有<br>关联文件）完全加载到浏览器后才执行，即Javascript此时才可以访问网页中的 任何元素。而jQuery中的<br>$（document).ready（）和$(function() {})方法注册的事件处理程序，在DOM完全就绪时就可以被调用。此时，<br>网页的所有元素对jQuery而言都 是可以访问的，但是，这并不意味着这些元素关联的文件都已经下载完毕。<br>3.JQ的书写方式和JS不同，JQ是$(“选择器”)就可以选中HTML节点；JQ与DOM原生对象之间可以相互转换，<br>在DOM对象前加$可实现转化为JQ对象，在jq后接[]或者.get(index)可转换为DOM原生对象</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="二、jQuery选择器"><a href="#二、jQuery选择器" class="headerlink" title="二、jQuery选择器"></a>二、jQuery选择器</h2><blockquote>
+<p>4.JQ选择器：<br>（1）基本选择器（和css中相同）通用选择器：$(“*”);ID选择器：$(“#id”);class选择器$(“.classname”);<br>标签选择器$(“标签名”)并集选择器$(“th,td,.intro”)；并列选择器$(“.intro.demo”) </p>
+<p>（2）层级选择器<br>子元素选择器<br>  parent&gt;child<br>   匹配给定的父元素下匹配所有的子元素</p>
+<p>后代选择器<br> $(form input)<br>   查找form元素的后代元素中为input的标记</p>
+<p>紧邻同辈选择器<br> prev+next<br>   匹配所有紧接在prev元素后的next元素</p>
+<p>相邻同辈选择器<br> prev~siblings<br>   匹配prev元素之后的所有的siblings元素</p>
+<p>（3）表单域选择器<br>子元素选择器<br>  parent&gt;child<br>   匹配给定的父元素下匹配所有的子元素</p>
+<p>后代选择器<br> $(form input)<br>   查找form元素的后代元素中为input的标记</p>
+<p>紧邻同辈选择器<br> prev+next<br>   匹配所有紧接在prev元素后的next元素</p>
+<p>相邻同辈选择器<br> prev~siblings<br>   匹配prev元素之后的所有的siblings元素</p>
+<p>子元素选择器<br>  parent&gt;child<br>   匹配给定的父元素下匹配所有的子元素</p>
+<p>后代选择器<br> $(form input)<br>   查找form元素的后代元素中为input的标记</p>
+<p>紧邻同辈选择器<br> prev+next<br>   匹配所有紧接在prev元素后的next元素</p>
+<p>相邻同辈选择器<br> prev~siblings<br>   匹配prev元素之后的所有的siblings元素</p>
+<p>子元素选择器<br>  parent&gt;child<br>   匹配给定的父元素下匹配所有的子元素</p>
+<p>后代选择器<br> $(form input)<br>   查找form元素的后代元素中为input的标记</p>
+<p>紧邻同辈选择器<br> prev+next<br>   匹配所有紧接在prev元素后的next元素</p>
+<p>（4）伪类过滤选择器<br>元素元素  :first选择器<br> $(“p:first”)第一个元素</p>
+<p>:last选择器<br> $(“p:last”)最后一个 </p>
+<p>元素</p>
+<p>:even 选择器<br> $(“tr:even”))所有偶数 </p>
+<p>:odd 选择器<br> $(“tr:odd”)所有奇数 </p>
+<p>:eq(index)选择器<br> $(“ul li:eq(3)”)列表中的第四个元素（index 从 0 开始）</p>
+<p>:gt(no)选择器<br> $(“ul li:gt(3)”)列出 index 大于 3 的元素</p>
+<p>:lt(no) 选择器<br> $(“ul li:lt(3)”)列出 index 小于 3 的元素</p>
+<p>:not(selector)选择器<br> $(“input:not(:empty)”)所有不为空的 input 元素 </p>
+<p>:header 选择器<br> $(“:header”)所有标题元素 </p>
+<p>:animated 选择器</p>
+<p> $(“:animated”)<br>  选出当前所有动画 （匹配动画 - 必须由jQuery自己搞定）、</p>
+<p>（5）内容过滤选择器<br>:contains(text)<br> $(“:contains(‘W3School’)”)<br>   包含指定字符串的所有元素</p>
+<p>:empty<br> $(“:empty”)<br>   无子（元素）节点的所有元素</p>
+<p>:has()选择器<br> $(“select1:has(selector2)”)<br>   选取含有selector2的所有selector1的元素 </p>
+<p>（6）简单属性过滤选择器<br>[attribute]<br> $(“div[id]”)<br>   查找所有含有 id 属性的 div 元素</p>
+<p>[attribute=value]<br> $(“input[name=’newsletter’]”)<br>   所有name属性的值等于 “newsletter” 的元素</p>
+<p>[attribute<em>=value]<br> $(“input[name</em>=’news’]”)<br>   name中包含news的元素 </p>
+<p>[attribute~=value]<br> $(“input[name~=’news’]”)<br>   name中包含news 单词的元素</p>
+<p>[attribute^=value]<br> $(“selector[attribute^=value]”)<br>   attribute中以某特定值开始的所有元素</p>
+<p>[attribute$=value]<br> $(“selector[attribute$=value]”)<br>   attribute中以给给定值结尾的所有元素</p>
+<p>[]attribute!=value]<br> $(“selector[attribute!=value]”)<br>   attribute不等于value的所有元素</p>
+<p>（7）子元素过滤选择器<br>:first-child<br> $(“selector:first-child”)<br>   父级的第一个子元素</p>
+<p>:last-child<br> $(“selector:last-child”)<br>   父级的最后一个子元素</p>
+<p>:nth-child<br> $(“selector:nth-child(index/even/odd)”)<br>   父级的第n个子元素 </p>
+<p>:only-child<br> $(“selector:only-child”)<br>   只有一个孩子的父级</p>
+<p>（8）表单域属性过滤选择器<br>:enabled<br> $(“:enabled”)<br>   所有激活的 input 元素</p>
+<p>:disabled<br> $(“:disabled”)<br>   所有禁用的 input 元素</p>
+<p>:selected<br> $(“:selected”)<br>   所有被选取的 input 元素</p>
+<p>:checked<br> $(“:checked”)<br>   所有被选中的 input </p>
+<p>（9）可见性过滤选择器</p>
+<p>:visible<br> $(“table:visible”)<br>   所有可见的表格</p>
+<p>:hidden 选择器<br>  $(“:hidden”)<br>   所有隐藏的元素（:前面加选择器）</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/kudog.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/kudog.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jQuery jQuery选择器</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/jq-select/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/11/27/jquery/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          jQuery总结
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/11/27/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
-  
+
 
 
           </div>
@@ -225,8 +399,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
