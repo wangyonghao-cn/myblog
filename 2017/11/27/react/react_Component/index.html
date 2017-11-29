@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>jQuery总结 | 王勇浩的blog</title>
+  <title>react的受控组件和非受控组件 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.基本方法：
-html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；val()方法是设置或返回表单的值，一般有input,textarea等；attr()方法设置或返回元素的属性值，会覆盖掉原有属性；removeAttr()为移除被选元素的属性；addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；remov">
+  <meta name="description" content="背景
+React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery总结">
-<meta property="og:url" content="http://yoursite.com/2017/11/27/jquery/index.html">
+<meta property="og:title" content="react的受控组件和非受控组件">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/react/react_Component/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
-<meta property="og:description" content="一.基本方法：
-html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；val()方法是设置或返回表单的值，一般有input,textarea等；attr()方法设置或返回元素的属性值，会覆盖掉原有属性；removeAttr()为移除被选元素的属性；addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；remov">
-<meta property="og:updated_time" content="2017-02-19T08:13:47.672Z">
+<meta property="og:description" content="背景
+React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介">
+<meta property="og:updated_time" content="2017-02-06T08:50:29.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery总结">
-<meta name="twitter:description" content="一.基本方法：
-html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；val()方法是设置或返回表单的值，一般有input,textarea等；attr()方法设置或返回元素的属性值，会覆盖掉原有属性；removeAttr()为移除被选元素的属性；addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；remov">
+<meta name="twitter:title" content="react的受控组件和非受控组件">
+<meta name="twitter:description" content="背景
+React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介">
   
     <link rel="alternative" href="/atom.xml" title="王勇浩的blog" type="application/atom+xml">
   
@@ -152,40 +152,45 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jquery" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-react/react_Component" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      jQuery总结
+      react的受控组件和非受控组件
     </h1>
   
 
         
-        <a href="/2017/11/27/jquery/" class="archive-article-date">
-  	<time datetime="2017-11-27T13:09:20.575Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+        <a href="/2017/11/27/react/react_Component/" class="archive-article-date">
+  	<time datetime="2017-11-27T13:09:20.680Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一-基本方法："><a href="#一-基本方法：" class="headerlink" title="一.基本方法："></a>一.基本方法：</h2><blockquote>
-<p>html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；<br>val()方法是设置或返回表单的值，一般有input,textarea等；<br>attr()方法设置或返回元素的属性值，会覆盖掉原有属性；<br>removeAttr()为移除被选元素的属性；<br>addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；<br>removeClass(‘类名’）传参，删除指定类名，不传参删除所有类名；<br>toggleClass(‘类名’),在有与没有之间切换；<br><a id="more"></a><br>hasClass(‘类名’)检查被选元素是否包含指定的 class，如果测试的是一个集合，只要有一个有，<br>就返回true，没有返回false；<br>css()方法设置或返回元素的一个或多个样式属性（getComputedStyle、currentStyle），</p>
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
+<p>React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,<br>属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染<br>出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,<br>全部通过props来渲染也是没问题的, 不过这种情况不常见。<br>本文所介绍的内容就是通过props和state的定义来谈谈React的受控组件和非受控组件</p>
 </blockquote>
-<h2 id="二、jQuery遍历节点"><a href="#二、jQuery遍历节点" class="headerlink" title="二、jQuery遍历节点"></a>二、jQuery遍历节点</h2><blockquote>
-<p>parent()返回被选元素的直接父亲，parents返回被选元素的所有祖先。直到HTML ；<br>children()返回被选元素的所有直接子元素，find()方法返回被选元素的后代元素，必须在其中加入选择器；<br>prev()返回被选元素的上一个同胞元素，next()返回下一个同胞元素，siblings()返回所有同胞元素；</p>
+<a id="more"></a>
+<h3 id="react的非受控组件"><a href="#react的非受控组件" class="headerlink" title="react的非受控组件"></a>react的非受控组件</h3><blockquote>
+<p>顾名思义, 非受控组件即组件的状态改变不受控制.接来下我们以一个简单input组件代码来描述。</p>
 </blockquote>
-<h2 id="三、操作DOM节点"><a href="#三、操作DOM节点" class="headerlink" title="三、操作DOM节点"></a>三、操作DOM节点</h2><blockquote>
-<p>1.在jq创建节点var li = $(“ “);<br>2.append（）向被选元素追加内容或子节点<br>例如：$(“#game”).append($(“<br>红色警戒<br>“));<br>appendTo()与append（）颠倒前后，效果相同；<br>  prepend()和append类似，它是向前边插入，prependTo()前后颠倒，效果相同；<br>3.after()在每个被选元素后插入兄弟节点；before()是向每个被选元素前插入兄弟节点；<br>insertBefore（）是向所有匹配元素的前边插入兄弟节点；insertAfter()是向所有匹配元素后边插入兄弟节点；<br>4.remove()删除被选元素及其后代；empty清空被选元素，删除其所有子元素；<br>5.replaceWithØ 将匹配元素替换成指定的HTML或DOM元素,前面的元素是被替换元素,后面的元素是替换元素,<br>例如：$(“button”).replaceWith($(“<br>这又是一个段落.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from <span class="string">'react'</span>;</div><div class="line">import ReactDOM from <span class="string">'react-dom'</span>;</div><div class="line"></div><div class="line">class Demo1 extends Component &#123;</div><div class="line">    <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">        <span class="built_in">return</span> (</div><div class="line">            &lt;input /&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDOM.render(&lt;Demo1/&gt;, document.getElementById(<span class="string">'content'</span>))</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在这个最简单的输入框组件里,我们并没有干涉input中的value展示,即用户输入的内容都会展示在上面。<br>如果我们通过props给组件设置一个初始默认值,<input defaultvalue="{this.props.value}/"><br>defaultValue属性是React内部实现的一个属性,目的类似于input的placeholder属性。<br>ps: 此处如果使用value代替defaultValue,会发现输入框的值无法改变。</p>
 </blockquote>
-<p>“));</p>
-<h2 id="四-jQuery克隆元素"><a href="#四-jQuery克隆元素" class="headerlink" title="四. jQuery克隆元素"></a>四. jQuery克隆元素</h2><blockquote>
-<p>clone(),不传参，只复制元素，不复制该元素的事件处理函数 $(“p”).clone().appendTo(‘.box1’);有一个参数，true，<br>复制元素及其本身的事件处理函数，第二个参数，默认值是true<br>不仅复制元素及其本身的事件处理函数而且会复制子元素的事件处理函数，如果是false就不会复制子元素的事件处理函数</p>
+<h3 id="react的受控组件"><a href="#react的受控组件" class="headerlink" title="react的受控组件"></a>react的受控组件</h3><blockquote>
+<p>上面提到过,既然通过设置input的value属性, 无法改变输入框值,<br>那么我们把它和state结合在一起,再绑定onChange事件,实时更新value值就行了</p>
 </blockquote>
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Demo1 extends Component &#123;</div><div class="line">    constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line">        this.state = &#123;</div><div class="line">            value: props.value</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    handleChange(e) &#123;</div><div class="line">        this.setState(&#123;</div><div class="line">            value: e.target.value</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">        <span class="built_in">return</span> (</div><div class="line">            &lt;input value=&#123;this.state.value&#125; onChange=&#123;e =&gt; this.handleChange(e)&#125;/&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这就是最简单的受控组件模型, 我们可以通过在onChange的回调里控制input要显示的值,<br>例如我们设置input框只能输入数字</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">this.setState(&#123;</div><div class="line">    value: e.target.value.replace(/\D/g, <span class="string">''</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
       
 
       
@@ -229,7 +234,7 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jQuery jQuery节点操作</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">react的受控组件 react非受控组件</a>
         		</li>
       		
 		</ul>
@@ -285,7 +290,7 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/jquery/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/react/react_Component/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,18 +304,18 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
   
 <nav id="article-nav">
   
-    <a href="/2017/11/27/ng2_lift/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/11/27/Interview/shanghaiwork/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          angular2组件的生命周期
+          面试经历
         
       </div>
     </a>
   
   
-    <a href="/2017/11/27/jq-select/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jQuery入口函数和常用选择器</div>
+    <a href="/2017/11/27/ng2/ng2_lift/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">angular2组件的生命周期</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -435,11 +440,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -455,15 +460,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">react的受控组件 react非受控组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -471,7 +476,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">react的受控组件 react非受控组件</a>
               </li>
             
             <div class="clearfix"></div>

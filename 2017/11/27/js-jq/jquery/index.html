@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>同步购物车 | 王勇浩的blog</title>
+  <title>jQuery总结 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一 、localStorage,sessionStorage,cookie
-购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。">
+  <meta name="description" content="一.基本方法：
+html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；val()方法是设置或返回表单的值，一般有input,textarea等；attr()方法设置或返回元素的属性值，会覆盖掉原有属性；removeAttr()为移除被选元素的属性；addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；remov">
 <meta property="og:type" content="article">
-<meta property="og:title" content="同步购物车">
-<meta property="og:url" content="http://yoursite.com/2017/11/27/shopcar/index.html">
+<meta property="og:title" content="jQuery总结">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/js-jq/jquery/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
-<meta property="og:description" content="一 、localStorage,sessionStorage,cookie
-购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。">
-<meta property="og:updated_time" content="2017-02-19T08:04:22.916Z">
+<meta property="og:description" content="一.基本方法：
+html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；val()方法是设置或返回表单的值，一般有input,textarea等；attr()方法设置或返回元素的属性值，会覆盖掉原有属性；removeAttr()为移除被选元素的属性；addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；remov">
+<meta property="og:updated_time" content="2017-02-19T08:13:47.672Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="同步购物车">
-<meta name="twitter:description" content="一 、localStorage,sessionStorage,cookie
-购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。">
+<meta name="twitter:title" content="jQuery总结">
+<meta name="twitter:description" content="一.基本方法：
+html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；val()方法是设置或返回表单的值，一般有input,textarea等；attr()方法设置或返回元素的属性值，会覆盖掉原有属性；removeAttr()为移除被选元素的属性；addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；remov">
   
     <link rel="alternative" href="/atom.xml" title="王勇浩的blog" type="application/atom+xml">
   
@@ -152,107 +152,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-shopcar" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js-jq/jquery" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      同步购物车
+      jQuery总结
     </h1>
   
 
         
-        <a href="/2017/11/27/shopcar/" class="archive-article-date">
-  	<time datetime="2017-11-27T13:09:20.791Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+        <a href="/2017/11/27/js-jq/jquery/" class="archive-article-date">
+  	<time datetime="2017-11-27T13:09:20.575Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一-、localStorage-sessionStorage-cookie"><a href="#一-、localStorage-sessionStorage-cookie" class="headerlink" title="一 、localStorage,sessionStorage,cookie"></a>一 、localStorage,sessionStorage,cookie</h2><blockquote>
-<p>购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，<br>那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要<br>的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。 </p>
+        <h2 id="一-基本方法："><a href="#一-基本方法：" class="headerlink" title="一.基本方法："></a>一.基本方法：</h2><blockquote>
+<p>html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；<br>val()方法是设置或返回表单的值，一般有input,textarea等；<br>attr()方法设置或返回元素的属性值，会覆盖掉原有属性；<br>removeAttr()为移除被选元素的属性；<br>addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；<br>removeClass(‘类名’）传参，删除指定类名，不传参删除所有类名；<br>toggleClass(‘类名’),在有与没有之间切换；<br><a id="more"></a><br>hasClass(‘类名’)检查被选元素是否包含指定的 class，如果测试的是一个集合，只要有一个有，<br>就返回true，没有返回false；<br>css()方法设置或返回元素的一个或多个样式属性（getComputedStyle、currentStyle），</p>
 </blockquote>
-<a id="more"></a>
-<blockquote>
-<p>cookie ：是在客户端保存的方案，但是有许多缺点，一就是存的数据太少，浏览器最多可以保存4096个字节（4KB）,<br>而且浏览器还限制了保存cookie的数量，大多数浏览器每个站点最多存放40个cookie，就是说如果你加入购物车的数量<br>多的话，所有站点存的cookie通常有300个的限制，以前存的数据会一个个的被删除掉，最后cookie还有生命周期<br>显然我们不能够使用这种方法；</p>
-<p>sessionStorage(window中的对象): 是HTML5提供的使用JS在客户端存储的新方法，之前都是用cookie完成的，但cookie不<br>适合存储大量的数据，因为它们由每个对服务器的请求来传递，这使得 cookie速度很慢而且效率也不高。，所以提供了这种方法，<br>是一个临时的session会话，当页面关闭时，存储消失sessionStorage - 针对一个 session 的数据存储；在 HTML5 中，<br>数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能<br>。 对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。</p>
-<p>localStorage(window中的对象):和sessionStorage类似，但localStorage是永久存储，没有时间限制，而且可以手动删除数据</p>
+<h2 id="二、jQuery遍历节点"><a href="#二、jQuery遍历节点" class="headerlink" title="二、jQuery遍历节点"></a>二、jQuery遍历节点</h2><blockquote>
+<p>parent()返回被选元素的直接父亲，parents返回被选元素的所有祖先。直到HTML ；<br>children()返回被选元素的所有直接子元素，find()方法返回被选元素的后代元素，必须在其中加入选择器；<br>prev()返回被选元素的上一个同胞元素，next()返回下一个同胞元素，siblings()返回所有同胞元素；</p>
 </blockquote>
-<h2 id="二、实现"><a href="#二、实现" class="headerlink" title="二、实现"></a>二、实现</h2><blockquote>
-<p>从以上三种方式来看，显然最后一个是我们所需要的，于是出现了我的第一个修改前的版本：</p>
+<h2 id="三、操作DOM节点"><a href="#三、操作DOM节点" class="headerlink" title="三、操作DOM节点"></a>三、操作DOM节点</h2><blockquote>
+<p>1.在jq创建节点var li = $(“ “);<br>2.append（）向被选元素追加内容或子节点<br>例如：$(“#game”).append($(“<br>红色警戒<br>“));<br>appendTo()与append（）颠倒前后，效果相同；<br>  prepend()和append类似，它是向前边插入，prependTo()前后颠倒，效果相同；<br>3.after()在每个被选元素后插入兄弟节点；before()是向每个被选元素前插入兄弟节点；<br>insertBefore（）是向所有匹配元素的前边插入兄弟节点；insertAfter()是向所有匹配元素后边插入兄弟节点；<br>4.remove()删除被选元素及其后代；empty清空被选元素，删除其所有子元素；<br>5.replaceWithØ 将匹配元素替换成指定的HTML或DOM元素,前面的元素是被替换元素,后面的元素是替换元素,<br>例如：$(“button”).replaceWith($(“<br>这又是一个段落.</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	&lt;!DOCTYPE html&gt;</div><div class="line">	&lt;html lang=&quot;en&quot;&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">		&lt;title&gt;Document&lt;/title&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;香蕉&quot;&gt;香蕉&lt;br&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;苹果&quot;&gt;苹果&lt;br&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;哈密瓜&quot;&gt;哈密瓜&lt;br&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;梨&quot;&gt;梨&lt;br&gt;</div><div class="line"></div><div class="line">		&lt;script&gt;</div><div class="line">			window.onload = function()&#123;</div><div class="line"></div><div class="line"></div><div class="line">			var oinputs = document.querySelectorAll(&quot;input&quot;);</div><div class="line"></div><div class="line">			for(var i=0; i&lt;oinputs.length; i++)&#123;</div><div class="line">				oinputs[i].onclick = function()&#123;</div><div class="line">					if(this.checked)&#123;</div><div class="line"></div><div class="line">						window.localStorage.setItem(&quot;buy&quot;,this.value);</div><div class="line">					&#125;else  &#123;</div><div class="line">						window.localStorage.setItem(&quot;unbuy&quot;,this.value);</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			window.addEventListener(&quot;storage&quot;, function(ev)&#123;</div><div class="line">					if (ev.key == &quot;unbuy&quot;) &#123;</div><div class="line"></div><div class="line">						for(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">							if(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = false;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;else if (ev.key == &quot;buy&quot;) &#123;</div><div class="line">						for(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">							if(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = true;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">			&#125;);</div><div class="line">		&#125;</div><div class="line">		&lt;/script&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">	&lt;/html&gt;</div><div class="line"></div><div class="line">```</div></pre></td></tr></table></figure>
-<p>修改后:</p>
-<p>开启服务器从网页中打开后，试用一下，我们会发现这是有问题的，当我们重复点击同一个物品时，会发现刚开始是<br>同步的，后来就不同步了，经过老师的解答和查看客户端中的localStorage存储情况，发现后来重复点击同一物品时<br>内存中的数据并没有发生改变，就是说并没有触发JS代码中的storage事件，这是因为我们开始点击后，本地存储<br>先录入了我们原先的数据，当我们第二次选中时或者取消时，按我原先的理解会将原来的值覆盖，从而达到改变存储<br>的数据的效果，而事实证明，内存中存储的是一个key对用一个value值，我们的key分别是buy和unbuy，第二次选中时<br>，unbuy并不会消失就是说浏览器中还是有buy和unbuy两个值，并没有触发这个事件，所以，我们使用了设置key之前<br>先判断的方式，如果原来有我们设置的key，就先把它删掉，重新判断，这样就会一直触发storage事件，而事实证明<br>是可以的</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;input type=&quot;checkbox&quot; value=&quot;香蕉&quot;&gt;香蕉&lt;br&gt;
-    &lt;input type=&quot;checkbox&quot; value=&quot;苹果&quot;&gt;苹果&lt;br&gt;
-    &lt;input type=&quot;checkbox&quot; value=&quot;哈密瓜&quot;&gt;哈密瓜&lt;br&gt;
-    &lt;input type=&quot;checkbox&quot; value=&quot;梨&quot;&gt;梨&lt;br&gt;
-
-    &lt;script&gt;
-        window.onload = function(){
-
-
-        var oinputs = document.querySelectorAll(&quot;input&quot;);
-
-        for(var i=0; i&lt;oinputs.length; i++){
-            oinputs[i].onclick = function(){
-                if(this.checked){
-                    if (window.localStorage.getItem(&quot;buy&quot;)) {
-                        window.localStorage.removeItem(&quot;buy&quot;);
-                    }
-                    window.localStorage.setItem(&quot;buy&quot;,this.value);
-                }else  {
-                    if (window.localStorage.getItem(&quot;unbuy&quot;)) {
-                        window.localStorage.removeItem(&quot;unbuy&quot;);
-                    }
-                    window.localStorage.setItem(&quot;unbuy&quot;,this.value);
-                }
-            }
-        }
-
-        window.addEventListener(&quot;storage&quot;, function(ev){
-                if (ev.key == &quot;unbuy&quot;) {
-
-                    for(var i=0; i&lt; oinputs.length;i++){
-                        if(ev.newValue == oinputs[i].value)
-                        {
-                            oinputs[i].checked = false;
-                        }
-                    }
-                }else if (ev.key == &quot;buy&quot;) {
-                    for(var i=0; i&lt; oinputs.length;i++){
-                        if(ev.newValue == oinputs[i].value)
-                        {
-                            oinputs[i].checked = true;
-                        }
-                    }
-                }
-        });
-    }
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><h3 id="补上key的方法："><a href="#补上key的方法：" class="headerlink" title="补上key的方法："></a>补上key的方法：</h3><blockquote>
-<p>Ø  setItem():</p>
-<p>设置数据，key\value类型，类型都是字符串</p>
-<p>可以用获取属性的形式操作</p>
-<p>Ø getItem():</p>
-<p>获取数据，通过key来获取到相应的value</p>
-<p>Ø removeItem():</p>
-<p>删除数据，通过key来删除相应的value</p>
-<p>Ø clear():</p>
-<p>删除全部存储的值</p>
+<p>“));</p>
+<h2 id="四-jQuery克隆元素"><a href="#四-jQuery克隆元素" class="headerlink" title="四. jQuery克隆元素"></a>四. jQuery克隆元素</h2><blockquote>
+<p>clone(),不传参，只复制元素，不复制该元素的事件处理函数 $(“p”).clone().appendTo(‘.box1’);有一个参数，true，<br>复制元素及其本身的事件处理函数，第二个参数，默认值是true<br>不仅复制元素及其本身的事件处理函数而且会复制子元素的事件处理函数，如果是false就不会复制子元素的事件处理函数</p>
 </blockquote>
 
       
@@ -298,7 +229,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">storage 购物车  同步购物车</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jQuery jQuery节点操作</a>
         		</li>
       		
 		</ul>
@@ -354,7 +285,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/shopcar/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/js-jq/jquery/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -368,18 +299,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/27/web-mianshi/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/11/27/ng2/ng2_lift/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          web前端面试问题记录
+          angular2组件的生命周期
         
       </div>
     </a>
   
   
-    <a href="/2017/11/27/shanghaiwork/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">面试经历</div>
+    <a href="/2017/11/27/js-jq/jq-select/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jQuery入口函数和常用选择器</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -504,11 +435,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -524,15 +455,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">react的受控组件 react非受控组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,7 +471,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">react的受控组件 react非受控组件</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>延迟动画 下拉动画 插件 | 王勇浩的blog</title>
+  <title>各种算法实现 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个字：炫酷
-今天，我们来分享两个比较炫酷的动画插件animated.css 和  wow.js,第一个，可以添加刷新动画，第二个要基于第一个实现，可以实现下拉动画和延迟动画的效果">
+  <meta name="description" content="去重算法
+去除数组中的重复元素">
 <meta property="og:type" content="article">
-<meta property="og:title" content="延迟动画 下拉动画 插件">
-<meta property="og:url" content="http://yoursite.com/2017/11/27/chajian/index.html">
+<meta property="og:title" content="各种算法实现">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/others/algorithm/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
-<meta property="og:description" content="一个字：炫酷
-今天，我们来分享两个比较炫酷的动画插件animated.css 和  wow.js,第一个，可以添加刷新动画，第二个要基于第一个实现，可以实现下拉动画和延迟动画的效果">
-<meta property="og:updated_time" content="2017-03-19T04:41:26.873Z">
+<meta property="og:description" content="去重算法
+去除数组中的重复元素">
+<meta property="og:updated_time" content="2017-03-19T05:58:07.423Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="延迟动画 下拉动画 插件">
-<meta name="twitter:description" content="一个字：炫酷
-今天，我们来分享两个比较炫酷的动画插件animated.css 和  wow.js,第一个，可以添加刷新动画，第二个要基于第一个实现，可以实现下拉动画和延迟动画的效果">
+<meta name="twitter:title" content="各种算法实现">
+<meta name="twitter:description" content="去重算法
+去除数组中的重复元素">
   
     <link rel="alternative" href="/atom.xml" title="王勇浩的blog" type="application/atom+xml">
   
@@ -152,34 +152,44 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-chajian" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-others/algorithm" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      延迟动画 下拉动画 插件
+      各种算法实现
     </h1>
   
 
         
-        <a href="/2017/11/27/chajian/" class="archive-article-date">
-  	<time datetime="2017-11-27T13:09:20.435Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+        <a href="/2017/11/27/others/algorithm/" class="archive-article-date">
+  	<time datetime="2017-11-27T13:09:20.400Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一个字：炫酷"><a href="#一个字：炫酷" class="headerlink" title="一个字：炫酷"></a>一个字：炫酷</h3><blockquote>
-<p>今天，我们来分享两个比较炫酷的动画插件animated.css 和  wow.js,第一个，可以添加刷新动画，第二个要基于第一个实现，<br>可以实现下拉动画和延迟动画的效果 </p>
+        <h3 id="去重算法"><a href="#去重算法" class="headerlink" title="去重算法"></a>去重算法</h3><blockquote>
+<p>去除数组中的重复元素</p>
 </blockquote>
 <a id="more"></a>
-<blockquote>
-<p>下载可以到网上寻找资源，这里提供说明：<br>当你将两个插件引入你的文档后，只需要将animated加入你需要加动画的节点上，再加上动画效果的类名就可以了<br>例如：class=”animated bounceInDown”，这个类名可以节点出现从上往下掉落到指定位置的效果，<br>而wow.js可以实现延迟动画，只需将其引入后再将<br>1.类名写入wow，给节点属性加入延迟时间，例如 data-wow-delay=’0.2s’.即可将animated动画延时播放<br>2.类名写入wow，在需要动画的节点写入类名动画入animated pulse ，合起来就是class=’wow animated pulse’,就可以实现下拉动画了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function delRepeat(arr)&#123;</div><div class="line">  var newArray=new Array();</div><div class="line">  var len=arr.length;</div><div class="line">  for(var i=0;i&lt;len;i++)&#123;</div><div class="line">     for(var j=i+1;j&lt;len;j++)</div><div class="line">     &#123;</div><div class="line">       if(arr[i]==arr[j])</div><div class="line">       &#123;</div><div class="line">         ++i;  </div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">    newArray.push(arr[i]);</div><div class="line">  &#125;</div><div class="line"> return newArray;</div><div class="line">&#125;</div><div class="line">var arr=new Array(&quot;red&quot;,&quot;red&quot;,&quot;1&quot;,&quot;5&quot;,&quot;2&quot;);</div><div class="line">alert(delRepeat(arr));</div></pre></td></tr></table></figure>
+<h3 id="二分算法，又称折半算法"><a href="#二分算法，又称折半算法" class="headerlink" title="二分算法，又称折半算法"></a>二分算法，又称折半算法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function binaryInsertSort(arr)&#123;</div><div class="line">        for (var i = 1; i &lt; arr.length; i++) &#123;</div><div class="line">    var key = arr[i], left = 0, right = i - 1;</div><div class="line">    while (left &lt;= right) &#123;</div><div class="line">      var middle = parseInt((left + right) / 2);</div><div class="line">      if (key &lt; arr[middle]) &#123;</div><div class="line">        right = middle - 1;</div><div class="line">      &#125; else &#123;</div><div class="line">        left = middle + 1;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    for (var j = i - 1; j &gt;= left; j--) &#123;</div><div class="line">      arr[j + 1] = arr[j];</div><div class="line">    &#125;</div><div class="line">    arr[left] = key;</div><div class="line">  &#125;</div><div class="line">return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="选择排序算法"><a href="#选择排序算法" class="headerlink" title="选择排序算法"></a>选择排序算法</h3><blockquote>
+<p>选择排序就是通过n-i次关键字间的比较，从n-i-1个记录中选出关键字最小的记录，<br>并和第i个记录进行交换。选择排序(Selection-sort)是一种简单直观的排序算法。<br>它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，<br>再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，<br>直到所有元素均排序完毕。</p>
 </blockquote>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function selectSort(arr)&#123;</div><div class="line">        for(var i = 0; i &lt; arr.length - 1; i++)&#123;</div><div class="line">            var min = arr[i];</div><div class="line">            for(var j = i + 1; j &lt; arr.length - 1; j++)&#123;</div><div class="line">                if(min &gt; arr[j])&#123;</div><div class="line">                    var temp = min;</div><div class="line">                    min = arr[j];</div><div class="line">                    arr[j] = temp;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            arr[i] = min;</div><div class="line">        &#125;</div><div class="line">        return arr;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="冒泡排序算法"><a href="#冒泡排序算法" class="headerlink" title="冒泡排序算法"></a>冒泡排序算法</h3><blockquote>
+<p>冒泡排序是一种交换排序，它的基本思想是：两两比较相邻记录的关键字，如果反序则交换，<br>直到没有反序的记录为止。。它重复地走访过要排序的数列，一次比较两个元素，如果它们的<br>顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该<br>数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function arrSort(arr) &#123;</div><div class="line">     let temp = 0;</div><div class="line">     for (var i = 0; i &lt; arr.length - 1; i++) &#123;</div><div class="line">       for (var j = i + 1; j &lt; arr.length; j++) &#123;</div><div class="line">         if (arr[j] &lt; arr[i]) &#123;</div><div class="line">           temp = arr[j];</div><div class="line">           arr[j] = arr[i];</div><div class="line">           arr[i] = temp;</div><div class="line">         &#125; </div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">     return arr;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h3 id="快速排序算法"><a href="#快速排序算法" class="headerlink" title="快速排序算法"></a>快速排序算法</h3><blockquote>
+<p>（1）在数据集之中，选择一个元素作为”基准”（pivot）。<br>（2）所有小于”基准”的元素，都移到”基准”的左边；所有大于”基准”的元素，都移到”基准”的右边。<br>（3）对”基准”左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function quickSort(arr)&#123;</div><div class="line">        if (arr.length &lt;= 1)&#123;return arr&#125;;</div><div class="line">        var pivotIndex = Math.floor(arr.length / 2);</div><div class="line">        var pivot = arr.splice(pivotIndex,1)[0];</div><div class="line">        var left = [];</div><div class="line">        var right = [];</div><div class="line">        for (var i = 0; i &lt; arr.length; i++)&#123;</div><div class="line">            if(arr[i] &lt; pivot) &#123;</div><div class="line">                left.push(arr[i]);</div><div class="line">            &#125;else&#123;</div><div class="line">                right.push(arr[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return quickSort(left).concat([pivot],quickSort(right));</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
       
 
       
@@ -223,7 +233,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">动画 下拉动画 延迟动画 animated</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
         		</li>
       		
 		</ul>
@@ -279,7 +289,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/chajian/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/others/algorithm/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,20 +303,15 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/27/demo/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/11/27/others/chajian/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          angular.js的几个问题
+          延迟动画 下拉动画 插件
         
       </div>
     </a>
   
-  
-    <a href="/2017/11/27/algorithm/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">各种算法实现</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
@@ -429,11 +434,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -449,15 +454,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">react的受控组件 react非受控组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -465,7 +470,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">react的受控组件 react非受控组件</a>
               </li>
             
             <div class="clearfix"></div>

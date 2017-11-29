@@ -6,24 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>angular.js的几个问题 | 王勇浩的blog</title>
+  <title>angular2中父子组件的通讯 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、ng-show,ng-hide和ng-if的区别？
-ng-show和ng-hide是通过display:none的方式将元素隐藏的，而ng-if是通过删除所在节点的方式将元素隐藏的，相对来说
-ng-if的方式更好，提高了性能">
+  <meta name="description" content="前言
+ angular2为组件化开发，我们开发一个个的组件，然后将他们嵌套拼接起来组成一个个完整的项目，但是这些组件相互之间一定会由某种方式将数据连接起来，他们是怎么通讯的呢？下面即本人的总结，若有错误之处，还请指出，拜谢~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="angular.js的几个问题">
-<meta property="og:url" content="http://yoursite.com/2017/11/27/demo/index.html">
+<meta property="og:title" content="angular2中父子组件的通讯">
+<meta property="og:url" content="http://yoursite.com/2017/11/28/ng2/talk/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
-<meta property="og:description" content="一、ng-show,ng-hide和ng-if的区别？
-ng-show和ng-hide是通过display:none的方式将元素隐藏的，而ng-if是通过删除所在节点的方式将元素隐藏的，相对来说
-ng-if的方式更好，提高了性能">
-<meta property="og:updated_time" content="2017-02-03T00:59:57.538Z">
+<meta property="og:description" content="前言
+ angular2为组件化开发，我们开发一个个的组件，然后将他们嵌套拼接起来组成一个个完整的项目，但是这些组件相互之间一定会由某种方式将数据连接起来，他们是怎么通讯的呢？下面即本人的总结，若有错误之处，还请指出，拜谢~">
+<meta property="og:updated_time" content="2017-11-29T06:12:36.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="angular.js的几个问题">
-<meta name="twitter:description" content="一、ng-show,ng-hide和ng-if的区别？
-ng-show和ng-hide是通过display:none的方式将元素隐藏的，而ng-if是通过删除所在节点的方式将元素隐藏的，相对来说
-ng-if的方式更好，提高了性能">
+<meta name="twitter:title" content="angular2中父子组件的通讯">
+<meta name="twitter:description" content="前言
+ angular2为组件化开发，我们开发一个个的组件，然后将他们嵌套拼接起来组成一个个完整的项目，但是这些组件相互之间一定会由某种方式将数据连接起来，他们是怎么通讯的呢？下面即本人的总结，若有错误之处，还请指出，拜谢~">
   
     <link rel="alternative" href="/atom.xml" title="王勇浩的blog" type="application/atom+xml">
   
@@ -155,59 +152,50 @@ ng-if的方式更好，提高了性能">
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-demo" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ng2/talk" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      angular.js的几个问题
+      angular2中父子组件的通讯
     </h1>
   
 
         
-        <a href="/2017/11/27/demo/" class="archive-article-date">
-  	<time datetime="2017-11-27T13:09:20.470Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+        <a href="/2017/11/28/ng2/talk/" class="archive-article-date">
+  	<time datetime="2017-11-28T02:15:19.843Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、ng-show-ng-hide和ng-if的区别？"><a href="#一、ng-show-ng-hide和ng-if的区别？" class="headerlink" title="一、ng-show,ng-hide和ng-if的区别？"></a>一、ng-show,ng-hide和ng-if的区别？</h3><blockquote>
-<p>ng-show和ng-hide是通过display:none的方式将元素隐藏的，而ng-if是通过删除所在节点的方式将元素隐藏的，相对来说</p>
-<p>ng-if的方式更好，提高了性能</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p> angular2为组件化开发，我们开发一个个的组件，然后将他们嵌套拼接起来组成一个个完整的项目，但是这些组件相互之间一定会由某种方式将数据连接起来，他们是怎么通讯的呢？下面即本人的总结，若有错误之处，还请指出，拜谢~</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="二、angular中的digest周期是什么？"><a href="#二、angular中的digest周期是什么？" class="headerlink" title="二、angular中的digest周期是什么？"></a>二、angular中的digest周期是什么？</h3><blockquote>
-<p>每个digest周期中，angular总会对比scope上model的值，一般digest周期都是自动触发的，我们也可以使用$apply或者$digest进行手动触发</p>
+<h3 id="父组件向子组件传递信息"><a href="#父组件向子组件传递信息" class="headerlink" title="父组件向子组件传递信息"></a>父组件向子组件传递信息</h3><blockquote>
+<p>子组件在父组件的怀抱中，当父组件期望向子组件传递数据时，可以使用@input装饰器，例如：</p>
 </blockquote>
-<h3 id="三、模块之间的通讯方式？"><a href="#三、模块之间的通讯方式？" class="headerlink" title="三、模块之间的通讯方式？"></a>三、模块之间的通讯方式？</h3><ul>
-<li>1.server</li>
-</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">    selector: &apos;child-component&apos;,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export class ChildComponent &#123;</div><div class="line">	@input() message:string = &apos;child&apos;;</div><div class="line">	ngOnInit()&#123;</div><div class="line">		console.log(this.message);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>自定义服务，在其他的模块中引入这个服务，就可以让这个模块使用你自定义服务中的功能</p>
+<p>这代表在我们的宿主元素上定义了一个message的数据接口，我们可以在宿主元素上将数据传递给message这样我们就可以在子组件内拿到数据了，那么怎么传递呢？</p>
 </blockquote>
-<ul>
-<li>2.使用$rootScope</li>
-</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;child-component [message]=&quot;msg&quot;&gt;&lt;/child-component&gt;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>通俗来新疆$rootScope是所有$scope的父亲；另外angular解析页面的时候，也是先通过ng-app指令创建一个$rootScope<br>继续解析，将双花括号表达式解析成变量，接着会解析ng-controller所在的节点指向到某个controller函数，<br>这个时候在这个controller函数中变成一个$scope对象，所以我们直接将变量挂载到$rootScope上后，所有模块都可以引用这个变量</p>
+<p>msg可以是父组件中的变量，也可以是字符串。注意[message]语法标识了数据流向：父组件流入子组件，即单向数据绑定。此时如果传入的数据是基本数据类型，子组件中对数组做任何操作都不会影响到父组件，但如果传入的不是基本数据类型，而是引用数据类型，则要格外注意子组件中对数据的操作可能会对父组件产生影响</p>
 </blockquote>
-<ul>
-<li>3.controller之间使用广播的方式</li>
-</ul>
+<h3 id="子组件向父组件传递信息"><a href="#子组件向父组件传递信息" class="headerlink" title="子组件向父组件传递信息"></a>子组件向父组件传递信息</h3><blockquote>
+<p>子组件向父组件传递信息需要和EventEmitter配合使用，实例化一个EventEmitter，然后将数据传递出去,下为在子组件中的定义和传递方法：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">    selector: &apos;parent-component&apos;,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export class ChildComponent &#123;</div><div class="line">	@output() str: EventEmitter&lt;any&gt; = new EventEmitter();</div><div class="line">	ngOnInit()&#123;</div><div class="line">		this.str.emit(&apos;string&apos;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>广播的方式即使用$emit、$on、$broadcast 三个函数<br>比如下例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;body ng-app=<span class="string">"app"</span>&gt;</div><div class="line">    &lt;div ng-controller=<span class="string">"demo1"</span>&gt;</div><div class="line">        &lt;button ng-click=<span class="string">"broadcast()"</span>&gt;向子控制器传递&lt;/button&gt;</div><div class="line">        &lt;div ng-controller=<span class="string">"demo2"</span>&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div&gt;</div><div class="line">            &lt;div ng-controller=<span class="string">"demo3"</span>&gt;</div><div class="line">                &lt;button ng-click=<span class="string">"emit()"</span>&gt;向父亲传递信息&lt;/button&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure></p>
-<p>在demo2,demo3中使用$emit函数可以向父控制器demo1中发送数据，而demo1通过$on接收发送过来的数据，<br>反之则用$broadcast通信 </p>
+<p>父组件接收数据的方法与@input类似，只需将[]换为():<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;child-component (str)=&quot;resiveString($event)&quot;&gt;&lt;/child-component&gt;</div></pre></td></tr></table></figure></p>
+<p>父组件内需要定义一下这个resiveString方法，接收到的参数即为从子组件内传递来的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">    selector: &apos;parent-component&apos;,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export class ChildComponent &#123;</div><div class="line">	ngOnInit()&#123;</div><div class="line">	&#125;</div><div class="line">	resiveString(str)&#123;</div><div class="line">		console.log(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以上即两种装饰器的使用，父子组件即可以利用这两种装饰器相互通讯</p>
 </blockquote>
-<ul>
-<li>4.怎么停止$watch()？<blockquote>
-<p>启动一个$watch()会返回一个停止的函数，启动这个函数就会停止</p>
-</blockquote>
-</li>
-</ul>
 
       
 
@@ -252,7 +240,7 @@ ng-if的方式更好，提高了性能">
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular angular面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular2 通讯 交流 服务</a>
         		</li>
       		
 		</ul>
@@ -308,7 +296,7 @@ ng-if的方式更好，提高了性能">
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/demo/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/28/ng2/talk/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -322,18 +310,9 @@ ng-if的方式更好，提高了性能">
   
 <nav id="article-nav">
   
-    <a href="/2017/11/27/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/27/chajian/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">延迟动画 下拉动画 插件</div>
+    <a href="/2017/11/27/Interview/web-mianshi/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">web前端面试问题记录</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -458,11 +437,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,15 +457,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法 排序 快速排序 去重 二分搜索 选择排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">动画 下拉动画 延迟动画 animated</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">react的受控组件 react非受控组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +473,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">react的受控组件 react非受控组件</a>
               </li>
             
             <div class="clearfix"></div>
