@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://blog.wangyh.online">
   <title>jQuery总结 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一.基本方法：
 html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；val()方法是设置或返回表单的值，一般有input,textarea等；attr()方法设置或返回元素的属性值，会覆盖掉原有属性；removeAttr()为移除被选元素的属性；addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；remov">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery总结">
-<meta property="og:url" content="http://yoursite.com/2017/11/27/js-jq/jquery/index.html">
+<meta property="og:url" content="http://blog.wangyh.online/2017/11/27/js-jq/jquery/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
 <meta property="og:description" content="一.基本方法：
 html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；val()方法是设置或返回表单的值，一般有input,textarea等；attr()方法设置或返回元素的属性值，会覆盖掉原有属性；removeAttr()为移除被选元素的属性；addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；remov">
@@ -54,8 +54,6 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
 		<hgroup>
 		  <h1 class="header-author"><a href="/">王勇浩</a></h1>
 		</hgroup>
-		
-		<p class="header-subtitle">同样的天空，不同的我</p>
 		
 
 		<nav class="header-menu">
@@ -110,8 +108,6 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
 			<hgroup>
 			  <h1 class="header-author js-header-author">王勇浩</h1>
 			</hgroup>
-			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>同样的天空，不同的我<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -198,17 +194,17 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢打赏<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
+                      <img class="reward-img" src="/img/zfb.png">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
+                      <img class="reward-img" src="/img/chat.png">
                       <span class="reward-type">微信</span>
                     </div>
                     
@@ -285,7 +281,7 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/js-jq/jquery/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.wangyh.online/2017/11/27/js-jq/jquery/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,6 +322,29 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
   
 
 
+  <section id="comments">
+    <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+    	
+    <div id="SOHUCS" sid="jQuery总结" style="padding: 0px 30px 0px 46px;"></div>
+
+    <script>
+      (function () {
+        var appid = 'cytlD4nIp',
+          conf = '686fd57567c56a7e9b1314b2eda59f4b';
+        var doc = document,
+          s = doc.createElement('script'),
+          h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+        s.type = 'text/javascript';
+        s.charset = 'utf-8';
+        s.src = 'http://assets.changyan.sohu.com/upload/changyan.js?conf=' + conf + '&appid=' + appid;
+        h.insertBefore(s, h.firstChild);
+        window.SCS_NO_IFRAME = true;
+      })()
+    </script>
+  </section>
+  
+
+  
 
 
           </div>
@@ -435,6 +454,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
               </li>
              
@@ -443,15 +466,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery jQuery选择器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,15 +490,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
+                <a href="javascript:void(0)" class="js-tag color5">密码框 组合密码框</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">storage 购物车  同步购物车</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,7 +581,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于郑州大学计算机软件与科学系&lt;br&gt;邮箱：914917609@qq.com</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于郑州大学计算机软件与科学系&lt;br&gt;目前暂居上海&lt;br&gt;邮箱：914917609@qq.com</div>
   	  	
     	</section>
     

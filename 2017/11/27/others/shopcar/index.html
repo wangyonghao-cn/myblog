@@ -5,18 +5,18 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://blog.wangyh.online">
   <title>同步购物车 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一 、localStorage,sessionStorage,cookie
 购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="同步购物车">
-<meta property="og:url" content="http://yoursite.com/2017/11/27/others/shopcar/index.html">
+<meta property="og:url" content="http://blog.wangyh.online/2017/11/27/others/shopcar/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
 <meta property="og:description" content="一 、localStorage,sessionStorage,cookie
 购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。">
-<meta property="og:updated_time" content="2017-02-19T08:04:22.916Z">
+<meta property="og:updated_time" content="2017-12-05T02:14:45.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="同步购物车">
 <meta name="twitter:description" content="一 、localStorage,sessionStorage,cookie
@@ -54,8 +54,6 @@
 		<hgroup>
 		  <h1 class="header-author"><a href="/">王勇浩</a></h1>
 		</hgroup>
-		
-		<p class="header-subtitle">同样的天空，不同的我</p>
 		
 
 		<nav class="header-menu">
@@ -110,8 +108,6 @@
 			<hgroup>
 			  <h1 class="header-author js-header-author">王勇浩</h1>
 			</hgroup>
-			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>同样的天空，不同的我<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -184,7 +180,7 @@
 <h2 id="二、实现"><a href="#二、实现" class="headerlink" title="二、实现"></a>二、实现</h2><blockquote>
 <p>从以上三种方式来看，显然最后一个是我们所需要的，于是出现了我的第一个修改前的版本：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	&lt;!DOCTYPE html&gt;</div><div class="line">	&lt;html lang=&quot;en&quot;&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">		&lt;title&gt;Document&lt;/title&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;香蕉&quot;&gt;香蕉&lt;br&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;苹果&quot;&gt;苹果&lt;br&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;哈密瓜&quot;&gt;哈密瓜&lt;br&gt;</div><div class="line">		&lt;input type=&quot;checkbox&quot; value=&quot;梨&quot;&gt;梨&lt;br&gt;</div><div class="line"></div><div class="line">		&lt;script&gt;</div><div class="line">			window.onload = function()&#123;</div><div class="line"></div><div class="line"></div><div class="line">			var oinputs = document.querySelectorAll(&quot;input&quot;);</div><div class="line"></div><div class="line">			for(var i=0; i&lt;oinputs.length; i++)&#123;</div><div class="line">				oinputs[i].onclick = function()&#123;</div><div class="line">					if(this.checked)&#123;</div><div class="line"></div><div class="line">						window.localStorage.setItem(&quot;buy&quot;,this.value);</div><div class="line">					&#125;else  &#123;</div><div class="line">						window.localStorage.setItem(&quot;unbuy&quot;,this.value);</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			window.addEventListener(&quot;storage&quot;, function(ev)&#123;</div><div class="line">					if (ev.key == &quot;unbuy&quot;) &#123;</div><div class="line"></div><div class="line">						for(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">							if(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = false;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;else if (ev.key == &quot;buy&quot;) &#123;</div><div class="line">						for(var i=0; i&lt; oinputs.length;i++)&#123;</div><div class="line">							if(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = true;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">			&#125;);</div><div class="line">		&#125;</div><div class="line">		&lt;/script&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">	&lt;/html&gt;</div><div class="line"></div><div class="line">```</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	<span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"香蕉"</span>&gt;</span>香蕉<span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"苹果"</span>&gt;</span>苹果<span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"哈密瓜"</span>&gt;</span>哈密瓜<span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"梨"</span>&gt;</span>梨<span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"></div><div class="line">		<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">			<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">			<span class="keyword">var</span> oinputs = <span class="built_in">document</span>.querySelectorAll(<span class="string">"input"</span>);</div><div class="line"></div><div class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;oinputs.length; i++)&#123;</div><div class="line">				oinputs[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">					<span class="keyword">if</span>(<span class="keyword">this</span>.checked)&#123;</div><div class="line"></div><div class="line">						<span class="built_in">window</span>.localStorage.setItem(<span class="string">"buy"</span>,<span class="keyword">this</span>.value);</div><div class="line">					&#125;<span class="keyword">else</span>  &#123;</div><div class="line">						<span class="built_in">window</span>.localStorage.setItem(<span class="string">"unbuy"</span>,<span class="keyword">this</span>.value);</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			<span class="built_in">window</span>.addEventListener(<span class="string">"storage"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</div><div class="line">					<span class="keyword">if</span> (ev.key == <span class="string">"unbuy"</span>) &#123;</div><div class="line"></div><div class="line">						<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt; oinputs.length;i++)&#123;</div><div class="line">							<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = <span class="literal">false</span>;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;<span class="keyword">else</span> <span class="keyword">if</span> (ev.key == <span class="string">"buy"</span>) &#123;</div><div class="line">						<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt; oinputs.length;i++)&#123;</div><div class="line">							<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = <span class="literal">true</span>;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">			&#125;);</div><div class="line">		&#125;</div><div class="line">		<span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">html</span>&gt;</span></div><div class="line"></div><div class="line">```</div></pre></td></tr></table></figure>
 <p>修改后:</p>
 <p>开启服务器从网页中打开后，试用一下，我们会发现这是有问题的，当我们重复点击同一个物品时，会发现刚开始是<br>同步的，后来就不同步了，经过老师的解答和查看客户端中的localStorage存储情况，发现后来重复点击同一物品时<br>内存中的数据并没有发生改变，就是说并没有触发JS代码中的storage事件，这是因为我们开始点击后，本地存储<br>先录入了我们原先的数据，当我们第二次选中时或者取消时，按我原先的理解会将原来的值覆盖，从而达到改变存储<br>的数据的效果，而事实证明，内存中存储的是一个key对用一个value值，我们的key分别是buy和unbuy，第二次选中时<br>，unbuy并不会消失就是说浏览器中还是有buy和unbuy两个值，并没有触发这个事件，所以，我们使用了设置key之前<br>先判断的方式，如果原来有我们设置的key，就先把它删掉，重新判断，这样就会一直触发storage事件，而事实证明<br>是可以的</p>
 <pre><code>&lt;!DOCTYPE html&gt;
@@ -267,17 +263,17 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢打赏<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
+                      <img class="reward-img" src="/img/zfb.png">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
+                      <img class="reward-img" src="/img/chat.png">
                       <span class="reward-type">微信</span>
                     </div>
                     
@@ -354,7 +350,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/others/shopcar/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.wangyh.online/2017/11/27/others/shopcar/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -395,6 +391,29 @@
   
 
 
+  <section id="comments">
+    <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+    	
+    <div id="SOHUCS" sid="同步购物车" style="padding: 0px 30px 0px 46px;"></div>
+
+    <script>
+      (function () {
+        var appid = 'cytlD4nIp',
+          conf = '686fd57567c56a7e9b1314b2eda59f4b';
+        var doc = document,
+          s = doc.createElement('script'),
+          h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+        s.type = 'text/javascript';
+        s.charset = 'utf-8';
+        s.src = 'http://assets.changyan.sohu.com/upload/changyan.js?conf=' + conf + '&appid=' + appid;
+        h.insertBefore(s, h.firstChild);
+        window.SCS_NO_IFRAME = true;
+      })()
+    </script>
+  </section>
+  
+
+  
 
 
           </div>
@@ -504,6 +523,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
               </li>
              
@@ -512,15 +535,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery jQuery选择器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,15 +559,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
+                <a href="javascript:void(0)" class="js-tag color5">密码框 组合密码框</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">storage 购物车  同步购物车</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,7 +650,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于郑州大学计算机软件与科学系&lt;br&gt;邮箱：914917609@qq.com</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于郑州大学计算机软件与科学系&lt;br&gt;目前暂居上海&lt;br&gt;邮箱：914917609@qq.com</div>
   	  	
     	</section>
     

@@ -5,18 +5,18 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://blog.wangyh.online">
   <title>angular2中父子组件的通讯 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言
  angular2为组件化开发，我们开发一个个的组件，然后将他们嵌套拼接起来组成一个个完整的项目，但是这些组件相互之间一定会由某种方式将数据连接起来，他们是怎么通讯的呢？下面即本人的总结，若有错误之处，还请指出，拜谢~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angular2中父子组件的通讯">
-<meta property="og:url" content="http://yoursite.com/2017/11/28/ng2/talk/index.html">
+<meta property="og:url" content="http://blog.wangyh.online/2017/11/28/ng2/talk/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
 <meta property="og:description" content="前言
  angular2为组件化开发，我们开发一个个的组件，然后将他们嵌套拼接起来组成一个个完整的项目，但是这些组件相互之间一定会由某种方式将数据连接起来，他们是怎么通讯的呢？下面即本人的总结，若有错误之处，还请指出，拜谢~">
-<meta property="og:updated_time" content="2017-11-29T06:12:36.033Z">
+<meta property="og:updated_time" content="2017-12-04T06:26:59.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular2中父子组件的通讯">
 <meta name="twitter:description" content="前言
@@ -54,8 +54,6 @@
 		<hgroup>
 		  <h1 class="header-author"><a href="/">王勇浩</a></h1>
 		</hgroup>
-		
-		<p class="header-subtitle">同样的天空，不同的我</p>
 		
 
 		<nav class="header-menu">
@@ -110,8 +108,6 @@
 			<hgroup>
 			  <h1 class="header-author js-header-author">王勇浩</h1>
 			</hgroup>
-			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>同样的天空，不同的我<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -179,21 +175,21 @@
 <h3 id="父组件向子组件传递信息"><a href="#父组件向子组件传递信息" class="headerlink" title="父组件向子组件传递信息"></a>父组件向子组件传递信息</h3><blockquote>
 <p>子组件在父组件的怀抱中，当父组件期望向子组件传递数据时，可以使用@input装饰器，例如：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">    selector: &apos;child-component&apos;,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export class ChildComponent &#123;</div><div class="line">	@input() message:string = &apos;child&apos;;</div><div class="line">	ngOnInit()&#123;</div><div class="line">		console.log(this.message);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component(&#123;</span></div><div class="line">    selector: <span class="meta-string">'child-component'</span>,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export <span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> </span>&#123;</div><div class="line">	<span class="meta">@input()</span> message:string = <span class="string">'child'</span>;</div><div class="line">	ngOnInit()&#123;</div><div class="line">		console.log(<span class="keyword">this</span>.message);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>这代表在我们的宿主元素上定义了一个message的数据接口，我们可以在宿主元素上将数据传递给message这样我们就可以在子组件内拿到数据了，那么怎么传递呢？</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;child-component [message]=&quot;msg&quot;&gt;&lt;/child-component&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">child-component</span> [<span class="attr">message</span>]=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>msg可以是父组件中的变量，也可以是字符串。注意[message]语法标识了数据流向：父组件流入子组件，即单向数据绑定。此时如果传入的数据是基本数据类型，子组件中对数组做任何操作都不会影响到父组件，但如果传入的不是基本数据类型，而是引用数据类型，则要格外注意子组件中对数据的操作可能会对父组件产生影响</p>
 </blockquote>
 <h3 id="子组件向父组件传递信息"><a href="#子组件向父组件传递信息" class="headerlink" title="子组件向父组件传递信息"></a>子组件向父组件传递信息</h3><blockquote>
 <p>子组件向父组件传递信息需要和EventEmitter配合使用，实例化一个EventEmitter，然后将数据传递出去,下为在子组件中的定义和传递方法：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">    selector: &apos;parent-component&apos;,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export class ChildComponent &#123;</div><div class="line">	@output() str: EventEmitter&lt;any&gt; = new EventEmitter();</div><div class="line">	ngOnInit()&#123;</div><div class="line">		this.str.emit(&apos;string&apos;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component(&#123;</span></div><div class="line">    selector: <span class="meta-string">'parent-component'</span>,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export <span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> </span>&#123;</div><div class="line">	<span class="meta">@output()</span> str: EventEmitter&lt;any&gt; = new EventEmitter();</div><div class="line">	ngOnInit()&#123;</div><div class="line">		<span class="keyword">this</span>.str.emit(<span class="string">'string'</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>父组件接收数据的方法与@input类似，只需将[]换为():<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;child-component (str)=&quot;resiveString($event)&quot;&gt;&lt;/child-component&gt;</div></pre></td></tr></table></figure></p>
-<p>父组件内需要定义一下这个resiveString方法，接收到的参数即为从子组件内传递来的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">    selector: &apos;parent-component&apos;,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export class ChildComponent &#123;</div><div class="line">	ngOnInit()&#123;</div><div class="line">	&#125;</div><div class="line">	resiveString(str)&#123;</div><div class="line">		console.log(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>父组件接收数据的方法与@input类似，只需将[]换为():<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">child-component</span> (<span class="attr">str</span>)=<span class="string">"resiveString($event)"</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>父组件内需要定义一下这个resiveString方法，接收到的参数即为从子组件内传递来的数据：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">    selector: <span class="string">'parent-component'</span>,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> &#123;</span></div><div class="line">	ngOnInit()&#123;</div><div class="line">	&#125;</div><div class="line">	resiveString(str)&#123;</div><div class="line">		<span class="built_in">console</span>.log(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>以上即两种装饰器的使用，父子组件即可以利用这两种装饰器相互通讯</p>
 </blockquote>
 
@@ -209,17 +205,17 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢打赏<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
+                      <img class="reward-img" src="/img/zfb.png">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
+                      <img class="reward-img" src="/img/chat.png">
                       <span class="reward-type">微信</span>
                     </div>
                     
@@ -296,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/28/ng2/talk/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.wangyh.online/2017/11/28/ng2/talk/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -309,6 +305,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/12/04/others/password/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          多个输入框组合成一组密码框并且可以输入但不可选中
+        
+      </div>
+    </a>
   
   
     <a href="/2017/11/27/Interview/web-mianshi/" id="article-nav-older" class="article-nav-link-wrap">
@@ -328,6 +333,29 @@
   
 
 
+  <section id="comments">
+    <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+    	
+    <div id="SOHUCS" sid="angular2中父子组件的通讯" style="padding: 0px 30px 0px 46px;"></div>
+
+    <script>
+      (function () {
+        var appid = 'cytlD4nIp',
+          conf = '686fd57567c56a7e9b1314b2eda59f4b';
+        var doc = document,
+          s = doc.createElement('script'),
+          h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+        s.type = 'text/javascript';
+        s.charset = 'utf-8';
+        s.src = 'http://assets.changyan.sohu.com/upload/changyan.js?conf=' + conf + '&appid=' + appid;
+        h.insertBefore(s, h.firstChild);
+        window.SCS_NO_IFRAME = true;
+      })()
+    </script>
+  </section>
+  
+
+  
 
 
           </div>
@@ -437,6 +465,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
               </li>
              
@@ -445,15 +477,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery jQuery选择器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -465,15 +501,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
+                <a href="javascript:void(0)" class="js-tag color5">密码框 组合密码框</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">storage 购物车  同步购物车</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,7 +592,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于郑州大学计算机软件与科学系&lt;br&gt;邮箱：914917609@qq.com</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于郑州大学计算机软件与科学系&lt;br&gt;目前暂居上海&lt;br&gt;邮箱：914917609@qq.com</div>
   	  	
     	</section>
     

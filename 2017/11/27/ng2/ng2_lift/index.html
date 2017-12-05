@@ -5,18 +5,18 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://blog.wangyh.online">
   <title>angular2组件的生命周期 | 王勇浩的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1.说明
 Angular每个组件都存在一个生命周期，从创建，变更到销毁。Angular提供组件生命周期钩子，把这些关键时刻暴露出来，赋予在这些关键结点和组件进行交互的能力。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angular2组件的生命周期">
-<meta property="og:url" content="http://yoursite.com/2017/11/27/ng2/ng2_lift/index.html">
+<meta property="og:url" content="http://blog.wangyh.online/2017/11/27/ng2/ng2_lift/index.html">
 <meta property="og:site_name" content="王勇浩的blog">
 <meta property="og:description" content="1.说明
 Angular每个组件都存在一个生命周期，从创建，变更到销毁。Angular提供组件生命周期钩子，把这些关键时刻暴露出来，赋予在这些关键结点和组件进行交互的能力。">
-<meta property="og:updated_time" content="2017-04-07T09:39:11.131Z">
+<meta property="og:updated_time" content="2017-12-05T02:14:45.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular2组件的生命周期">
 <meta name="twitter:description" content="1.说明
@@ -54,8 +54,6 @@ Angular每个组件都存在一个生命周期，从创建，变更到销毁。A
 		<hgroup>
 		  <h1 class="header-author"><a href="/">王勇浩</a></h1>
 		</hgroup>
-		
-		<p class="header-subtitle">同样的天空，不同的我</p>
 		
 
 		<nav class="header-menu">
@@ -110,8 +108,6 @@ Angular每个组件都存在一个生命周期，从创建，变更到销毁。A
 			<hgroup>
 			  <h1 class="header-author js-header-author">王勇浩</h1>
 			</hgroup>
-			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>同样的天空，不同的我<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -189,7 +185,7 @@ Angular每个组件都存在一个生命周期，从创建，变更到销毁。A
 <h2 id="3-演示"><a href="#3-演示" class="headerlink" title="3.演示"></a>3.演示</h2><blockquote>
 <p>代码主要包含ngOnChanges，ngOnInit，ngDoCheck，ngOnDestroy</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">import &#123; Component, Input, OnChanges, OnInit, DoCheck, OnDestroy &#125; from &apos;@angular/core&apos;;</div><div class="line"></div><div class="line">@Component(&#123;</div><div class="line">    moduleId: &apos;birthday&apos;,</div><div class="line">    selector: &apos;birthday&apos;,</div><div class="line">    template: `</div><div class="line">        &lt;h5&gt;your birthday is &#123;&#123;birthday&#125;&#125;&lt;/h5&gt;</div><div class="line">    `,</div><div class="line">&#125;)</div><div class="line"></div><div class="line">export class BirthdayComponent implements OnChanges, OnInit, DoCheck, OnDestroy &#123;</div><div class="line"></div><div class="line">    @Input()</div><div class="line">    birthday;</div><div class="line">    ngOnChanges(changes) &#123;</div><div class="line">        console.log(&apos;ngOnChanges&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngOnInit() &#123;</div><div class="line">        console.log(&apos;ngOnInit&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngDoCheck() &#123;</div><div class="line">        console.log(&apos;ngDoCheck&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngOnDestroy() &#123;</div><div class="line">        console.log(&apos;ngOnDestroy&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">@Component(&#123;</div><div class="line">    moduleId: &apos;app&apos;,</div><div class="line">    selector: &apos;app&apos;,</div><div class="line">    template: `</div><div class="line">        &lt;birthday [birthday]=&quot;birthday&quot;&gt;&lt;/birthday&gt;</div><div class="line">    `,</div><div class="line">    directives: [BirthdayComponent]</div><div class="line">&#125;)</div><div class="line"></div><div class="line">export class AppComponent &#123;</div><div class="line">    birthday: Date = new Date(2012, 10, 10);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; Component, Input, OnChanges, OnInit, DoCheck, OnDestroy &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line">@Component(&#123;</div><div class="line">    moduleId: <span class="string">'birthday'</span>,</div><div class="line">    selector: <span class="string">'birthday'</span>,</div><div class="line">    template: `<span class="javascript"></span></div><div class="line">        &lt;h5&gt;your birthday is &#123;&#123;birthday&#125;&#125;&lt;<span class="regexp">/h5&gt;</span></div><div class="line">    `,</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">BirthdayComponent</span> <span class="title">implements</span> <span class="title">OnChanges</span>, <span class="title">OnInit</span>, <span class="title">DoCheck</span>, <span class="title">OnDestroy</span> &#123;</span></div><div class="line"></div><div class="line">    @Input()</div><div class="line">    birthday;</div><div class="line">    ngOnChanges(changes) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ngOnChanges'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngOnInit() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ngOnInit'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngDoCheck() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ngDoCheck'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngOnDestroy() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ngOnDestroy'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">@Component(&#123;</div><div class="line">    moduleId: <span class="string">'app'</span>,</div><div class="line">    selector: <span class="string">'app'</span>,</div><div class="line">    template: `<span class="javascript"><span class="regexp"></span></span></div><div class="line">        &lt;birthday [birthday]="birthday"&gt;&lt;/birthday&gt;</div><div class="line">    `,</div><div class="line">    directives: [BirthdayComponent]</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> &#123;</span></div><div class="line">    birthday: Date = <span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">10</span>, <span class="number">10</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>在app组件中调用，可以清楚的得到执行顺序如下：</p>
 <p>(1)ngOnChanges</p>
@@ -210,17 +206,17 @@ Angular每个组件都存在一个生命周期，从创建，变更到销毁。A
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢打赏<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
+                      <img class="reward-img" src="/img/zfb.png">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="/img/kudog.jpg">
+                      <img class="reward-img" src="/img/chat.png">
                       <span class="reward-type">微信</span>
                     </div>
                     
@@ -297,7 +293,7 @@ Angular每个组件都存在一个生命周期，从创建，变更到销毁。A
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/27/ng2/ng2_lift/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.wangyh.online/2017/11/27/ng2/ng2_lift/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -338,6 +334,29 @@ Angular每个组件都存在一个生命周期，从创建，变更到销毁。A
   
 
 
+  <section id="comments">
+    <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+    	
+    <div id="SOHUCS" sid="angular2组件的生命周期" style="padding: 0px 30px 0px 46px;"></div>
+
+    <script>
+      (function () {
+        var appid = 'cytlD4nIp',
+          conf = '686fd57567c56a7e9b1314b2eda59f4b';
+        var doc = document,
+          s = doc.createElement('script'),
+          h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+        s.type = 'text/javascript';
+        s.charset = 'utf-8';
+        s.src = 'http://assets.changyan.sohu.com/upload/changyan.js?conf=' + conf + '&appid=' + appid;
+        h.insertBefore(s, h.firstChild);
+        window.SCS_NO_IFRAME = true;
+      })()
+    </script>
+  </section>
+  
+
+  
 
 
           </div>
@@ -447,6 +466,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
               </li>
              
@@ -455,15 +478,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery jQuery选择器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,15 +502,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">angular2 生命周期 angular2组件执行顺序</a>
+                <a href="javascript:void(0)" class="js-tag color5">密码框 组合密码框</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">storage 购物车  同步购物车</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular2 通讯 交流 服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,7 +593,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于郑州大学计算机软件与科学系&lt;br&gt;邮箱：914917609@qq.com</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于郑州大学计算机软件与科学系&lt;br&gt;目前暂居上海&lt;br&gt;邮箱：914917609@qq.com</div>
   	  	
     	</section>
     
