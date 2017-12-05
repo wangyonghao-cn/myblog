@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.wangyh.online">
-  <title>react的受控组件和非受控组件 | 王勇浩的blog</title>
+  <title>react的受控组件和非受控组件 | blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="背景
 React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react的受控组件和非受控组件">
 <meta property="og:url" content="http://blog.wangyh.online/2017/11/27/react/react_Component/index.html">
-<meta property="og:site_name" content="王勇浩的blog">
+<meta property="og:site_name" content="blog">
 <meta property="og:description" content="背景
 React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介">
 <meta property="og:updated_time" content="2017-12-05T02:14:47.980Z">
@@ -22,7 +22,7 @@ React内部分别使用了props, state来区分组件的属性和状态。props�
 <meta name="twitter:description" content="背景
 React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介">
   
-    <link rel="alternative" href="/atom.xml" title="王勇浩的blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -165,10 +165,11 @@ React内部分别使用了props, state来区分组件的属性和状态。props�
   	<time datetime="2017-11-27T13:09:20.680Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
 </a>
         
-        <!-- <span id="busuanzi_container_site_uv"> 
-            本篇访客数 <span id="busuanzi_value_site_uv"></span>
+        <br>
+         <span id="busuanzi_container_site_uv" style="font-size:12px;color:#af8585;"> 
+            本篇访客数<span id="busuanzi_value_site_uv"></span>
         人次
-        </span> -->
+        </span> 
       </header>
     
     <div class="article-entry" itemprop="articleBody">
@@ -467,11 +468,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,11 +476,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular angular面试</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">web前端面试</a>
               </li>
              
               <li class="article-tag-list-item">
