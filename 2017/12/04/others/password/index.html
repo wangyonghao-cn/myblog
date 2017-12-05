@@ -20,7 +20,7 @@
 最近接到一个新的需求，如题所示，经过一番折腾，终于是搞定了，于此记录一篇。
 
 问题与解决办法">
-<meta property="og:updated_time" content="2017-12-05T02:15:56.341Z">
+<meta property="og:updated_time" content="2017-12-05T03:14:34.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多个输入框组合成一组密码框并且可以输入但不可选中">
 <meta name="twitter:description" content="前言
@@ -190,7 +190,7 @@
 </ul>
 <p>因为是一个锁屏的功能，所以后面会有一个遮罩层，如果将点击外边的遮罩聚焦到第一个输入框显然是不对的，所以我采取了遍历输入框，找到第一个没有输入的密码框，聚焦到他，所以我将<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="keyword">class</span>=<span class="string">'mask'</span>&gt;</div></pre></td></tr></table></figure></p>
 <p>修改为<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="keyword">class</span>=<span class="string">'mask'</span> <span class="built_in">click</span>=<span class="string">"focusInput('mask')"</span>&gt;</div></pre></td></tr></table></figure></p>
-<p>window.onload()中修改为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">focusInput(id)&#123;</div><div class="line">    <span class="keyword">if</span>(id)&#123;</div><div class="line">        $(id).focus();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(id=<span class="string">'mask'</span>)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;<span class="number">4</span>; i++&gt;)&#123;</div><div class="line">            <span class="keyword">if</span>($(input).eq(i).val()=<span class="string">''</span>)&#123;</div><div class="line">                $($(input).eq(i)).focus();</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$(<span class="string">'input'</span>).keydown(<span class="function"><span class="keyword">function</span>(<span class="params">$event</span>)</span>&#123;</div><div class="line">    event = $event;</div><div class="line">    <span class="keyword">if</span>(event.keyCode == <span class="number">8</span>)&#123;</div><div class="line">        $(<span class="string">'input'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            $(<span class="keyword">this</span>).val(<span class="string">''</span>);</div><div class="line">            $(<span class="string">'#1'</span>).focus();</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(event.keyCode == <span class="number">9</span>)&#123;</div><div class="line">        event.preventDefault();</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>window.onload()中修改为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">focusInput(id)&#123;</div><div class="line">    <span class="keyword">if</span>(id)&#123;</div><div class="line">        $(id).focus();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(id==<span class="string">'mask'</span>)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;<span class="number">4</span>; i++&gt;)&#123;</div><div class="line">            <span class="keyword">if</span>($(input).eq(i).val()=<span class="string">''</span>)&#123;</div><div class="line">                $($(input).eq(i)).focus();</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$(<span class="string">'input'</span>).keydown(<span class="function"><span class="keyword">function</span>(<span class="params">$event</span>)</span>&#123;</div><div class="line">    event = $event;</div><div class="line">    <span class="keyword">if</span>(event.keyCode == <span class="number">8</span>)&#123;</div><div class="line">        $(<span class="string">'input'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            $(<span class="keyword">this</span>).val(<span class="string">''</span>);</div><div class="line">            $(<span class="string">'#1'</span>).focus();</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(event.keyCode == <span class="number">9</span>)&#123;</div><div class="line">        event.preventDefault();</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>这样以来，基本上问题全部解决，如有疑问或者还拥有BUG，还请评论或者联系博主，谢谢各位！</p>
 </blockquote>
 
@@ -457,7 +457,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -465,11 +465,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color2">jQuery jQuery选择器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jQuery jQuery选择器</a>
+                <a href="javascript:void(0)" class="js-tag color3">jQuery jQuery节点操作</a>
               </li>
              
               <li class="article-tag-list-item">
