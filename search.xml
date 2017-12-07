@@ -1,665 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title><![CDATA[多个输入框组合成一组密码框并且可以输入但不可选中]]></title>
-      <url>/2017/12/04/others/password/</url>
-      <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>最近接到一个新的需求，如题所示，经过一番折腾，终于是搞定了，于此记录一篇。</p>
-</blockquote>
-<h3 id="问题与解决办法"><a href="#问题与解决办法" class="headerlink" title="问题与解决办法"></a>问题与解决办法</h3><a id="more"></a>
-<blockquote>
-<p>刚开始做的是密码框阻止click focus事件来使输入框不可选中，但事实证明没有什么用，输入框还是顺利的聚焦了，使用disable和readonly属性也是不可行的，因为是需要可以输入的输入框，最后是用了一种比较取巧的方法，用一个遮罩层挡住输入框，这样用户就点击不到输入框了：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-tag">div</span> &#123;</div><div class="line">        <span class="attribute">position</span>: relative;</div><div class="line">        <span class="attribute">height</span>: <span class="number">500px</span>;</div><div class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">span</span> &#123;</div><div class="line">        <span class="attribute">position</span>: absolute;</div><div class="line">        <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">        <span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">z-index</span>: <span class="number">1</span>;</div><div class="line">        <span class="attribute">background</span>: transparent;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">input</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">40px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">40px</span>;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'mask'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pswd"</span> <span class="attr">maxlength</span>=<span class="string">'1'</span> <span class="attr">input</span>=<span class="string">"focusInput('#2')"</span> <span class="attr">id</span>=<span class="string">"1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pswd"</span> <span class="attr">maxlength</span>=<span class="string">'1'</span> <span class="attr">input</span>=<span class="string">"focusInput('#3')"</span> <span class="attr">id</span>=<span class="string">"2"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pswd"</span> <span class="attr">maxlength</span>=<span class="string">'1'</span> <span class="attr">input</span>=<span class="string">"focusInput('#4')"</span> <span class="attr">id</span>=<span class="string">"3"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pswd"</span> <span class="attr">maxlength</span>=<span class="string">'1'</span> <span class="attr">input</span>=<span class="string">"focusInput('')"</span> <span class="attr">id</span>=<span class="string">"4"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>这样就可以使用户点击不到输入框了,只要让焦点将聚集到第一个输入框，判断其输入后聚焦到下一个输入框就可以了<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="built_in">window</span>.onload() = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">        focusInput(id)&#123;</div><div class="line">            <span class="keyword">if</span>(id)&#123;</div><div class="line">                $(id).focus();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        $(<span class="string">'input'</span>).keydown(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span>(event.keyCode == <span class="number">8</span>)&#123;</div><div class="line">                $(<span class="string">'input'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    $(<span class="keyword">this</span>).val(<span class="string">''</span>);</div><div class="line">                    $(<span class="string">'#1'</span>).focus();</div><div class="line">                &#125;)</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-</blockquote>
-<h3 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h3><blockquote>
-<p>  以为就这么简单吗？显然是年轻了，经过我们测试丝丝入扣的校验，有很多漏洞….</p>
-<ul>
-<li>键盘快捷键可以切换焦点</li>
-<li>第一条解决以后，点击其他地方会是输入框失去焦点，并且再也无法聚焦到输入框</li>
-</ul>
-<p>因为是一个锁屏的功能，所以后面会有一个遮罩层，如果将点击外边的遮罩聚焦到第一个输入框显然是不对的，所以我采取了遍历输入框，找到第一个没有输入的密码框，聚焦到他，所以我将<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="keyword">class</span>=<span class="string">'mask'</span>&gt;</div></pre></td></tr></table></figure></p>
-<p>修改为<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="keyword">class</span>=<span class="string">'mask'</span> <span class="built_in">click</span>=<span class="string">"focusInput('mask')"</span>&gt;</div></pre></td></tr></table></figure></p>
-<p>window.onload()中修改为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">focusInput(id)&#123;</div><div class="line">    <span class="keyword">if</span>(id)&#123;</div><div class="line">        $(id).focus();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(id==<span class="string">'mask'</span>)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;<span class="number">4</span>; i++&gt;)&#123;</div><div class="line">            <span class="keyword">if</span>($(input).eq(i).val()=<span class="string">''</span>)&#123;</div><div class="line">                $($(input).eq(i)).focus();</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$(<span class="string">'input'</span>).keydown(<span class="function"><span class="keyword">function</span>(<span class="params">$event</span>)</span>&#123;</div><div class="line">    event = $event;</div><div class="line">    <span class="keyword">if</span>(event.keyCode == <span class="number">8</span>)&#123;</div><div class="line">        $(<span class="string">'input'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            $(<span class="keyword">this</span>).val(<span class="string">''</span>);</div><div class="line">            $(<span class="string">'#1'</span>).focus();</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(event.keyCode == <span class="number">9</span>)&#123;</div><div class="line">        event.preventDefault();</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>这样以来，基本上问题全部解决，如有疑问或者还拥有BUG，还请评论或者联系博主，谢谢各位！</p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> 功能 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 密码框 </tag>
-            
-            <tag> 组合密码框 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[angular2中父子组件的通讯]]></title>
-      <url>/2017/11/28/ng2/talk/</url>
-      <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p> angular2为组件化开发，我们开发一个个的组件，然后将他们嵌套拼接起来组成一个个完整的项目，但是这些组件相互之间一定会由某种方式将数据连接起来，他们是怎么通讯的呢？下面即本人的总结，若有错误之处，还请指出，拜谢~</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="父组件向子组件传递信息"><a href="#父组件向子组件传递信息" class="headerlink" title="父组件向子组件传递信息"></a>父组件向子组件传递信息</h3><blockquote>
-<p>子组件在父组件的怀抱中，当父组件期望向子组件传递数据时，可以使用@input装饰器，例如：</p>
-</blockquote>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component(&#123;</span></div><div class="line">    selector: <span class="meta-string">'child-component'</span>,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export <span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> </span>&#123;</div><div class="line">	<span class="meta">@input()</span> message:string = <span class="string">'child'</span>;</div><div class="line">	ngOnInit()&#123;</div><div class="line">		console.log(<span class="keyword">this</span>.message);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这代表在我们的宿主元素上定义了一个message的数据接口，我们可以在宿主元素上将数据传递给message这样我们就可以在子组件内拿到数据了，那么怎么传递呢？</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">child-component</span> [<span class="attr">message</span>]=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>msg可以是父组件中的变量，也可以是字符串。注意[message]语法标识了数据流向：父组件流入子组件，即单向数据绑定。此时如果传入的数据是基本数据类型，子组件中对数组做任何操作都不会影响到父组件，但如果传入的不是基本数据类型，而是引用数据类型，则要格外注意子组件中对数据的操作可能会对父组件产生影响</p>
-</blockquote>
-<h3 id="子组件向父组件传递信息"><a href="#子组件向父组件传递信息" class="headerlink" title="子组件向父组件传递信息"></a>子组件向父组件传递信息</h3><blockquote>
-<p>子组件向父组件传递信息需要和EventEmitter配合使用，实例化一个EventEmitter，然后将数据传递出去,下为在子组件中的定义和传递方法：</p>
-</blockquote>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component(&#123;</span></div><div class="line">    selector: <span class="meta-string">'parent-component'</span>,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line">export <span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> </span>&#123;</div><div class="line">	<span class="meta">@output()</span> str: EventEmitter&lt;any&gt; = new EventEmitter();</div><div class="line">	ngOnInit()&#123;</div><div class="line">		<span class="keyword">this</span>.str.emit(<span class="string">'string'</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>父组件接收数据的方法与@input类似，只需将[]换为():<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">child-component</span> (<span class="attr">str</span>)=<span class="string">"resiveString($event)"</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>父组件内需要定义一下这个resiveString方法，接收到的参数即为从子组件内传递来的数据：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Component(&#123;</div><div class="line">    selector: <span class="string">'parent-component'</span>,</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> &#123;</span></div><div class="line">	ngOnInit()&#123;</div><div class="line">	&#125;</div><div class="line">	resiveString(str)&#123;</div><div class="line">		<span class="built_in">console</span>.log(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>以上即两种装饰器的使用，父子组件即可以利用这两种装饰器相互通讯</p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> angular2 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> angular2 </tag>
-            
-            <tag> 通讯 </tag>
-            
-            <tag> 交流 </tag>
-            
-            <tag> 服务 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[web前端面试问题记录]]></title>
-      <url>/2017/11/27/Interview/web-mianshi/</url>
-      <content type="html"><![CDATA[<h3 id="1-怎么理解js面向对象？"><a href="#1-怎么理解js面向对象？" class="headerlink" title="1.怎么理解js面向对象？"></a>1.怎么理解js面向对象？</h3><blockquote>
-<p>js是否面向对象，这个问题可以先说什么是面向对象，面向对象的语言都有共同的特征<br>那就是有类的概念，每个类都有抽象、封装、继承、多态的特性，而js在ES6之前并没有类的概念，<br>但是，他却可以利用构造函数来实现类所能做的事情，并通过原型链实现继承，那么它同样也具备了<br>以上面向对象语言的所有特征，特别的，ES6新增加了class这一概念，就更说明了其是一种面向对象<br>的语言，所以js是一种面向对象的语言</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="2-bind和on的区别？"><a href="#2-bind和on的区别？" class="headerlink" title="2.bind和on的区别？"></a>2.bind和on的区别？</h3><blockquote>
-<p>on可以过滤指定元素，bind不可以</p>
-</blockquote>
-<h3 id="3-bootstrap的栅格系统，应用场景"><a href="#3-bootstrap的栅格系统，应用场景" class="headerlink" title="3.bootstrap的栅格系统，应用场景"></a>3.bootstrap的栅格系统，应用场景</h3><blockquote>
-<p>bootstrap是如今最流行的前端框架之一，可以使web网页开发的更加快速<br>bootstrap主要应用于需要响应式布局的网站，可以适用于不同大小的设备；<br>栅格系统主要是用来布局页面的，他将一个页面均分为12份</p>
-</blockquote>
-<h3 id="4-angularjs特点"><a href="#4-angularjs特点" class="headerlink" title="4.angularjs特点"></a>4.angularjs特点</h3><blockquote>
-<p>mvc开发思想，模块化开发 依赖注入 数据的双向绑定</p>
-</blockquote>
-<h3 id="5-深浅拷贝的区别"><a href="#5-深浅拷贝的区别" class="headerlink" title="5.深浅拷贝的区别"></a>5.深浅拷贝的区别</h3><blockquote>
-<p>浅拷贝只是对一块内存增加了一个指针，访问这个变量依然还是访问的这块内存<br>，而深拷贝是重新申请了一块内存，将另外一个内存的内容复制一份</p>
-</blockquote>
-<h3 id="6-怎么理解盒子模型？"><a href="#6-怎么理解盒子模型？" class="headerlink" title="6.怎么理解盒子模型？"></a>6.怎么理解盒子模型？</h3><blockquote>
-<p>也叫框模型，是css技术使用的一种思维模型<br>每个元素都可以看作一个盒子，每个元素都包含border.margin.padding<br>content,而盒子模型分为两种，一种是w3c标准盒子模型，另一种是IE盒子<br>模型，和w3c不同的是ie盒子模型的content包含了border和padding </p>
-</blockquote>
-<h3 id="7-什么是闭包，如何使用它，为什么要使用它？"><a href="#7-什么是闭包，如何使用它，为什么要使用它？" class="headerlink" title="7.什么是闭包，如何使用它，为什么要使用它？"></a>7.什么是闭包，如何使用它，为什么要使用它？</h3><blockquote>
-<p>闭包就是能够读取其他函数内部变量的函数。由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，<br>因此可以把闭包简单理解成“定义在一个函数内部的函数”。所以，在本质上，闭包就是将函数内部和函数外部连接<br>起来的一座桥梁。闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另<br>一个就是让这些变量的值始终保持在内存中。</p>
-</blockquote>
-<h3 id="8-angular模块之间的通讯方式？"><a href="#8-angular模块之间的通讯方式？" class="headerlink" title="8.angular模块之间的通讯方式？"></a>8.angular模块之间的通讯方式？</h3><blockquote>
-<p>rootscope service 广播</p>
-</blockquote>
-<h3 id="9-什么是DTD？"><a href="#9-什么是DTD？" class="headerlink" title="9.什么是DTD？"></a>9.什么是DTD？</h3><blockquote>
-<p>文档类型定义的简称，是程序间数据交换定义的语法规则</p>
-</blockquote>
-<h3 id="10-js中有哪些数据类型"><a href="#10-js中有哪些数据类型" class="headerlink" title="10.js中有哪些数据类型"></a>10.js中有哪些数据类型</h3><blockquote>
-<p>ES5:<br>Number Null Undefined String Array Function Object</p>
-</blockquote>
-<h3 id="11-addEventListen和onClick的区别？"><a href="#11-addEventListen和onClick的区别？" class="headerlink" title="11.addEventListen和onClick的区别？"></a>11.addEventListen和onClick的区别？</h3><blockquote>
-<p>onclick同一多次绑定本事件会被下面的覆盖掉，默认冒泡<br>addEventListen会依次执行，可以在函数后的参数自定义为冒泡还是<br>捕获，默认为冒泡</p>
-</blockquote>
-<h3 id="12-JS中快速复制数组的方法"><a href="#12-JS中快速复制数组的方法" class="headerlink" title="12.JS中快速复制数组的方法?"></a>12.JS中快速复制数组的方法?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var arr = [1, 2, 3];</div><div class="line">var arr1 = arr.slice(0);</div><div class="line"></div><div class="line">//或者</div><div class="line">var arr = [1, 2, 3];</div><div class="line">var arr1 = arr.concat();</div></pre></td></tr></table></figure>
-<h3 id="13-本地存储有哪些方式？"><a href="#13-本地存储有哪些方式？" class="headerlink" title="13.本地存储有哪些方式？"></a>13.本地存储有哪些方式？</h3><blockquote>
-<p>localStorage sessionStorage cookie indexedDB websql五种方式</p>
-</blockquote>
-<h3 id="14-请说出三种减少页面加载时间的方法"><a href="#14-请说出三种减少页面加载时间的方法" class="headerlink" title="14.请说出三种减少页面加载时间的方法?"></a>14.请说出三种减少页面加载时间的方法?</h3><blockquote>
-<p>(1).小图片使用雪碧图的方式。大一点的用base64的方式。大直接加载<br>(2).将上线代码进行合并、压缩、混淆<br>(3).css放在文件头部，js放在尾部</p>
-</blockquote>
-<h3 id="15-jQuery中的方法链是什么？使用方法链有什么好处？"><a href="#15-jQuery中的方法链是什么？使用方法链有什么好处？" class="headerlink" title="15.jQuery中的方法链是什么？使用方法链有什么好处？"></a>15.jQuery中的方法链是什么？使用方法链有什么好处？</h3><blockquote>
-<p>就是对同一个对象的操作可以在上一步操作的后面接着写，<br>好处是让代码看起来更简洁，可读性也高</p>
-</blockquote>
-<h3 id="16-src和href的区别"><a href="#16-src和href的区别" class="headerlink" title="16.src和href的区别"></a>16.src和href的区别</h3><blockquote>
-<p>href 是指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，用于超链接。<br>src是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置；在请求src资源时会将其指向的资源下载<br>并应用到文档内，例如js脚本，img图片和frame等元素。当浏览器解析到该元素时，会暂停其他资源的下载和处理，直<br>到将该资源加载、编译、执行完毕，图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。这也是为什么将<br>js脚本放在底部而不是头部</p>
-</blockquote>
-<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><blockquote>
-<pre><code>持续更新中...
-</code></pre></blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> 面试相关 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> web前端面试题 </tag>
-            
-            <tag> 面试题 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[同步购物车]]></title>
-      <url>/2017/11/27/others/shopcar/</url>
-      <content type="html"><![CDATA[<h2 id="一-、localStorage-sessionStorage-cookie"><a href="#一-、localStorage-sessionStorage-cookie" class="headerlink" title="一 、localStorage,sessionStorage,cookie"></a>一 、localStorage,sessionStorage,cookie</h2><blockquote>
-<p>购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，<br>那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要<br>的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。 </p>
-</blockquote>
-<a id="more"></a>
-<blockquote>
-<p>cookie ：是在客户端保存的方案，但是有许多缺点，一就是存的数据太少，浏览器最多可以保存4096个字节（4KB）,<br>而且浏览器还限制了保存cookie的数量，大多数浏览器每个站点最多存放40个cookie，就是说如果你加入购物车的数量<br>多的话，所有站点存的cookie通常有300个的限制，以前存的数据会一个个的被删除掉，最后cookie还有生命周期<br>显然我们不能够使用这种方法；</p>
-<p>sessionStorage(window中的对象): 是HTML5提供的使用JS在客户端存储的新方法，之前都是用cookie完成的，但cookie不<br>适合存储大量的数据，因为它们由每个对服务器的请求来传递，这使得 cookie速度很慢而且效率也不高。，所以提供了这种方法，<br>是一个临时的session会话，当页面关闭时，存储消失sessionStorage - 针对一个 session 的数据存储；在 HTML5 中，<br>数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能<br>。 对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。</p>
-<p>localStorage(window中的对象):和sessionStorage类似，但localStorage是永久存储，没有时间限制，而且可以手动删除数据</p>
-</blockquote>
-<h2 id="二、实现"><a href="#二、实现" class="headerlink" title="二、实现"></a>二、实现</h2><blockquote>
-<p>从以上三种方式来看，显然最后一个是我们所需要的，于是出现了我的第一个修改前的版本：</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	<span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"香蕉"</span>&gt;</span>香蕉<span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"苹果"</span>&gt;</span>苹果<span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"哈密瓜"</span>&gt;</span>哈密瓜<span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"梨"</span>&gt;</span>梨<span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"></div><div class="line">		<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">			<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">			<span class="keyword">var</span> oinputs = <span class="built_in">document</span>.querySelectorAll(<span class="string">"input"</span>);</div><div class="line"></div><div class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;oinputs.length; i++)&#123;</div><div class="line">				oinputs[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">					<span class="keyword">if</span>(<span class="keyword">this</span>.checked)&#123;</div><div class="line"></div><div class="line">						<span class="built_in">window</span>.localStorage.setItem(<span class="string">"buy"</span>,<span class="keyword">this</span>.value);</div><div class="line">					&#125;<span class="keyword">else</span>  &#123;</div><div class="line">						<span class="built_in">window</span>.localStorage.setItem(<span class="string">"unbuy"</span>,<span class="keyword">this</span>.value);</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			<span class="built_in">window</span>.addEventListener(<span class="string">"storage"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</div><div class="line">					<span class="keyword">if</span> (ev.key == <span class="string">"unbuy"</span>) &#123;</div><div class="line"></div><div class="line">						<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt; oinputs.length;i++)&#123;</div><div class="line">							<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = <span class="literal">false</span>;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;<span class="keyword">else</span> <span class="keyword">if</span> (ev.key == <span class="string">"buy"</span>) &#123;</div><div class="line">						<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt; oinputs.length;i++)&#123;</div><div class="line">							<span class="keyword">if</span>(ev.newValue == oinputs[i].value)</div><div class="line">							&#123;</div><div class="line">								oinputs[i].checked = <span class="literal">true</span>;</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">			&#125;);</div><div class="line">		&#125;</div><div class="line">		<span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">html</span>&gt;</span></div><div class="line"></div><div class="line">```</div></pre></td></tr></table></figure>
-<p>修改后:</p>
-<p>开启服务器从网页中打开后，试用一下，我们会发现这是有问题的，当我们重复点击同一个物品时，会发现刚开始是<br>同步的，后来就不同步了，经过老师的解答和查看客户端中的localStorage存储情况，发现后来重复点击同一物品时<br>内存中的数据并没有发生改变，就是说并没有触发JS代码中的storage事件，这是因为我们开始点击后，本地存储<br>先录入了我们原先的数据，当我们第二次选中时或者取消时，按我原先的理解会将原来的值覆盖，从而达到改变存储<br>的数据的效果，而事实证明，内存中存储的是一个key对用一个value值，我们的key分别是buy和unbuy，第二次选中时<br>，unbuy并不会消失就是说浏览器中还是有buy和unbuy两个值，并没有触发这个事件，所以，我们使用了设置key之前<br>先判断的方式，如果原来有我们设置的key，就先把它删掉，重新判断，这样就会一直触发storage事件，而事实证明<br>是可以的</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;input type=&quot;checkbox&quot; value=&quot;香蕉&quot;&gt;香蕉&lt;br&gt;
-    &lt;input type=&quot;checkbox&quot; value=&quot;苹果&quot;&gt;苹果&lt;br&gt;
-    &lt;input type=&quot;checkbox&quot; value=&quot;哈密瓜&quot;&gt;哈密瓜&lt;br&gt;
-    &lt;input type=&quot;checkbox&quot; value=&quot;梨&quot;&gt;梨&lt;br&gt;
-
-    &lt;script&gt;
-        window.onload = function(){
-
-
-        var oinputs = document.querySelectorAll(&quot;input&quot;);
-
-        for(var i=0; i&lt;oinputs.length; i++){
-            oinputs[i].onclick = function(){
-                if(this.checked){
-                    if (window.localStorage.getItem(&quot;buy&quot;)) {
-                        window.localStorage.removeItem(&quot;buy&quot;);
-                    }
-                    window.localStorage.setItem(&quot;buy&quot;,this.value);
-                }else  {
-                    if (window.localStorage.getItem(&quot;unbuy&quot;)) {
-                        window.localStorage.removeItem(&quot;unbuy&quot;);
-                    }
-                    window.localStorage.setItem(&quot;unbuy&quot;,this.value);
-                }
-            }
-        }
-
-        window.addEventListener(&quot;storage&quot;, function(ev){
-                if (ev.key == &quot;unbuy&quot;) {
-
-                    for(var i=0; i&lt; oinputs.length;i++){
-                        if(ev.newValue == oinputs[i].value)
-                        {
-                            oinputs[i].checked = false;
-                        }
-                    }
-                }else if (ev.key == &quot;buy&quot;) {
-                    for(var i=0; i&lt; oinputs.length;i++){
-                        if(ev.newValue == oinputs[i].value)
-                        {
-                            oinputs[i].checked = true;
-                        }
-                    }
-                }
-        });
-    }
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><h3 id="补上key的方法："><a href="#补上key的方法：" class="headerlink" title="补上key的方法："></a>补上key的方法：</h3><blockquote>
-<p>Ø  setItem():</p>
-<p>设置数据，key\value类型，类型都是字符串</p>
-<p>可以用获取属性的形式操作</p>
-<p>Ø getItem():</p>
-<p>获取数据，通过key来获取到相应的value</p>
-<p>Ø removeItem():</p>
-<p>删除数据，通过key来删除相应的value</p>
-<p>Ø clear():</p>
-<p>删除全部存储的值</p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> 功能 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> storage </tag>
-            
-            <tag> localstorage </tag>
-            
-            <tag> sessonstorage </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[面试经历]]></title>
-      <url>/2017/11/27/Interview/shanghaiwork/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>  来到上海已经两周，终于通过了一家公司的面试，总共面试了三次，现在我就分享一下面试中的一些问题，<br>希望对和我一样在找工作途中的“道友”有所帮助</p>
-</blockquote>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="js实现继承的问题"><a href="#js实现继承的问题" class="headerlink" title="js实现继承的问题"></a>js实现继承的问题</h3><blockquote>
-<p>这个问题实际上并没有什么难度，问的是js怎么实现继承，一句可以用原型链的方式实现就不深入问了，看来<br>面试官只是需要我对这个问题有所了解据够了</p>
-</blockquote>
-<h3 id="css-reset"><a href="#css-reset" class="headerlink" title="css reset"></a>css reset</h3><blockquote>
-<p>这个同样是一个基础的问题，是为了防止浏览器之间的解析差异，将一些样式属性重置为0，以便于我们在各<br>个浏览器看到的都是同样的样式</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><blockquote>
-<p>html每个标签都可以看成一个盒子，具有padding margin border content等属性，IE也有一个盒子模型，不同<br>的是IE的content包含了padding</p>
-</blockquote>
-<h3 id="angular和react的区别"><a href="#angular和react的区别" class="headerlink" title="angular和react的区别"></a>angular和react的区别</h3><blockquote>
-<p>这个问题我是从两个框架的特点方面回答的，angular是双向数据绑定，mvc的开发思想，依赖注入的特点，模块<br>化开发；react是单向数据流，语法使用的jsx组件化开发，有一个虚拟dom树，所以性能比angular高很多，因为<br>angular有一个脏检查的机制，拖慢了angular的性能，当然这只是一个方面，大概就说了这么多</p>
-</blockquote>
-<h3 id="怎么实现react的双向数据绑定"><a href="#怎么实现react的双向数据绑定" class="headerlink" title="怎么实现react的双向数据绑定"></a>怎么实现react的双向数据绑定</h3><blockquote>
-<p>这个问题我还真没有想过，当时没有想到，等回来才发现其实思路很简单，就是在react的数据标签上绑定一个<br>onchange事件，直接改变state，当然，最后还是用一些js库来实现的</p>
-</blockquote>
-<h3 id="sessionStorage-localStorage的区别"><a href="#sessionStorage-localStorage的区别" class="headerlink" title="sessionStorage,localStorage的区别"></a>sessionStorage,localStorage的区别</h3><blockquote>
-<p>sessionStorage,当浏览器关闭后存储在其中的数据会消失，而localStorage不会，只能手动删除</p>
-</blockquote>
-<h3 id="jq和angular的区别"><a href="#jq和angular的区别" class="headerlink" title="jq和angular的区别"></a>jq和angular的区别</h3><blockquote>
-<p>两者都是js封装的框架，jq主要是对dom节点的操作，angular主要是对数据的操作，主要还是往两者的特点上<br>扯，把各个特点一下就可以了，angular特点上文已有就不多说了</p>
-</blockquote>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><blockquote>
-<p>还有一些算法什么的就不多说了，在我另一篇博文里有，希望我写的这些东西可以给一些志同道合的朋友提供<br>帮助</p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> 面试相关 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 面试 </tag>
-            
-            <tag> js </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[react的受控组件和非受控组件]]></title>
-      <url>/2017/11/27/react/react_Component/</url>
-      <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
-<p>React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,<br>属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染<br>出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,<br>全部通过props来渲染也是没问题的, 不过这种情况不常见。<br>本文所介绍的内容就是通过props和state的定义来谈谈React的受控组件和非受控组件</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="react的非受控组件"><a href="#react的非受控组件" class="headerlink" title="react的非受控组件"></a>react的非受控组件</h3><blockquote>
-<p>顾名思义, 非受控组件即组件的状态改变不受控制.接来下我们以一个简单input组件代码来描述。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from <span class="string">'react'</span>;</div><div class="line">import ReactDOM from <span class="string">'react-dom'</span>;</div><div class="line"></div><div class="line">class Demo1 extends Component &#123;</div><div class="line">    <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">        <span class="built_in">return</span> (</div><div class="line">            &lt;input /&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDOM.render(&lt;Demo1/&gt;, document.getElementById(<span class="string">'content'</span>))</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在这个最简单的输入框组件里,我们并没有干涉input中的value展示,即用户输入的内容都会展示在上面。<br>如果我们通过props给组件设置一个初始默认值,<input defaultvalue="{this.props.value}/"><br>defaultValue属性是React内部实现的一个属性,目的类似于input的placeholder属性。<br>ps: 此处如果使用value代替defaultValue,会发现输入框的值无法改变。</p>
-</blockquote>
-<h3 id="react的受控组件"><a href="#react的受控组件" class="headerlink" title="react的受控组件"></a>react的受控组件</h3><blockquote>
-<p>上面提到过,既然通过设置input的value属性, 无法改变输入框值,<br>那么我们把它和state结合在一起,再绑定onChange事件,实时更新value值就行了</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Demo1 extends Component &#123;</div><div class="line">    constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line">        this.state = &#123;</div><div class="line">            value: props.value</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    handleChange(e) &#123;</div><div class="line">        this.setState(&#123;</div><div class="line">            value: e.target.value</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">        <span class="built_in">return</span> (</div><div class="line">            &lt;input value=&#123;this.state.value&#125; onChange=&#123;e =&gt; this.handleChange(e)&#125;/&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这就是最简单的受控组件模型, 我们可以通过在onChange的回调里控制input要显示的值,<br>例如我们设置input框只能输入数字</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">this.setState(&#123;</div><div class="line">    value: e.target.value.replace(/\D/g, <span class="string">''</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>]]></content>
-      
-        <categories>
-            
-            <category> react </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> react的受控组件 </tag>
-            
-            <tag> react非受控组件 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[angular2组件的生命周期]]></title>
-      <url>/2017/11/27/ng2/ng2_lift/</url>
-      <content type="html"><![CDATA[<h2 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明"></a>1.说明</h2><blockquote>
-<p>Angular每个组件都存在一个生命周期，从创建，变更到销毁。Angular提供组件生命周期钩子，把这些关键时刻暴露出来，赋予在这些关键<br>结点和组件进行交互的能力。</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="2-angular2组件的生命周期和执行顺序"><a href="#2-angular2组件的生命周期和执行顺序" class="headerlink" title="2.angular2组件的生命周期和执行顺序"></a>2.angular2组件的生命周期和执行顺序</h2><h3 id="以下按照执行顺序排列"><a href="#以下按照执行顺序排列" class="headerlink" title="以下按照执行顺序排列"></a>以下按照执行顺序排列</h3><blockquote>
-<p>ngOnChanges  当被绑定的输入属性的值发生变化时调用，首次调用一定会发生在 ngOnInit之前</p>
-<p>ngOnInit 在第一轮 ngOnChanges 完成之后调用。 (也就是说当每个输入属性的值都被触发了一次 ngOnChanges 之后才会调用 ngOnInit ，<br>此时所有输入属性都已经有了正确的初始绑定值 )</p>
-<p>ngDoCheck 在每个 Angular 变更检测周期中调用。</p>
-<p>ngAfterContentInit 当把内容投影进组件之后调用。</p>
-<p>ngAfterContentChecked 每次完成被投影组件内容的变更检测之后调用。</p>
-<p>ngAfterViewInit 初始化完组件视图及其子视图之后调用。</p>
-<p>ngAfterViewChecked 每次做完组件视图和子视图的变更检测之后调用。</p>
-<p>ngOnDestroy 当 Angular 每次销毁指令 / 组件之前调用。</p>
-</blockquote>
-<h2 id="3-演示"><a href="#3-演示" class="headerlink" title="3.演示"></a>3.演示</h2><blockquote>
-<p>代码主要包含ngOnChanges，ngOnInit，ngDoCheck，ngOnDestroy</p>
-</blockquote>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; Component, Input, OnChanges, OnInit, DoCheck, OnDestroy &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line">@Component(&#123;</div><div class="line">    moduleId: <span class="string">'birthday'</span>,</div><div class="line">    selector: <span class="string">'birthday'</span>,</div><div class="line">    template: `<span class="javascript"></span></div><div class="line">        &lt;h5&gt;your birthday is &#123;&#123;birthday&#125;&#125;&lt;<span class="regexp">/h5&gt;</span></div><div class="line">    `,</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">BirthdayComponent</span> <span class="title">implements</span> <span class="title">OnChanges</span>, <span class="title">OnInit</span>, <span class="title">DoCheck</span>, <span class="title">OnDestroy</span> &#123;</span></div><div class="line"></div><div class="line">    @Input()</div><div class="line">    birthday;</div><div class="line">    ngOnChanges(changes) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ngOnChanges'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngOnInit() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ngOnInit'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngDoCheck() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ngDoCheck'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngOnDestroy() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ngOnDestroy'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">@Component(&#123;</div><div class="line">    moduleId: <span class="string">'app'</span>,</div><div class="line">    selector: <span class="string">'app'</span>,</div><div class="line">    template: `<span class="javascript"><span class="regexp"></span></span></div><div class="line">        &lt;birthday [birthday]="birthday"&gt;&lt;/birthday&gt;</div><div class="line">    `,</div><div class="line">    directives: [BirthdayComponent]</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> &#123;</span></div><div class="line">    birthday: Date = <span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">10</span>, <span class="number">10</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在app组件中调用，可以清楚的得到执行顺序如下：</p>
-<p>(1)ngOnChanges</p>
-<p>(2)ngOnInit</p>
-<p>(3)ngOnDocheck</p>
-<p>当组件销毁时会调用 ngOnDestroy</p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> angular2 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> ng2 </tag>
-            
-            <tag> 生命周期 </tag>
-            
-            <tag> ng2组件执行顺序 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[jQuery总结]]></title>
-      <url>/2017/11/27/js-jq/jquery/</url>
-      <content type="html"><![CDATA[<h2 id="一-基本方法："><a href="#一-基本方法：" class="headerlink" title="一.基本方法："></a>一.基本方法：</h2><blockquote>
-<p>html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；<br>val()方法是设置或返回表单的值，一般有input,textarea等；<br>attr()方法设置或返回元素的属性值，会覆盖掉原有属性；<br>removeAttr()为移除被选元素的属性；<br>addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；<br>removeClass(‘类名’）传参，删除指定类名，不传参删除所有类名；<br>toggleClass(‘类名’),在有与没有之间切换；<br><a id="more"></a><br>hasClass(‘类名’)检查被选元素是否包含指定的 class，如果测试的是一个集合，只要有一个有，<br>就返回true，没有返回false；<br>css()方法设置或返回元素的一个或多个样式属性（getComputedStyle、currentStyle），</p>
-</blockquote>
-<h2 id="二、jQuery遍历节点"><a href="#二、jQuery遍历节点" class="headerlink" title="二、jQuery遍历节点"></a>二、jQuery遍历节点</h2><blockquote>
-<p>parent()返回被选元素的直接父亲，parents返回被选元素的所有祖先。直到HTML ；<br>children()返回被选元素的所有直接子元素，find()方法返回被选元素的后代元素，必须在其中加入选择器；<br>prev()返回被选元素的上一个同胞元素，next()返回下一个同胞元素，siblings()返回所有同胞元素；</p>
-</blockquote>
-<h2 id="三、操作DOM节点"><a href="#三、操作DOM节点" class="headerlink" title="三、操作DOM节点"></a>三、操作DOM节点</h2><blockquote>
-<p>1.在jq创建节点var li = $(“ “);<br>2.append（）向被选元素追加内容或子节点<br>例如：$(“#game”).append($(“<br>红色警戒<br>“));<br>appendTo()与append（）颠倒前后，效果相同；<br>  prepend()和append类似，它是向前边插入，prependTo()前后颠倒，效果相同；<br>3.after()在每个被选元素后插入兄弟节点；before()是向每个被选元素前插入兄弟节点；<br>insertBefore（）是向所有匹配元素的前边插入兄弟节点；insertAfter()是向所有匹配元素后边插入兄弟节点；<br>4.remove()删除被选元素及其后代；empty清空被选元素，删除其所有子元素；<br>5.replaceWithØ 将匹配元素替换成指定的HTML或DOM元素,前面的元素是被替换元素,后面的元素是替换元素,<br>例如：$(“button”).replaceWith($(“<br>这又是一个段落.</p>
-</blockquote>
-<p>“));</p>
-<h2 id="四-jQuery克隆元素"><a href="#四-jQuery克隆元素" class="headerlink" title="四. jQuery克隆元素"></a>四. jQuery克隆元素</h2><blockquote>
-<p>clone(),不传参，只复制元素，不复制该元素的事件处理函数 $(“p”).clone().appendTo(‘.box1’);有一个参数，true，<br>复制元素及其本身的事件处理函数，第二个参数，默认值是true<br>不仅复制元素及其本身的事件处理函数而且会复制子元素的事件处理函数，如果是false就不会复制子元素的事件处理函数</p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> jQuery </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> jq </tag>
-            
-            <tag> jQuery节点操作 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[jQuery入口函数和常用选择器]]></title>
-      <url>/2017/11/27/js-jq/jq-select/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>jQuery是javascript的一个库（框架），包含多个可重用的函数，用来辅助我们简化javascript开发… </p>
-</blockquote>
-<h2 id="一、使用"><a href="#一、使用" class="headerlink" title="一、使用"></a>一、使用</h2><blockquote>
-<p>1.引用，要想用jQuery,首先要将JQ的库引进来，我们才可以使用<br>2.和JS使用类似，都有一个入口函数，第一种是$(document).ready(function(){});另一种是$(function() {});<br>和JS使用的window.onload=function(){}的区别是windows.onload方法是在网页中所有的元素（包括元素的所有<br>关联文件）完全加载到浏览器后才执行，即Javascript此时才可以访问网页中的 任何元素。而jQuery中的<br>$（document).ready（）和$(function() {})方法注册的事件处理程序，在DOM完全就绪时就可以被调用。此时，<br>网页的所有元素对jQuery而言都 是可以访问的，但是，这并不意味着这些元素关联的文件都已经下载完毕。<br>3.JQ的书写方式和JS不同，JQ是$(“选择器”)就可以选中HTML节点；JQ与DOM原生对象之间可以相互转换，<br>在DOM对象前加$可实现转化为JQ对象，在jq后接[]或者.get(index)可转换为DOM原生对象</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="二、jQuery选择器"><a href="#二、jQuery选择器" class="headerlink" title="二、jQuery选择器"></a>二、jQuery选择器</h2><blockquote>
-<p>4.JQ选择器：<br>（1）基本选择器（和css中相同）通用选择器：$(“*”);ID选择器：$(“#id”);class选择器$(“.classname”);<br>标签选择器$(“标签名”)并集选择器$(“th,td,.intro”)；并列选择器$(“.intro.demo”) </p>
-<p>（2）层级选择器<br>子元素选择器<br>  parent&gt;child<br>   匹配给定的父元素下匹配所有的子元素</p>
-<p>后代选择器<br> $(form input)<br>   查找form元素的后代元素中为input的标记</p>
-<p>紧邻同辈选择器<br> prev+next<br>   匹配所有紧接在prev元素后的next元素</p>
-<p>相邻同辈选择器<br> prev~siblings<br>   匹配prev元素之后的所有的siblings元素</p>
-<p>（3）表单域选择器<br>子元素选择器<br>  parent&gt;child<br>   匹配给定的父元素下匹配所有的子元素</p>
-<p>后代选择器<br> $(form input)<br>   查找form元素的后代元素中为input的标记</p>
-<p>紧邻同辈选择器<br> prev+next<br>   匹配所有紧接在prev元素后的next元素</p>
-<p>相邻同辈选择器<br> prev~siblings<br>   匹配prev元素之后的所有的siblings元素</p>
-<p>子元素选择器<br>  parent&gt;child<br>   匹配给定的父元素下匹配所有的子元素</p>
-<p>后代选择器<br> $(form input)<br>   查找form元素的后代元素中为input的标记</p>
-<p>紧邻同辈选择器<br> prev+next<br>   匹配所有紧接在prev元素后的next元素</p>
-<p>相邻同辈选择器<br> prev~siblings<br>   匹配prev元素之后的所有的siblings元素</p>
-<p>子元素选择器<br>  parent&gt;child<br>   匹配给定的父元素下匹配所有的子元素</p>
-<p>后代选择器<br> $(form input)<br>   查找form元素的后代元素中为input的标记</p>
-<p>紧邻同辈选择器<br> prev+next<br>   匹配所有紧接在prev元素后的next元素</p>
-<p>（4）伪类过滤选择器<br>元素元素  :first选择器<br> $(“p:first”)第一个元素</p>
-<p>:last选择器<br> $(“p:last”)最后一个 </p>
-<p>元素</p>
-<p>:even 选择器<br> $(“tr:even”))所有偶数 </p>
-<p>:odd 选择器<br> $(“tr:odd”)所有奇数 </p>
-<p>:eq(index)选择器<br> $(“ul li:eq(3)”)列表中的第四个元素（index 从 0 开始）</p>
-<p>:gt(no)选择器<br> $(“ul li:gt(3)”)列出 index 大于 3 的元素</p>
-<p>:lt(no) 选择器<br> $(“ul li:lt(3)”)列出 index 小于 3 的元素</p>
-<p>:not(selector)选择器<br> $(“input:not(:empty)”)所有不为空的 input 元素 </p>
-<p>:header 选择器<br> $(“:header”)所有标题元素 </p>
-<p>:animated 选择器</p>
-<p> $(“:animated”)<br>  选出当前所有动画 （匹配动画 - 必须由jQuery自己搞定）、</p>
-<p>（5）内容过滤选择器<br>:contains(text)<br> $(“:contains(‘W3School’)”)<br>   包含指定字符串的所有元素</p>
-<p>:empty<br> $(“:empty”)<br>   无子（元素）节点的所有元素</p>
-<p>:has()选择器<br> $(“select1:has(selector2)”)<br>   选取含有selector2的所有selector1的元素 </p>
-<p>（6）简单属性过滤选择器<br>[attribute]<br> $(“div[id]”)<br>   查找所有含有 id 属性的 div 元素</p>
-<p>[attribute=value]<br> $(“input[name=’newsletter’]”)<br>   所有name属性的值等于 “newsletter” 的元素</p>
-<p>[attribute<em>=value]<br> $(“input[name</em>=’news’]”)<br>   name中包含news的元素 </p>
-<p>[attribute~=value]<br> $(“input[name~=’news’]”)<br>   name中包含news 单词的元素</p>
-<p>[attribute^=value]<br> $(“selector[attribute^=value]”)<br>   attribute中以某特定值开始的所有元素</p>
-<p>[attribute$=value]<br> $(“selector[attribute$=value]”)<br>   attribute中以给给定值结尾的所有元素</p>
-<p>[]attribute!=value]<br> $(“selector[attribute!=value]”)<br>   attribute不等于value的所有元素</p>
-<p>（7）子元素过滤选择器<br>:first-child<br> $(“selector:first-child”)<br>   父级的第一个子元素</p>
-<p>:last-child<br> $(“selector:last-child”)<br>   父级的最后一个子元素</p>
-<p>:nth-child<br> $(“selector:nth-child(index/even/odd)”)<br>   父级的第n个子元素 </p>
-<p>:only-child<br> $(“selector:only-child”)<br>   只有一个孩子的父级</p>
-<p>（8）表单域属性过滤选择器<br>:enabled<br> $(“:enabled”)<br>   所有激活的 input 元素</p>
-<p>:disabled<br> $(“:disabled”)<br>   所有禁用的 input 元素</p>
-<p>:selected<br> $(“:selected”)<br>   所有被选取的 input 元素</p>
-<p>:checked<br> $(“:checked”)<br>   所有被选中的 input </p>
-<p>（9）可见性过滤选择器</p>
-<p>:visible<br> $(“table:visible”)<br>   所有可见的表格</p>
-<p>:hidden 选择器<br>  $(“:hidden”)<br>   所有隐藏的元素（:前面加选择器）</p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> jQuery </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> jQuery </tag>
-            
-            <tag> jQuery选择器 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[angular.js的几个问题]]></title>
-      <url>/2017/11/27/ng1/demo/</url>
-      <content type="html"><![CDATA[<h3 id="一、ng-show-ng-hide和ng-if的区别？"><a href="#一、ng-show-ng-hide和ng-if的区别？" class="headerlink" title="一、ng-show,ng-hide和ng-if的区别？"></a>一、ng-show,ng-hide和ng-if的区别？</h3><blockquote>
-<p>ng-show和ng-hide是通过display:none的方式将元素隐藏的，而ng-if是通过删除所在节点的方式将元素隐藏的，相对来说</p>
-<p>ng-if的方式更好，提高了性能</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="二、angular中的digest周期是什么？"><a href="#二、angular中的digest周期是什么？" class="headerlink" title="二、angular中的digest周期是什么？"></a>二、angular中的digest周期是什么？</h3><blockquote>
-<p>每个digest周期中，angular总会对比scope上model的值，一般digest周期都是自动触发的，我们也可以使用$apply或者$digest进行手动触发</p>
-</blockquote>
-<h3 id="三、模块之间的通讯方式？"><a href="#三、模块之间的通讯方式？" class="headerlink" title="三、模块之间的通讯方式？"></a>三、模块之间的通讯方式？</h3><ul>
-<li>1.server</li>
-</ul>
-<blockquote>
-<p>自定义服务，在其他的模块中引入这个服务，就可以让这个模块使用你自定义服务中的功能</p>
-</blockquote>
-<ul>
-<li>2.使用$rootScope</li>
-</ul>
-<blockquote>
-<p>通俗来新疆$rootScope是所有$scope的父亲；另外angular解析页面的时候，也是先通过ng-app指令创建一个$rootScope<br>继续解析，将双花括号表达式解析成变量，接着会解析ng-controller所在的节点指向到某个controller函数，<br>这个时候在这个controller函数中变成一个$scope对象，所以我们直接将变量挂载到$rootScope上后，所有模块都可以引用这个变量</p>
-</blockquote>
-<ul>
-<li>3.controller之间使用广播的方式</li>
-</ul>
-<blockquote>
-<p>广播的方式即使用$emit、$on、$broadcast 三个函数<br>比如下例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;body ng-app=<span class="string">"app"</span>&gt;</div><div class="line">    &lt;div ng-controller=<span class="string">"demo1"</span>&gt;</div><div class="line">        &lt;button ng-click=<span class="string">"broadcast()"</span>&gt;向子控制器传递&lt;/button&gt;</div><div class="line">        &lt;div ng-controller=<span class="string">"demo2"</span>&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div&gt;</div><div class="line">            &lt;div ng-controller=<span class="string">"demo3"</span>&gt;</div><div class="line">                &lt;button ng-click=<span class="string">"emit()"</span>&gt;向父亲传递信息&lt;/button&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure></p>
-<p>在demo2,demo3中使用$emit函数可以向父控制器demo1中发送数据，而demo1通过$on接收发送过来的数据，<br>反之则用$broadcast通信 </p>
-</blockquote>
-<ul>
-<li>4.怎么停止$watch()？<blockquote>
-<p>启动一个$watch()会返回一个停止的函数，启动这个函数就会停止</p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> angular1 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> angular </tag>
-            
-            <tag> angular面试 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[延迟动画 下拉动画 插件]]></title>
-      <url>/2017/11/27/others/chajian/</url>
-      <content type="html"><![CDATA[<h3 id="一个字：炫酷"><a href="#一个字：炫酷" class="headerlink" title="一个字：炫酷"></a>一个字：炫酷</h3><blockquote>
-<p>今天，我们来分享两个比较炫酷的动画插件animated.css 和  wow.js,第一个，可以添加刷新动画，第二个要基于第一个实现，<br>可以实现下拉动画和延迟动画的效果 </p>
-</blockquote>
-<a id="more"></a>
-<blockquote>
-<p>下载可以到网上寻找资源，这里提供说明：<br>当你将两个插件引入你的文档后，只需要将animated加入你需要加动画的节点上，再加上动画效果的类名就可以了<br>例如：class=”animated bounceInDown”，这个类名可以节点出现从上往下掉落到指定位置的效果，<br>而wow.js可以实现延迟动画，只需将其引入后再将<br>1.类名写入wow，给节点属性加入延迟时间，例如 data-wow-delay=’0.2s’.即可将animated动画延时播放<br>2.类名写入wow，在需要动画的节点写入类名动画入animated pulse ，合起来就是class=’wow animated pulse’,就可以实现下拉动画了</p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> 插件 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 动画 </tag>
-            
-            <tag> 下拉动画 </tag>
-            
-            <tag> 延迟动画 </tag>
-            
-            <tag> animated </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[各种算法实现]]></title>
-      <url>/2017/11/27/others/algorithm/</url>
-      <content type="html"><![CDATA[<h3 id="去重算法"><a href="#去重算法" class="headerlink" title="去重算法"></a>去重算法</h3><blockquote>
-<p>去除数组中的重复元素</p>
-</blockquote>
-<a id="more"></a>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">delRepeat</span></span>(arr)&#123;</div><div class="line">  <span class="keyword">var</span> <span class="keyword">new</span><span class="type">Array</span>=<span class="keyword">new</span> <span class="type">Array</span>();</div><div class="line">  <span class="keyword">var</span> len=arr.length;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</div><div class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> j=i+<span class="number">1</span>;j&lt;len;j++)</div><div class="line">     &#123;</div><div class="line">       <span class="keyword">if</span>(arr[i]==arr[j])</div><div class="line">       &#123;</div><div class="line">         ++i;  </div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">    <span class="keyword">new</span><span class="type">Array</span>.push(arr[i]);</div><div class="line">  &#125;</div><div class="line"> <span class="keyword">return</span> <span class="keyword">new</span><span class="type">Array</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> arr=<span class="keyword">new</span> <span class="type">Array</span>(<span class="string">"red"</span>,<span class="string">"red"</span>,<span class="string">"1"</span>,<span class="string">"5"</span>,<span class="string">"2"</span>);</div><div class="line">alert(delRepeat(arr));</div></pre></td></tr></table></figure>
-<h3 id="二分算法，又称折半算法"><a href="#二分算法，又称折半算法" class="headerlink" title="二分算法，又称折半算法"></a>二分算法，又称折半算法</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function binaryInsertSort(arr)&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</div><div class="line">    <span class="keyword">var</span> key = arr[i], <span class="keyword">left</span> = <span class="number">0</span>, <span class="keyword">right</span> = i - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">left</span> &lt;= <span class="keyword">right</span>) &#123;</div><div class="line">      <span class="keyword">var</span> middle = parseInt((<span class="keyword">left</span> + <span class="keyword">right</span>) / <span class="number">2</span>);</div><div class="line">      <span class="keyword">if</span> (key &lt; arr[middle]) &#123;</div><div class="line">        <span class="keyword">right</span> = middle - <span class="number">1</span>;</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">left</span> = middle + <span class="number">1</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i - <span class="number">1</span>; j &gt;= <span class="keyword">left</span>; j--) &#123;</div><div class="line">      arr[j + <span class="number">1</span>] = arr[j];</div><div class="line">    &#125;</div><div class="line">    arr[<span class="keyword">left</span>] = key;</div><div class="line">  &#125;</div><div class="line"><span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="选择排序算法"><a href="#选择排序算法" class="headerlink" title="选择排序算法"></a>选择排序算法</h3><blockquote>
-<p>选择排序就是通过n-i次关键字间的比较，从n-i-1个记录中选出关键字最小的记录，<br>并和第i个记录进行交换。选择排序(Selection-sort)是一种简单直观的排序算法。<br>它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，<br>再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，<br>直到所有元素均排序完毕。</p>
-</blockquote>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function selectSort(arr)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="built_in">var</span> i = <span class="number">0</span>; i &lt; arr.<span class="built_in">length</span> - <span class="number">1</span>; i++)&#123;</div><div class="line">            <span class="built_in">var</span> <span class="built_in">min</span> = arr[i];</div><div class="line">            <span class="keyword">for</span>(<span class="built_in">var</span> j = i + <span class="number">1</span>; j &lt; arr.<span class="built_in">length</span> - <span class="number">1</span>; j++)&#123;</div><div class="line">                <span class="keyword">if</span>(<span class="built_in">min</span> &gt; arr[j])&#123;</div><div class="line">                    <span class="built_in">var</span> temp = <span class="built_in">min</span>;</div><div class="line">                    <span class="built_in">min</span> = arr[j];</div><div class="line">                    arr[j] = temp;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            arr[i] = <span class="built_in">min</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">return</span> arr;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h3 id="冒泡排序算法"><a href="#冒泡排序算法" class="headerlink" title="冒泡排序算法"></a>冒泡排序算法</h3><blockquote>
-<p>冒泡排序是一种交换排序，它的基本思想是：两两比较相邻记录的关键字，如果反序则交换，<br>直到没有反序的记录为止。。它重复地走访过要排序的数列，一次比较两个元素，如果它们的<br>顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该<br>数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">     <span class="keyword">let</span> temp = <span class="number">0</span>;</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</div><div class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</div><div class="line">         <span class="keyword">if</span> (arr[j] &lt; arr[i]) &#123;</div><div class="line">           temp = arr[j];</div><div class="line">           arr[j] = arr[i];</div><div class="line">           arr[i] = temp;</div><div class="line">         &#125; </div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> arr;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h3 id="快速排序算法"><a href="#快速排序算法" class="headerlink" title="快速排序算法"></a>快速排序算法</h3><blockquote>
-<p>（1）在数据集之中，选择一个元素作为”基准”（pivot）。<br>（2）所有小于”基准”的元素，都移到”基准”的左边；所有大于”基准”的元素，都移到”基准”的右边。<br>（3）对”基准”左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function <span class="built_in">quickSort</span>(arr)&#123;</div><div class="line">        <span class="keyword">if</span> (arr.length &lt;= <span class="number">1</span>)&#123;<span class="keyword">return</span> arr&#125;;</div><div class="line">        <span class="keyword">var</span> pivotIndex = <span class="type">Math</span>.floor(arr.length / <span class="number">2</span>);</div><div class="line">        <span class="keyword">var</span> pivot = arr.splice(pivotIndex,<span class="number">1</span>)[<span class="number">0</span>];</div><div class="line">        <span class="keyword">var</span> <span class="keyword">left</span> = [];</div><div class="line">        <span class="keyword">var</span> <span class="keyword">right</span> = [];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(arr[i] &lt; pivot) &#123;</div><div class="line">                <span class="keyword">left</span>.push(arr[i]);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">right</span>.push(arr[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">quickSort</span>(<span class="keyword">left</span>).concat([pivot],<span class="built_in">quickSort</span>(<span class="keyword">right</span>));</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
-      
-        <categories>
-            
-            <category> 算法 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 排序 </tag>
-            
-            <tag> 快速排序 </tag>
-            
-            <tag> 去重 </tag>
-            
-            <tag> 二分搜索 </tag>
-            
-            <tag> 选择排序 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-  
-  
+<search>
+  <entry>
+    <title><![CDATA[多个输入框组合成一组密码框并且可以输入但不可选中]]></title>
+    <url>%2F2017%2F12%2F04%2Fothers%2Fpassword%2F</url>
+    <content type="text"><![CDATA[前言 最近接到一个新的需求，如题所示，经过一番折腾，终于是搞定了，于此记录一篇。 问题与解决办法 刚开始做的是密码框阻止click focus事件来使输入框不可选中，但事实证明没有什么用，输入框还是顺利的聚焦了，使用disable和readonly属性也是不可行的，因为是需要可以输入的输入框，最后是用了一种比较取巧的方法，用一个遮罩层挡住输入框，这样用户就点击不到输入框了：123456789101112131415161718192021222324252627&lt;style&gt; div &#123; position: relative; height: 500px; width: 500px; &#125; span &#123; position: absolute; left: 0; top: 0; height: 100%; width: 100%; z-index: 1; background: transparent; &#125; input &#123; width: 40px; height: 40px; &#125;&lt;/style&gt;&lt;div class='mask'&gt; &lt;span&gt;&lt;/span&gt; &lt;input type="password" name="pswd" maxlength='1' input="focusInput('#2')" id="1"&gt; &lt;input type="password" name="pswd" maxlength='1' input="focusInput('#3')" id="2"&gt; &lt;input type="password" name="pswd" maxlength='1' input="focusInput('#4')" id="3"&gt; &lt;input type="password" name="pswd" maxlength='1' input="focusInput('')" id="4"&gt;&lt;/div&gt; 这样就可以使用户点击不到输入框了,只要让焦点将聚集到第一个输入框，判断其输入后聚焦到下一个输入框就可以了1234567891011121314151617&lt;script&gt; window.onload() = function ()&#123; focusInput(id)&#123; if(id)&#123; $(id).focus(); &#125; &#125; $('input').keydown(function(event)&#123; if(event.keyCode == 8)&#123; $('input').each(function()&#123; $(this).val(''); $('#1').focus(); &#125;) &#125; &#125;) &#125;&lt;/script&gt; BUG 以为就这么简单吗？显然是年轻了，经过我们测试丝丝入扣的校验，有很多漏洞…. 键盘快捷键可以切换焦点 第一条解决以后，点击其他地方会是输入框失去焦点，并且再也无法聚焦到输入框 因为是一个锁屏的功能，所以后面会有一个遮罩层，如果将点击外边的遮罩聚焦到第一个输入框显然是不对的，所以我采取了遍历输入框，找到第一个没有输入的密码框，聚焦到他，所以我将1&lt;div class='mask'&gt; 修改为1&lt;div class='mask' click="focusInput('mask')"&gt; window.onload()中修改为12345678910111213141516171819202122232425focusInput(id)&#123; if(id)&#123; $(id).focus(); &#125; if(id=='mask')&#123; for(let i=0; i&lt;4; i++&gt;)&#123; if($(input).eq(i).val()='')&#123; $($(input).eq(i)).focus(); return; &#125; &#125; &#125;&#125;$('input').keydown(function($event)&#123; event = $event; if(event.keyCode == 8)&#123; $('input').each(function()&#123; $(this).val(''); $('#1').focus(); &#125;) &#125; if(event.keyCode == 9)&#123; event.preventDefault(); &#125;&#125;) 这样以来，基本上问题全部解决，如有疑问或者还拥有BUG，还请评论或者联系博主，谢谢各位！]]></content>
+      <categories>
+        <category>功能</category>
+      </categories>
+      <tags>
+        <tag>密码框</tag>
+        <tag>组合密码框</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[angular2中父子组件的通讯]]></title>
+    <url>%2F2017%2F11%2F28%2Fng2%2Ftalk%2F</url>
+    <content type="text"><![CDATA[前言 angular2为组件化开发，我们开发一个个的组件，然后将他们嵌套拼接起来组成一个个完整的项目，但是这些组件相互之间一定会由某种方式将数据连接起来，他们是怎么通讯的呢？下面即本人的总结，若有错误之处，还请指出，拜谢~ 父组件向子组件传递信息 子组件在父组件的怀抱中，当父组件期望向子组件传递数据时，可以使用@input装饰器，例如： 12345678910@Component(&#123; selector: 'child-component', ...&#125;)export class ChildComponent &#123; @input() message:string = 'child'; ngOnInit()&#123; console.log(this.message); &#125;&#125; 这代表在我们的宿主元素上定义了一个message的数据接口，我们可以在宿主元素上将数据传递给message这样我们就可以在子组件内拿到数据了，那么怎么传递呢？ 1&lt;child-component [message]="msg"&gt;&lt;/child-component&gt; msg可以是父组件中的变量，也可以是字符串。注意[message]语法标识了数据流向：父组件流入子组件，即单向数据绑定。此时如果传入的数据是基本数据类型，子组件中对数组做任何操作都不会影响到父组件，但如果传入的不是基本数据类型，而是引用数据类型，则要格外注意子组件中对数据的操作可能会对父组件产生影响 子组件向父组件传递信息 子组件向父组件传递信息需要和EventEmitter配合使用，实例化一个EventEmitter，然后将数据传递出去,下为在子组件中的定义和传递方法： 12345678910@Component(&#123; selector: 'parent-component', ...&#125;)export class ChildComponent &#123; @output() str: EventEmitter&lt;any&gt; = new EventEmitter(); ngOnInit()&#123; this.str.emit('string'); &#125;&#125; 父组件接收数据的方法与@input类似，只需将[]换为():1&lt;child-component (str)="resiveString($event)"&gt;&lt;/child-component&gt; 父组件内需要定义一下这个resiveString方法，接收到的参数即为从子组件内传递来的数据：1234567891011@Component(&#123; selector: 'parent-component', ...&#125;)export class ChildComponent &#123; ngOnInit()&#123; &#125; resiveString(str)&#123; console.log(str); &#125;&#125; 以上即两种装饰器的使用，父子组件即可以利用这两种装饰器相互通讯]]></content>
+      <categories>
+        <category>angular2</category>
+      </categories>
+      <tags>
+        <tag>angular2</tag>
+        <tag>通讯</tag>
+        <tag>交流</tag>
+        <tag>服务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[web前端面试问题记录]]></title>
+    <url>%2F2017%2F11%2F27%2FInterview%2Fweb-mianshi%2F</url>
+    <content type="text"><![CDATA[1.怎么理解js面向对象？ js是否面向对象，这个问题可以先说什么是面向对象，面向对象的语言都有共同的特征那就是有类的概念，每个类都有抽象、封装、继承、多态的特性，而js在ES6之前并没有类的概念，但是，他却可以利用构造函数来实现类所能做的事情，并通过原型链实现继承，那么它同样也具备了以上面向对象语言的所有特征，特别的，ES6新增加了class这一概念，就更说明了其是一种面向对象的语言，所以js是一种面向对象的语言 2.bind和on的区别？ on可以过滤指定元素，bind不可以 3.bootstrap的栅格系统，应用场景 bootstrap是如今最流行的前端框架之一，可以使web网页开发的更加快速bootstrap主要应用于需要响应式布局的网站，可以适用于不同大小的设备；栅格系统主要是用来布局页面的，他将一个页面均分为12份 4.angularjs特点 mvc开发思想，模块化开发 依赖注入 数据的双向绑定 5.深浅拷贝的区别 浅拷贝只是对一块内存增加了一个指针，访问这个变量依然还是访问的这块内存，而深拷贝是重新申请了一块内存，将另外一个内存的内容复制一份 6.怎么理解盒子模型？ 也叫框模型，是css技术使用的一种思维模型每个元素都可以看作一个盒子，每个元素都包含border.margin.paddingcontent,而盒子模型分为两种，一种是w3c标准盒子模型，另一种是IE盒子模型，和w3c不同的是ie盒子模型的content包含了border和padding 7.什么是闭包，如何使用它，为什么要使用它？ 闭包就是能够读取其他函数内部变量的函数。由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成“定义在一个函数内部的函数”。所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。 8.angular模块之间的通讯方式？ rootscope service 广播 9.什么是DTD？ 文档类型定义的简称，是程序间数据交换定义的语法规则 10.js中有哪些数据类型 ES5:Number Null Undefined String Array Function Object 11.addEventListen和onClick的区别？ onclick同一多次绑定本事件会被下面的覆盖掉，默认冒泡addEventListen会依次执行，可以在函数后的参数自定义为冒泡还是捕获，默认为冒泡 12.JS中快速复制数组的方法?123456var arr = [1, 2, 3];var arr1 = arr.slice(0);//或者var arr = [1, 2, 3];var arr1 = arr.concat(); 13.本地存储有哪些方式？ localStorage sessionStorage cookie indexedDB websql五种方式 14.请说出三种减少页面加载时间的方法? (1).小图片使用雪碧图的方式。大一点的用base64的方式。大直接加载(2).将上线代码进行合并、压缩、混淆(3).css放在文件头部，js放在尾部 15.jQuery中的方法链是什么？使用方法链有什么好处？ 就是对同一个对象的操作可以在上一步操作的后面接着写，好处是让代码看起来更简洁，可读性也高 16.src和href的区别 href 是指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，用于超链接。src是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置；在请求src资源时会将其指向的资源下载并应用到文档内，例如js脚本，img图片和frame等元素。当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。这也是为什么将js脚本放在底部而不是头部 code 持续更新中...]]></content>
+      <categories>
+        <category>面试相关</category>
+      </categories>
+      <tags>
+        <tag>web前端面试题</tag>
+        <tag>面试题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[同步购物车]]></title>
+    <url>%2F2017%2F11%2F27%2Fothers%2Fshopcar%2F</url>
+    <content type="text"><![CDATA[一 、localStorage,sessionStorage,cookie 购物车，相信大家都知道，就是当你在购买东西时，点击“添加购物车”，然后在购物车中就会相应的显示出来，那么这个效果是怎么实现的呢，通过本周的学习，我知道了这是通过本地存储实现的，当你在一个页面勾选想要的商品时，另外一个页面就会从服务器中调用本地所存储的信息，从而达到这个效果。 cookie ：是在客户端保存的方案，但是有许多缺点，一就是存的数据太少，浏览器最多可以保存4096个字节（4KB）,而且浏览器还限制了保存cookie的数量，大多数浏览器每个站点最多存放40个cookie，就是说如果你加入购物车的数量多的话，所有站点存的cookie通常有300个的限制，以前存的数据会一个个的被删除掉，最后cookie还有生命周期显然我们不能够使用这种方法； sessionStorage(window中的对象): 是HTML5提供的使用JS在客户端存储的新方法，之前都是用cookie完成的，但cookie不适合存储大量的数据，因为它们由每个对服务器的请求来传递，这使得 cookie速度很慢而且效率也不高。，所以提供了这种方法，是一个临时的session会话，当页面关闭时，存储消失sessionStorage - 针对一个 session 的数据存储；在 HTML5 中，数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能。 对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。 localStorage(window中的对象):和sessionStorage类似，但localStorage是永久存储，没有时间限制，而且可以手动删除数据 二、实现 从以上三种方式来看，显然最后一个是我们所需要的，于是出现了我的第一个修改前的版本： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354 &lt;!DOCTYPE html&gt; &lt;html lang="en"&gt; &lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;Document&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;input type="checkbox" value="香蕉"&gt;香蕉&lt;br&gt; &lt;input type="checkbox" value="苹果"&gt;苹果&lt;br&gt; &lt;input type="checkbox" value="哈密瓜"&gt;哈密瓜&lt;br&gt; &lt;input type="checkbox" value="梨"&gt;梨&lt;br&gt; &lt;script&gt; window.onload = function()&#123; var oinputs = document.querySelectorAll("input"); for(var i=0; i&lt;oinputs.length; i++)&#123; oinputs[i].onclick = function()&#123; if(this.checked)&#123; window.localStorage.setItem("buy",this.value); &#125;else &#123; window.localStorage.setItem("unbuy",this.value); &#125; &#125; &#125; window.addEventListener("storage", function(ev)&#123; if (ev.key == "unbuy") &#123; for(var i=0; i&lt; oinputs.length;i++)&#123; if(ev.newValue == oinputs[i].value) &#123; oinputs[i].checked = false; &#125; &#125; &#125;else if (ev.key == "buy") &#123; for(var i=0; i&lt; oinputs.length;i++)&#123; if(ev.newValue == oinputs[i].value) &#123; oinputs[i].checked = true; &#125; &#125; &#125; &#125;); &#125; &lt;/script&gt; &lt;/body&gt; &lt;/html&gt;``` 修改后: 开启服务器从网页中打开后，试用一下，我们会发现这是有问题的，当我们重复点击同一个物品时，会发现刚开始是同步的，后来就不同步了，经过老师的解答和查看客户端中的localStorage存储情况，发现后来重复点击同一物品时内存中的数据并没有发生改变，就是说并没有触发JS代码中的storage事件，这是因为我们开始点击后，本地存储先录入了我们原先的数据，当我们第二次选中时或者取消时，按我原先的理解会将原来的值覆盖，从而达到改变存储的数据的效果，而事实证明，内存中存储的是一个key对用一个value值，我们的key分别是buy和unbuy，第二次选中时，unbuy并不会消失就是说浏览器中还是有buy和unbuy两个值，并没有触发这个事件，所以，我们使用了设置key之前先判断的方式，如果原来有我们设置的key，就先把它删掉，重新判断，这样就会一直触发storage事件，而事实证明是可以的 &lt;!DOCTYPE html&gt; &lt;html lang=&quot;en&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;title&gt;Document&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;input type=&quot;checkbox&quot; value=&quot;香蕉&quot;&gt;香蕉&lt;br&gt; &lt;input type=&quot;checkbox&quot; value=&quot;苹果&quot;&gt;苹果&lt;br&gt; &lt;input type=&quot;checkbox&quot; value=&quot;哈密瓜&quot;&gt;哈密瓜&lt;br&gt; &lt;input type=&quot;checkbox&quot; value=&quot;梨&quot;&gt;梨&lt;br&gt; &lt;script&gt; window.onload = function(){ var oinputs = document.querySelectorAll(&quot;input&quot;); for(var i=0; i&lt;oinputs.length; i++){ oinputs[i].onclick = function(){ if(this.checked){ if (window.localStorage.getItem(&quot;buy&quot;)) { window.localStorage.removeItem(&quot;buy&quot;); } window.localStorage.setItem(&quot;buy&quot;,this.value); }else { if (window.localStorage.getItem(&quot;unbuy&quot;)) { window.localStorage.removeItem(&quot;unbuy&quot;); } window.localStorage.setItem(&quot;unbuy&quot;,this.value); } } } window.addEventListener(&quot;storage&quot;, function(ev){ if (ev.key == &quot;unbuy&quot;) { for(var i=0; i&lt; oinputs.length;i++){ if(ev.newValue == oinputs[i].value) { oinputs[i].checked = false; } } }else if (ev.key == &quot;buy&quot;) { for(var i=0; i&lt; oinputs.length;i++){ if(ev.newValue == oinputs[i].value) { oinputs[i].checked = true; } } } }); } &lt;/script&gt; &lt;/body&gt; &lt;/html&gt; 补上key的方法： Ø setItem(): 设置数据，key\value类型，类型都是字符串 可以用获取属性的形式操作 Ø getItem(): 获取数据，通过key来获取到相应的value Ø removeItem(): 删除数据，通过key来删除相应的value Ø clear(): 删除全部存储的值]]></content>
+      <categories>
+        <category>功能</category>
+      </categories>
+      <tags>
+        <tag>storage</tag>
+        <tag>localstorage</tag>
+        <tag>sessonstorage</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[面试经历]]></title>
+    <url>%2F2017%2F11%2F27%2FInterview%2Fshanghaiwork%2F</url>
+    <content type="text"><![CDATA[来到上海已经两周，终于通过了一家公司的面试，总共面试了三次，现在我就分享一下面试中的一些问题，希望对和我一样在找工作途中的“道友”有所帮助 问题js实现继承的问题 这个问题实际上并没有什么难度，问的是js怎么实现继承，一句可以用原型链的方式实现就不深入问了，看来面试官只是需要我对这个问题有所了解据够了 css reset 这个同样是一个基础的问题，是为了防止浏览器之间的解析差异，将一些样式属性重置为0，以便于我们在各个浏览器看到的都是同样的样式 盒子模型 html每个标签都可以看成一个盒子，具有padding margin border content等属性，IE也有一个盒子模型，不同的是IE的content包含了padding angular和react的区别 这个问题我是从两个框架的特点方面回答的，angular是双向数据绑定，mvc的开发思想，依赖注入的特点，模块化开发；react是单向数据流，语法使用的jsx组件化开发，有一个虚拟dom树，所以性能比angular高很多，因为angular有一个脏检查的机制，拖慢了angular的性能，当然这只是一个方面，大概就说了这么多 怎么实现react的双向数据绑定 这个问题我还真没有想过，当时没有想到，等回来才发现其实思路很简单，就是在react的数据标签上绑定一个onchange事件，直接改变state，当然，最后还是用一些js库来实现的 sessionStorage,localStorage的区别 sessionStorage,当浏览器关闭后存储在其中的数据会消失，而localStorage不会，只能手动删除 jq和angular的区别 两者都是js封装的框架，jq主要是对dom节点的操作，angular主要是对数据的操作，主要还是往两者的特点上扯，把各个特点一下就可以了，angular特点上文已有就不多说了 其他 还有一些算法什么的就不多说了，在我另一篇博文里有，希望我写的这些东西可以给一些志同道合的朋友提供帮助]]></content>
+      <categories>
+        <category>面试相关</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[react的受控组件和非受控组件]]></title>
+    <url>%2F2017%2F11%2F27%2Freact%2Freact_Component%2F</url>
+    <content type="text"><![CDATA[背景 React内部分别使用了props, state来区分组件的属性和状态。props用来定义组件外部传进来的属性,属于那种经过外部定义之后, 组件内部就无法改变。而state维持组件内部的状态更新和变化, 组件渲染出来后响应用户的一些操作,更新组件的一些状态。如果组件内部状态不需要更新,即没有调用过this.setState,全部通过props来渲染也是没问题的, 不过这种情况不常见。本文所介绍的内容就是通过props和state的定义来谈谈React的受控组件和非受控组件 react的非受控组件 顾名思义, 非受控组件即组件的状态改变不受控制.接来下我们以一个简单input组件代码来描述。 123456789101112import React, &#123; Component &#125; from 'react';import ReactDOM from 'react-dom';class Demo1 extends Component &#123; render() &#123; return ( &lt;input /&gt; ) &#125;&#125;ReactDOM.render(&lt;Demo1/&gt;, document.getElementById('content')) 在这个最简单的输入框组件里,我们并没有干涉input中的value展示,即用户输入的内容都会展示在上面。如果我们通过props给组件设置一个初始默认值,defaultValue属性是React内部实现的一个属性,目的类似于input的placeholder属性。ps: 此处如果使用value代替defaultValue,会发现输入框的值无法改变。 react的受控组件 上面提到过,既然通过设置input的value属性, 无法改变输入框值,那么我们把它和state结合在一起,再绑定onChange事件,实时更新value值就行了 123456789101112131415161718192021class Demo1 extends Component &#123; constructor(props) &#123; super(props); this.state = &#123; value: props.value &#125; &#125; handleChange(e) &#123; this.setState(&#123; value: e.target.value &#125;) &#125; render() &#123; return ( &lt;input value=&#123;this.state.value&#125; onChange=&#123;e =&gt; this.handleChange(e)&#125;/&gt; ) &#125;&#125; 这就是最简单的受控组件模型, 我们可以通过在onChange的回调里控制input要显示的值,例如我们设置input框只能输入数字 1234this.setState(&#123; value: e.target.value.replace(/\D/g, '')&#125;)]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>react的受控组件</tag>
+        <tag>react非受控组件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[angular2组件的生命周期]]></title>
+    <url>%2F2017%2F11%2F27%2Fng2%2Fng2_lift%2F</url>
+    <content type="text"><![CDATA[1.说明 Angular每个组件都存在一个生命周期，从创建，变更到销毁。Angular提供组件生命周期钩子，把这些关键时刻暴露出来，赋予在这些关键结点和组件进行交互的能力。 2.angular2组件的生命周期和执行顺序以下按照执行顺序排列 ngOnChanges 当被绑定的输入属性的值发生变化时调用，首次调用一定会发生在 ngOnInit之前 ngOnInit 在第一轮 ngOnChanges 完成之后调用。 (也就是说当每个输入属性的值都被触发了一次 ngOnChanges 之后才会调用 ngOnInit ，此时所有输入属性都已经有了正确的初始绑定值 ) ngDoCheck 在每个 Angular 变更检测周期中调用。 ngAfterContentInit 当把内容投影进组件之后调用。 ngAfterContentChecked 每次完成被投影组件内容的变更检测之后调用。 ngAfterViewInit 初始化完组件视图及其子视图之后调用。 ngAfterViewChecked 每次做完组件视图和子视图的变更检测之后调用。 ngOnDestroy 当 Angular 每次销毁指令 / 组件之前调用。 3.演示 代码主要包含ngOnChanges，ngOnInit，ngDoCheck，ngOnDestroy 12345678910111213141516171819202122232425262728293031323334353637383940414243444546import &#123; Component, Input, OnChanges, OnInit, DoCheck, OnDestroy &#125; from '@angular/core';@Component(&#123; moduleId: 'birthday', selector: 'birthday', template: ` &lt;h5&gt;your birthday is &#123;&#123;birthday&#125;&#125;&lt;/h5&gt; `,&#125;)export class BirthdayComponent implements OnChanges, OnInit, DoCheck, OnDestroy &#123; @Input() birthday; ngOnChanges(changes) &#123; console.log('ngOnChanges'); &#125; ngOnInit() &#123; console.log('ngOnInit'); &#125; ngDoCheck() &#123; console.log('ngDoCheck'); &#125; ngOnDestroy() &#123; console.log('ngOnDestroy'); &#125;&#125; @Component(&#123; moduleId: 'app', selector: 'app', template: ` &lt;birthday [birthday]="birthday"&gt;&lt;/birthday&gt; `, directives: [BirthdayComponent]&#125;)export class AppComponent &#123; birthday: Date = new Date(2012, 10, 10);&#125; 在app组件中调用，可以清楚的得到执行顺序如下： (1)ngOnChanges (2)ngOnInit (3)ngOnDocheck 当组件销毁时会调用 ngOnDestroy]]></content>
+      <categories>
+        <category>angular2</category>
+      </categories>
+      <tags>
+        <tag>ng2</tag>
+        <tag>生命周期</tag>
+        <tag>ng2组件执行顺序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[jQuery总结]]></title>
+    <url>%2F2017%2F11%2F27%2Fjs-jq%2Fjquery%2F</url>
+    <content type="text"><![CDATA[一.基本方法： html()和text() 两者都是设置或返回JQ对象内的内容，区别是text（）返回的是纯文本内容，会过滤掉标签；val()方法是设置或返回表单的值，一般有input,textarea等；attr()方法设置或返回元素的属性值，会覆盖掉原有属性；removeAttr()为移除被选元素的属性；addClass(‘类名’)，向被选元素追加类名，如果添加多个，中间用空格隔开；removeClass(‘类名’）传参，删除指定类名，不传参删除所有类名；toggleClass(‘类名’),在有与没有之间切换；hasClass(‘类名’)检查被选元素是否包含指定的 class，如果测试的是一个集合，只要有一个有，就返回true，没有返回false；css()方法设置或返回元素的一个或多个样式属性（getComputedStyle、currentStyle）， 二、jQuery遍历节点 parent()返回被选元素的直接父亲，parents返回被选元素的所有祖先。直到HTML ；children()返回被选元素的所有直接子元素，find()方法返回被选元素的后代元素，必须在其中加入选择器；prev()返回被选元素的上一个同胞元素，next()返回下一个同胞元素，siblings()返回所有同胞元素； 三、操作DOM节点 1.在jq创建节点var li = $(“ “);2.append（）向被选元素追加内容或子节点例如：$(“#game”).append($(“红色警戒“));appendTo()与append（）颠倒前后，效果相同； prepend()和append类似，它是向前边插入，prependTo()前后颠倒，效果相同；3.after()在每个被选元素后插入兄弟节点；before()是向每个被选元素前插入兄弟节点；insertBefore（）是向所有匹配元素的前边插入兄弟节点；insertAfter()是向所有匹配元素后边插入兄弟节点；4.remove()删除被选元素及其后代；empty清空被选元素，删除其所有子元素；5.replaceWithØ 将匹配元素替换成指定的HTML或DOM元素,前面的元素是被替换元素,后面的元素是替换元素,例如：$(“button”).replaceWith($(“这又是一个段落. “)); 四. jQuery克隆元素 clone(),不传参，只复制元素，不复制该元素的事件处理函数 $(“p”).clone().appendTo(‘.box1’);有一个参数，true，复制元素及其本身的事件处理函数，第二个参数，默认值是true不仅复制元素及其本身的事件处理函数而且会复制子元素的事件处理函数，如果是false就不会复制子元素的事件处理函数]]></content>
+      <categories>
+        <category>jQuery</category>
+      </categories>
+      <tags>
+        <tag>jq</tag>
+        <tag>jQuery节点操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[jQuery入口函数和常用选择器]]></title>
+    <url>%2F2017%2F11%2F27%2Fjs-jq%2Fjq-select%2F</url>
+    <content type="text"><![CDATA[jQuery是javascript的一个库（框架），包含多个可重用的函数，用来辅助我们简化javascript开发… 一、使用 1.引用，要想用jQuery,首先要将JQ的库引进来，我们才可以使用2.和JS使用类似，都有一个入口函数，第一种是$(document).ready(function(){});另一种是$(function() {});和JS使用的window.onload=function(){}的区别是windows.onload方法是在网页中所有的元素（包括元素的所有关联文件）完全加载到浏览器后才执行，即Javascript此时才可以访问网页中的 任何元素。而jQuery中的$（document).ready（）和$(function() {})方法注册的事件处理程序，在DOM完全就绪时就可以被调用。此时，网页的所有元素对jQuery而言都 是可以访问的，但是，这并不意味着这些元素关联的文件都已经下载完毕。3.JQ的书写方式和JS不同，JQ是$(“选择器”)就可以选中HTML节点；JQ与DOM原生对象之间可以相互转换，在DOM对象前加$可实现转化为JQ对象，在jq后接[]或者.get(index)可转换为DOM原生对象 二、jQuery选择器 4.JQ选择器：（1）基本选择器（和css中相同）通用选择器：$(“*”);ID选择器：$(“#id”);class选择器$(“.classname”);标签选择器$(“标签名”)并集选择器$(“th,td,.intro”)；并列选择器$(“.intro.demo”) （2）层级选择器子元素选择器 parent&gt;child 匹配给定的父元素下匹配所有的子元素 后代选择器 $(form input) 查找form元素的后代元素中为input的标记 紧邻同辈选择器 prev+next 匹配所有紧接在prev元素后的next元素 相邻同辈选择器 prev~siblings 匹配prev元素之后的所有的siblings元素 （3）表单域选择器子元素选择器 parent&gt;child 匹配给定的父元素下匹配所有的子元素 后代选择器 $(form input) 查找form元素的后代元素中为input的标记 紧邻同辈选择器 prev+next 匹配所有紧接在prev元素后的next元素 相邻同辈选择器 prev~siblings 匹配prev元素之后的所有的siblings元素 子元素选择器 parent&gt;child 匹配给定的父元素下匹配所有的子元素 后代选择器 $(form input) 查找form元素的后代元素中为input的标记 紧邻同辈选择器 prev+next 匹配所有紧接在prev元素后的next元素 相邻同辈选择器 prev~siblings 匹配prev元素之后的所有的siblings元素 子元素选择器 parent&gt;child 匹配给定的父元素下匹配所有的子元素 后代选择器 $(form input) 查找form元素的后代元素中为input的标记 紧邻同辈选择器 prev+next 匹配所有紧接在prev元素后的next元素 （4）伪类过滤选择器元素元素 :first选择器 $(“p:first”)第一个元素 :last选择器 $(“p:last”)最后一个 元素 :even 选择器 $(“tr:even”))所有偶数 :odd 选择器 $(“tr:odd”)所有奇数 :eq(index)选择器 $(“ul li:eq(3)”)列表中的第四个元素（index 从 0 开始） :gt(no)选择器 $(“ul li:gt(3)”)列出 index 大于 3 的元素 :lt(no) 选择器 $(“ul li:lt(3)”)列出 index 小于 3 的元素 :not(selector)选择器 $(“input:not(:empty)”)所有不为空的 input 元素 :header 选择器 $(“:header”)所有标题元素 :animated 选择器 $(“:animated”) 选出当前所有动画 （匹配动画 - 必须由jQuery自己搞定）、 （5）内容过滤选择器:contains(text) $(“:contains(‘W3School’)”) 包含指定字符串的所有元素 :empty $(“:empty”) 无子（元素）节点的所有元素 :has()选择器 $(“select1:has(selector2)”) 选取含有selector2的所有selector1的元素 （6）简单属性过滤选择器[attribute] $(“div[id]”) 查找所有含有 id 属性的 div 元素 [attribute=value] $(“input[name=’newsletter’]”) 所有name属性的值等于 “newsletter” 的元素 [attribute=value] $(“input[name=’news’]”) name中包含news的元素 [attribute~=value] $(“input[name~=’news’]”) name中包含news 单词的元素 [attribute^=value] $(“selector[attribute^=value]”) attribute中以某特定值开始的所有元素 [attribute$=value] $(“selector[attribute$=value]”) attribute中以给给定值结尾的所有元素 []attribute!=value] $(“selector[attribute!=value]”) attribute不等于value的所有元素 （7）子元素过滤选择器:first-child $(“selector:first-child”) 父级的第一个子元素 :last-child $(“selector:last-child”) 父级的最后一个子元素 :nth-child $(“selector:nth-child(index/even/odd)”) 父级的第n个子元素 :only-child $(“selector:only-child”) 只有一个孩子的父级 （8）表单域属性过滤选择器:enabled $(“:enabled”) 所有激活的 input 元素 :disabled $(“:disabled”) 所有禁用的 input 元素 :selected $(“:selected”) 所有被选取的 input 元素 :checked $(“:checked”) 所有被选中的 input （9）可见性过滤选择器 :visible $(“table:visible”) 所有可见的表格 :hidden 选择器 $(“:hidden”) 所有隐藏的元素（:前面加选择器）]]></content>
+      <categories>
+        <category>jQuery</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+        <tag>jQuery选择器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[angular.js的几个问题]]></title>
+    <url>%2F2017%2F11%2F27%2Fng1%2Fdemo%2F</url>
+    <content type="text"><![CDATA[一、ng-show,ng-hide和ng-if的区别？ ng-show和ng-hide是通过display:none的方式将元素隐藏的，而ng-if是通过删除所在节点的方式将元素隐藏的，相对来说 ng-if的方式更好，提高了性能 二、angular中的digest周期是什么？ 每个digest周期中，angular总会对比scope上model的值，一般digest周期都是自动触发的，我们也可以使用$apply或者$digest进行手动触发 三、模块之间的通讯方式？ 1.server 自定义服务，在其他的模块中引入这个服务，就可以让这个模块使用你自定义服务中的功能 2.使用$rootScope 通俗来新疆$rootScope是所有$scope的父亲；另外angular解析页面的时候，也是先通过ng-app指令创建一个$rootScope继续解析，将双花括号表达式解析成变量，接着会解析ng-controller所在的节点指向到某个controller函数，这个时候在这个controller函数中变成一个$scope对象，所以我们直接将变量挂载到$rootScope上后，所有模块都可以引用这个变量 3.controller之间使用广播的方式 广播的方式即使用$emit、$on、$broadcast 三个函数比如下例：123456789101112&lt;body ng-app="app"&gt; &lt;div ng-controller="demo1"&gt; &lt;button ng-click="broadcast()"&gt;向子控制器传递&lt;/button&gt; &lt;div ng-controller="demo2"&gt; &lt;/div&gt; &lt;div&gt; &lt;div ng-controller="demo3"&gt; &lt;button ng-click="emit()"&gt;向父亲传递信息&lt;/button&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;&lt;/body&gt; 在demo2,demo3中使用$emit函数可以向父控制器demo1中发送数据，而demo1通过$on接收发送过来的数据，反之则用$broadcast通信 4.怎么停止$watch()？ 启动一个$watch()会返回一个停止的函数，启动这个函数就会停止]]></content>
+      <categories>
+        <category>angular1</category>
+      </categories>
+      <tags>
+        <tag>angular</tag>
+        <tag>angular面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[延迟动画 下拉动画 插件]]></title>
+    <url>%2F2017%2F11%2F27%2Fothers%2Fchajian%2F</url>
+    <content type="text"><![CDATA[一个字：炫酷 今天，我们来分享两个比较炫酷的动画插件animated.css 和 wow.js,第一个，可以添加刷新动画，第二个要基于第一个实现，可以实现下拉动画和延迟动画的效果 下载可以到网上寻找资源，这里提供说明：当你将两个插件引入你的文档后，只需要将animated加入你需要加动画的节点上，再加上动画效果的类名就可以了例如：class=”animated bounceInDown”，这个类名可以节点出现从上往下掉落到指定位置的效果，而wow.js可以实现延迟动画，只需将其引入后再将1.类名写入wow，给节点属性加入延迟时间，例如 data-wow-delay=’0.2s’.即可将animated动画延时播放2.类名写入wow，在需要动画的节点写入类名动画入animated pulse ，合起来就是class=’wow animated pulse’,就可以实现下拉动画了]]></content>
+      <categories>
+        <category>插件</category>
+      </categories>
+      <tags>
+        <tag>动画</tag>
+        <tag>下拉动画</tag>
+        <tag>延迟动画</tag>
+        <tag>animated</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[各种算法实现]]></title>
+    <url>%2F2017%2F11%2F27%2Fothers%2Falgorithm%2F</url>
+    <content type="text"><![CDATA[去重算法 去除数组中的重复元素 1234567891011121314151617function delRepeat(arr)&#123; var newArray=new Array(); var len=arr.length; for(var i=0;i&lt;len;i++)&#123; for(var j=i+1;j&lt;len;j++) &#123; if(arr[i]==arr[j]) &#123; ++i; &#125; &#125; newArray.push(arr[i]); &#125; return newArray;&#125;var arr=new Array("red","red","1","5","2");alert(delRepeat(arr)); 二分算法，又称折半算法123456789101112131415161718function binaryInsertSort(arr)&#123; for (var i = 1; i &lt; arr.length; i++) &#123; var key = arr[i], left = 0, right = i - 1; while (left &lt;= right) &#123; var middle = parseInt((left + right) / 2); if (key &lt; arr[middle]) &#123; right = middle - 1; &#125; else &#123; left = middle + 1; &#125; &#125; for (var j = i - 1; j &gt;= left; j--) &#123; arr[j + 1] = arr[j]; &#125; arr[left] = key; &#125;return arr;&#125; 选择排序算法 选择排序就是通过n-i次关键字间的比较，从n-i-1个记录中选出关键字最小的记录，并和第i个记录进行交换。选择排序(Selection-sort)是一种简单直观的排序算法。它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。 1234567891011121314function selectSort(arr)&#123; for(var i = 0; i &lt; arr.length - 1; i++)&#123; var min = arr[i]; for(var j = i + 1; j &lt; arr.length - 1; j++)&#123; if(min &gt; arr[j])&#123; var temp = min; min = arr[j]; arr[j] = temp; &#125; &#125; arr[i] = min; &#125; return arr; &#125; 冒泡排序算法 冒泡排序是一种交换排序，它的基本思想是：两两比较相邻记录的关键字，如果反序则交换，直到没有反序的记录为止。。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端 1234567891011121314function arrSort(arr) &#123; let temp = 0; for (var i = 0; i &lt; arr.length - 1; i++) &#123; for (var j = i + 1; j &lt; arr.length; j++) &#123; if (arr[j] &lt; arr[i]) &#123; temp = arr[j]; arr[j] = arr[i]; arr[i] = temp; &#125; &#125; &#125; return arr; &#125; 快速排序算法 （1）在数据集之中，选择一个元素作为”基准”（pivot）。（2）所有小于”基准”的元素，都移到”基准”的左边；所有大于”基准”的元素，都移到”基准”的右边。（3）对”基准”左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。 12345678910111213141516function quickSort(arr)&#123; if (arr.length &lt;= 1)&#123;return arr&#125;; var pivotIndex = Math.floor(arr.length / 2); var pivot = arr.splice(pivotIndex,1)[0]; var left = []; var right = []; for (var i = 0; i &lt; arr.length; i++)&#123; if(arr[i] &lt; pivot) &#123; left.push(arr[i]); &#125;else&#123; right.push(arr[i]); &#125; &#125; return quickSort(left).concat([pivot],quickSort(right)); &#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>排序</tag>
+        <tag>快速排序</tag>
+        <tag>去重</tag>
+        <tag>二分搜索</tag>
+        <tag>选择排序</tag>
+      </tags>
+  </entry>
 </search>
