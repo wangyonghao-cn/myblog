@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -121,7 +121,7 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -408,7 +408,7 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计</span>
+                  <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
                   648
@@ -424,7 +424,7 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">阅读时长</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
                   2
@@ -586,23 +586,21 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Yonghao Wang" />
-          <p class="site-author-name" itemprop="name">Yonghao Wang</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yonghao Wang</p>
               <p class="site-description motion-element" itemprop="description">Great minds have purpose, others have wishes</p>
-          
-        </div>
-        <nav class="site-state motion-element">
+          </div>
+
+          <nav class="site-state motion-element">
 
           
             <div class="site-state-item site-state-posts">
@@ -708,7 +706,7 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -787,6 +785,13 @@ html()和text() 两者都是设置或返回JQ对象内的内容，区别是text�
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
